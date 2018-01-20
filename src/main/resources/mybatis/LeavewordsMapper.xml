@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.LeavewordsMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Leavewords" >
+    <id column="leavewordid" property="leavewordid" jdbcType="INTEGER" />
+    <result column="adminid" property="adminid" jdbcType="INTEGER" />
+    <result column="leavewordcontent" property="leavewordcontent" jdbcType="VARCHAR" />
+    <result column="byadminid" property="byadminid" jdbcType="INTEGER" />
+    <result column="leavewordtype" property="leavewordtype" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    leavewordid, adminid, leavewordcontent, byadminid, leavewordtype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_leaveword
+    where leavewordid = #{leavewordid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_leaveword
+    where leavewordid = #{leavewordid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Leavewords" >
+    insert into enj_leaveword (leavewordid, adminid, leavewordcontent, 
+      byadminid, leavewordtype)
+    values (#{leavewordid,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, #{leavewordcontent,jdbcType=VARCHAR}, 
+      #{byadminid,jdbcType=INTEGER}, #{leavewordtype,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Leavewords" >
+    insert into enj_leaveword
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="leavewordid != null" >
+        leavewordid,
+      </if>
+      <if test="adminid != null" >
+        adminid,
+      </if>
+      <if test="leavewordcontent != null" >
+        leavewordcontent,
+      </if>
+      <if test="byadminid != null" >
+        byadminid,
+      </if>
+      <if test="leavewordtype != null" >
+        leavewordtype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="leavewordid != null" >
+        #{leavewordid,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null" >
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="leavewordcontent != null" >
+        #{leavewordcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="byadminid != null" >
+        #{byadminid,jdbcType=INTEGER},
+      </if>
+      <if test="leavewordtype != null" >
+        #{leavewordtype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Leavewords" >
+    update enj_leaveword
+    <set >
+      <if test="adminid != null" >
+        adminid = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="leavewordcontent != null" >
+        leavewordcontent = #{leavewordcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="byadminid != null" >
+        byadminid = #{byadminid,jdbcType=INTEGER},
+      </if>
+      <if test="leavewordtype != null" >
+        leavewordtype = #{leavewordtype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where leavewordid = #{leavewordid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Leavewords" >
+    update enj_leaveword
+    set adminid = #{adminid,jdbcType=INTEGER},
+      leavewordcontent = #{leavewordcontent,jdbcType=VARCHAR},
+      byadminid = #{byadminid,jdbcType=INTEGER},
+      leavewordtype = #{leavewordtype,jdbcType=INTEGER}
+    where leavewordid = #{leavewordid,jdbcType=INTEGER}
+  </update>
+</mapper>

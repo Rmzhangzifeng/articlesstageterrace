@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.JapediscusssMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Japediscusss" >
+    <id column="japediscussid" property="japediscussid" jdbcType="INTEGER" />
+    <result column="usergid" property="usergid" jdbcType="INTEGER" />
+    <result column="japediscusscontent" property="japediscusscontent" jdbcType="VARCHAR" />
+    <result column="japediscusstime" property="japediscusstime" jdbcType="DATE" />
+    <result column="japediscussstatus" property="japediscussstatus" jdbcType="INTEGER" />
+    <result column="japecid" property="japecid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    japediscussid, usergid, japediscusscontent, japediscusstime, japediscussstatus, japecid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_japediscuss
+    where japediscussid = #{japediscussid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_japediscuss
+    where japediscussid = #{japediscussid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Japediscusss" >
+    insert into enj_japediscuss (japediscussid, usergid, japediscusscontent, 
+      japediscusstime, japediscussstatus, japecid
+      )
+    values (#{japediscussid,jdbcType=INTEGER}, #{usergid,jdbcType=INTEGER}, #{japediscusscontent,jdbcType=VARCHAR}, 
+      #{japediscusstime,jdbcType=DATE}, #{japediscussstatus,jdbcType=INTEGER}, #{japecid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Japediscusss" >
+    insert into enj_japediscuss
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="japediscussid != null" >
+        japediscussid,
+      </if>
+      <if test="usergid != null" >
+        usergid,
+      </if>
+      <if test="japediscusscontent != null" >
+        japediscusscontent,
+      </if>
+      <if test="japediscusstime != null" >
+        japediscusstime,
+      </if>
+      <if test="japediscussstatus != null" >
+        japediscussstatus,
+      </if>
+      <if test="japecid != null" >
+        japecid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="japediscussid != null" >
+        #{japediscussid,jdbcType=INTEGER},
+      </if>
+      <if test="usergid != null" >
+        #{usergid,jdbcType=INTEGER},
+      </if>
+      <if test="japediscusscontent != null" >
+        #{japediscusscontent,jdbcType=VARCHAR},
+      </if>
+      <if test="japediscusstime != null" >
+        #{japediscusstime,jdbcType=DATE},
+      </if>
+      <if test="japediscussstatus != null" >
+        #{japediscussstatus,jdbcType=INTEGER},
+      </if>
+      <if test="japecid != null" >
+        #{japecid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Japediscusss" >
+    update enj_japediscuss
+    <set >
+      <if test="usergid != null" >
+        usergid = #{usergid,jdbcType=INTEGER},
+      </if>
+      <if test="japediscusscontent != null" >
+        japediscusscontent = #{japediscusscontent,jdbcType=VARCHAR},
+      </if>
+      <if test="japediscusstime != null" >
+        japediscusstime = #{japediscusstime,jdbcType=DATE},
+      </if>
+      <if test="japediscussstatus != null" >
+        japediscussstatus = #{japediscussstatus,jdbcType=INTEGER},
+      </if>
+      <if test="japecid != null" >
+        japecid = #{japecid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where japediscussid = #{japediscussid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Japediscusss" >
+    update enj_japediscuss
+    set usergid = #{usergid,jdbcType=INTEGER},
+      japediscusscontent = #{japediscusscontent,jdbcType=VARCHAR},
+      japediscusstime = #{japediscusstime,jdbcType=DATE},
+      japediscussstatus = #{japediscussstatus,jdbcType=INTEGER},
+      japecid = #{japecid,jdbcType=INTEGER}
+    where japediscussid = #{japediscussid,jdbcType=INTEGER}
+  </update>
+</mapper>

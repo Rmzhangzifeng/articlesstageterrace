@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.PicthemesMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Picthemes" >
+    <id column="picthemeid" property="picthemeid" jdbcType="INTEGER" />
+    <result column="picgroupid" property="picgroupid" jdbcType="INTEGER" />
+    <result column="pictypeid" property="pictypeid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    picthemeid, picgroupid, pictypeid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_pictheme
+    where picthemeid = #{picthemeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_pictheme
+    where picthemeid = #{picthemeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Picthemes" >
+    insert into enj_pictheme (picthemeid, picgroupid, pictypeid
+      )
+    values (#{picthemeid,jdbcType=INTEGER}, #{picgroupid,jdbcType=INTEGER}, #{pictypeid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Picthemes" >
+    insert into enj_pictheme
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="picthemeid != null" >
+        picthemeid,
+      </if>
+      <if test="picgroupid != null" >
+        picgroupid,
+      </if>
+      <if test="pictypeid != null" >
+        pictypeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="picthemeid != null" >
+        #{picthemeid,jdbcType=INTEGER},
+      </if>
+      <if test="picgroupid != null" >
+        #{picgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="pictypeid != null" >
+        #{pictypeid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Picthemes" >
+    update enj_pictheme
+    <set >
+      <if test="picgroupid != null" >
+        picgroupid = #{picgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="pictypeid != null" >
+        pictypeid = #{pictypeid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where picthemeid = #{picthemeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Picthemes" >
+    update enj_pictheme
+    set picgroupid = #{picgroupid,jdbcType=INTEGER},
+      pictypeid = #{pictypeid,jdbcType=INTEGER}
+    where picthemeid = #{picthemeid,jdbcType=INTEGER}
+  </update>
+</mapper>

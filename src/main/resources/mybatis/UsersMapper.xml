@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.UsersMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Users" >
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="usersignature" property="usersignature" jdbcType="VARCHAR" />
+    <result column="userintegral" property="userintegral" jdbcType="INTEGER" />
+    <result column="usergeographic" property="usergeographic" jdbcType="VARCHAR" />
+    <result column="usersex" property="usersex" jdbcType="INTEGER" />
+    <result column="userbirthday" property="userbirthday" jdbcType="DATE" />
+    <result column="userlove" property="userlove" jdbcType="VARCHAR" />
+    <result column="userfamilyplace" property="userfamilyplace" jdbcType="VARCHAR" />
+    <result column="userbusiness" property="userbusiness" jdbcType="VARCHAR" />
+    <result column="useremail" property="useremail" jdbcType="VARCHAR" />
+    <result column="userimg" property="userimg" jdbcType="VARCHAR" />
+    <result column="userphone" property="userphone" jdbcType="VARCHAR" />
+    <result column="userqq" property="userqq" jdbcType="INTEGER" />
+    <result column="userwechat" property="userwechat" jdbcType="VARCHAR" />
+    <result column="useraccount" property="useraccount" jdbcType="VARCHAR" />
+    <result column="userpass" property="userpass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, username, usersignature, userintegral, usergeographic, usersex, userbirthday, 
+    userlove, userfamilyplace, userbusiness, useremail, userimg, userphone, userqq, userwechat, 
+    useraccount, userpass
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_users
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_users
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Users" >
+    insert into enj_users (userid, username, usersignature, 
+      userintegral, usergeographic, usersex, 
+      userbirthday, userlove, userfamilyplace, 
+      userbusiness, useremail, userimg, 
+      userphone, userqq, userwechat, 
+      useraccount, userpass)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{usersignature,jdbcType=VARCHAR}, 
+      #{userintegral,jdbcType=INTEGER}, #{usergeographic,jdbcType=VARCHAR}, #{usersex,jdbcType=INTEGER}, 
+      #{userbirthday,jdbcType=DATE}, #{userlove,jdbcType=VARCHAR}, #{userfamilyplace,jdbcType=VARCHAR}, 
+      #{userbusiness,jdbcType=VARCHAR}, #{useremail,jdbcType=VARCHAR}, #{userimg,jdbcType=VARCHAR}, 
+      #{userphone,jdbcType=VARCHAR}, #{userqq,jdbcType=INTEGER}, #{userwechat,jdbcType=VARCHAR}, 
+      #{useraccount,jdbcType=VARCHAR}, #{userpass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Users" >
+    insert into enj_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="usersignature != null" >
+        usersignature,
+      </if>
+      <if test="userintegral != null" >
+        userintegral,
+      </if>
+      <if test="usergeographic != null" >
+        usergeographic,
+      </if>
+      <if test="usersex != null" >
+        usersex,
+      </if>
+      <if test="userbirthday != null" >
+        userbirthday,
+      </if>
+      <if test="userlove != null" >
+        userlove,
+      </if>
+      <if test="userfamilyplace != null" >
+        userfamilyplace,
+      </if>
+      <if test="userbusiness != null" >
+        userbusiness,
+      </if>
+      <if test="useremail != null" >
+        useremail,
+      </if>
+      <if test="userimg != null" >
+        userimg,
+      </if>
+      <if test="userphone != null" >
+        userphone,
+      </if>
+      <if test="userqq != null" >
+        userqq,
+      </if>
+      <if test="userwechat != null" >
+        userwechat,
+      </if>
+      <if test="useraccount != null" >
+        useraccount,
+      </if>
+      <if test="userpass != null" >
+        userpass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usersignature != null" >
+        #{usersignature,jdbcType=VARCHAR},
+      </if>
+      <if test="userintegral != null" >
+        #{userintegral,jdbcType=INTEGER},
+      </if>
+      <if test="usergeographic != null" >
+        #{usergeographic,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null" >
+        #{usersex,jdbcType=INTEGER},
+      </if>
+      <if test="userbirthday != null" >
+        #{userbirthday,jdbcType=DATE},
+      </if>
+      <if test="userlove != null" >
+        #{userlove,jdbcType=VARCHAR},
+      </if>
+      <if test="userfamilyplace != null" >
+        #{userfamilyplace,jdbcType=VARCHAR},
+      </if>
+      <if test="userbusiness != null" >
+        #{userbusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null" >
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="userimg != null" >
+        #{userimg,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="userqq != null" >
+        #{userqq,jdbcType=INTEGER},
+      </if>
+      <if test="userwechat != null" >
+        #{userwechat,jdbcType=VARCHAR},
+      </if>
+      <if test="useraccount != null" >
+        #{useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userpass != null" >
+        #{userpass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Users" >
+    update enj_users
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usersignature != null" >
+        usersignature = #{usersignature,jdbcType=VARCHAR},
+      </if>
+      <if test="userintegral != null" >
+        userintegral = #{userintegral,jdbcType=INTEGER},
+      </if>
+      <if test="usergeographic != null" >
+        usergeographic = #{usergeographic,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null" >
+        usersex = #{usersex,jdbcType=INTEGER},
+      </if>
+      <if test="userbirthday != null" >
+        userbirthday = #{userbirthday,jdbcType=DATE},
+      </if>
+      <if test="userlove != null" >
+        userlove = #{userlove,jdbcType=VARCHAR},
+      </if>
+      <if test="userfamilyplace != null" >
+        userfamilyplace = #{userfamilyplace,jdbcType=VARCHAR},
+      </if>
+      <if test="userbusiness != null" >
+        userbusiness = #{userbusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null" >
+        useremail = #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="userimg != null" >
+        userimg = #{userimg,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        userphone = #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="userqq != null" >
+        userqq = #{userqq,jdbcType=INTEGER},
+      </if>
+      <if test="userwechat != null" >
+        userwechat = #{userwechat,jdbcType=VARCHAR},
+      </if>
+      <if test="useraccount != null" >
+        useraccount = #{useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userpass != null" >
+        userpass = #{userpass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Users" >
+    update enj_users
+    set username = #{username,jdbcType=VARCHAR},
+      usersignature = #{usersignature,jdbcType=VARCHAR},
+      userintegral = #{userintegral,jdbcType=INTEGER},
+      usergeographic = #{usergeographic,jdbcType=VARCHAR},
+      usersex = #{usersex,jdbcType=INTEGER},
+      userbirthday = #{userbirthday,jdbcType=DATE},
+      userlove = #{userlove,jdbcType=VARCHAR},
+      userfamilyplace = #{userfamilyplace,jdbcType=VARCHAR},
+      userbusiness = #{userbusiness,jdbcType=VARCHAR},
+      useremail = #{useremail,jdbcType=VARCHAR},
+      userimg = #{userimg,jdbcType=VARCHAR},
+      userphone = #{userphone,jdbcType=VARCHAR},
+      userqq = #{userqq,jdbcType=INTEGER},
+      userwechat = #{userwechat,jdbcType=VARCHAR},
+      useraccount = #{useraccount,jdbcType=VARCHAR},
+      userpass = #{userpass,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

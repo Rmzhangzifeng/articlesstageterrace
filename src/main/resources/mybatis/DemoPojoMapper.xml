@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.DemoPojoMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.DemoPojo" >
+    <id column="demoid" property="demoid" jdbcType="INTEGER" />
+    <result column="demoname" property="demoname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    demoid, demoname
+  </sql>
+
+  <select id="queryDate" resultType="org.maker.pojo.DemoPojo">
+
+    SELECT * from demo
+
+  </select>
+
+</mapper>

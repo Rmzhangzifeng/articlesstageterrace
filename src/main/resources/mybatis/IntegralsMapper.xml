@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.IntegralsMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Integrals" >
+    <id column="integralid" property="integralid" jdbcType="INTEGER" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="remainingbalance" property="remainingbalance" jdbcType="INTEGER" />
+    <result column="moneystatus" property="moneystatus" jdbcType="INTEGER" />
+    <result column="usersid" property="usersid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    integralid, integral, remainingbalance, moneystatus, usersid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_integral
+    where integralid = #{integralid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_integral
+    where integralid = #{integralid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Integrals" >
+    insert into enj_integral (integralid, integral, remainingbalance, 
+      moneystatus, usersid)
+    values (#{integralid,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{remainingbalance,jdbcType=INTEGER}, 
+      #{moneystatus,jdbcType=INTEGER}, #{usersid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Integrals" >
+    insert into enj_integral
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="integralid != null" >
+        integralid,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="remainingbalance != null" >
+        remainingbalance,
+      </if>
+      <if test="moneystatus != null" >
+        moneystatus,
+      </if>
+      <if test="usersid != null" >
+        usersid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="integralid != null" >
+        #{integralid,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="remainingbalance != null" >
+        #{remainingbalance,jdbcType=INTEGER},
+      </if>
+      <if test="moneystatus != null" >
+        #{moneystatus,jdbcType=INTEGER},
+      </if>
+      <if test="usersid != null" >
+        #{usersid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Integrals" >
+    update enj_integral
+    <set >
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="remainingbalance != null" >
+        remainingbalance = #{remainingbalance,jdbcType=INTEGER},
+      </if>
+      <if test="moneystatus != null" >
+        moneystatus = #{moneystatus,jdbcType=INTEGER},
+      </if>
+      <if test="usersid != null" >
+        usersid = #{usersid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where integralid = #{integralid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Integrals" >
+    update enj_integral
+    set integral = #{integral,jdbcType=INTEGER},
+      remainingbalance = #{remainingbalance,jdbcType=INTEGER},
+      moneystatus = #{moneystatus,jdbcType=INTEGER},
+      usersid = #{usersid,jdbcType=INTEGER}
+    where integralid = #{integralid,jdbcType=INTEGER}
+  </update>
+</mapper>

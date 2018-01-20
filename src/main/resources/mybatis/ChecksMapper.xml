@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.ChecksMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Checks" >
+    <id column="checkid" property="checkid" jdbcType="INTEGER" />
+    <result column="listid" property="listid" jdbcType="INTEGER" />
+    <result column="listtypeid" property="listtypeid" jdbcType="INTEGER" />
+    <result column="checkexcuse" property="checkexcuse" jdbcType="VARCHAR" />
+    <result column="checkman" property="checkman" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    checkid, listid, listtypeid, checkexcuse, checkman
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_check
+    where checkid = #{checkid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_check
+    where checkid = #{checkid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Checks" >
+    insert into enj_check (checkid, listid, listtypeid, 
+      checkexcuse, checkman)
+    values (#{checkid,jdbcType=INTEGER}, #{listid,jdbcType=INTEGER}, #{listtypeid,jdbcType=INTEGER}, 
+      #{checkexcuse,jdbcType=VARCHAR}, #{checkman,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Checks" >
+    insert into enj_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="checkid != null" >
+        checkid,
+      </if>
+      <if test="listid != null" >
+        listid,
+      </if>
+      <if test="listtypeid != null" >
+        listtypeid,
+      </if>
+      <if test="checkexcuse != null" >
+        checkexcuse,
+      </if>
+      <if test="checkman != null" >
+        checkman,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="checkid != null" >
+        #{checkid,jdbcType=INTEGER},
+      </if>
+      <if test="listid != null" >
+        #{listid,jdbcType=INTEGER},
+      </if>
+      <if test="listtypeid != null" >
+        #{listtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="checkexcuse != null" >
+        #{checkexcuse,jdbcType=VARCHAR},
+      </if>
+      <if test="checkman != null" >
+        #{checkman,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Checks" >
+    update enj_check
+    <set >
+      <if test="listid != null" >
+        listid = #{listid,jdbcType=INTEGER},
+      </if>
+      <if test="listtypeid != null" >
+        listtypeid = #{listtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="checkexcuse != null" >
+        checkexcuse = #{checkexcuse,jdbcType=VARCHAR},
+      </if>
+      <if test="checkman != null" >
+        checkman = #{checkman,jdbcType=INTEGER},
+      </if>
+    </set>
+    where checkid = #{checkid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Checks" >
+    update enj_check
+    set listid = #{listid,jdbcType=INTEGER},
+      listtypeid = #{listtypeid,jdbcType=INTEGER},
+      checkexcuse = #{checkexcuse,jdbcType=VARCHAR},
+      checkman = #{checkman,jdbcType=INTEGER}
+    where checkid = #{checkid,jdbcType=INTEGER}
+  </update>
+</mapper>

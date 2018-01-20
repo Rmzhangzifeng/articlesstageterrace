@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.MessagersMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Messagers" >
+    <id column="contactinformationid" property="contactinformationid" jdbcType="INTEGER" />
+    <result column="messageexpediterid" property="messageexpediterid" jdbcType="INTEGER" />
+    <result column="messagerecipientid" property="messagerecipientid" jdbcType="INTEGER" />
+    <result column="messagecontent" property="messagecontent" jdbcType="VARCHAR" />
+    <result column="messagertime" property="messagertime" jdbcType="DATE" />
+    <result column="messagetype" property="messagetype" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    contactinformationid, messageexpediterid, messagerecipientid, messagecontent, messagertime, 
+    messagetype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_messager
+    where contactinformationid = #{contactinformationid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_messager
+    where contactinformationid = #{contactinformationid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Messagers" >
+    insert into enj_messager (contactinformationid, messageexpediterid, 
+      messagerecipientid, messagecontent, messagertime, 
+      messagetype)
+    values (#{contactinformationid,jdbcType=INTEGER}, #{messageexpediterid,jdbcType=INTEGER}, 
+      #{messagerecipientid,jdbcType=INTEGER}, #{messagecontent,jdbcType=VARCHAR}, #{messagertime,jdbcType=DATE}, 
+      #{messagetype,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Messagers" >
+    insert into enj_messager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contactinformationid != null" >
+        contactinformationid,
+      </if>
+      <if test="messageexpediterid != null" >
+        messageexpediterid,
+      </if>
+      <if test="messagerecipientid != null" >
+        messagerecipientid,
+      </if>
+      <if test="messagecontent != null" >
+        messagecontent,
+      </if>
+      <if test="messagertime != null" >
+        messagertime,
+      </if>
+      <if test="messagetype != null" >
+        messagetype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contactinformationid != null" >
+        #{contactinformationid,jdbcType=INTEGER},
+      </if>
+      <if test="messageexpediterid != null" >
+        #{messageexpediterid,jdbcType=INTEGER},
+      </if>
+      <if test="messagerecipientid != null" >
+        #{messagerecipientid,jdbcType=INTEGER},
+      </if>
+      <if test="messagecontent != null" >
+        #{messagecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="messagertime != null" >
+        #{messagertime,jdbcType=DATE},
+      </if>
+      <if test="messagetype != null" >
+        #{messagetype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Messagers" >
+    update enj_messager
+    <set >
+      <if test="messageexpediterid != null" >
+        messageexpediterid = #{messageexpediterid,jdbcType=INTEGER},
+      </if>
+      <if test="messagerecipientid != null" >
+        messagerecipientid = #{messagerecipientid,jdbcType=INTEGER},
+      </if>
+      <if test="messagecontent != null" >
+        messagecontent = #{messagecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="messagertime != null" >
+        messagertime = #{messagertime,jdbcType=DATE},
+      </if>
+      <if test="messagetype != null" >
+        messagetype = #{messagetype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where contactinformationid = #{contactinformationid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Messagers" >
+    update enj_messager
+    set messageexpediterid = #{messageexpediterid,jdbcType=INTEGER},
+      messagerecipientid = #{messagerecipientid,jdbcType=INTEGER},
+      messagecontent = #{messagecontent,jdbcType=VARCHAR},
+      messagertime = #{messagertime,jdbcType=DATE},
+      messagetype = #{messagetype,jdbcType=INTEGER}
+    where contactinformationid = #{contactinformationid,jdbcType=INTEGER}
+  </update>
+</mapper>

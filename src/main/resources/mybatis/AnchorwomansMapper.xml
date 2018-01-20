@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.AnchorwomansMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Anchorwomans" >
+    <id column="anchorwomanid" property="anchorwomanid" jdbcType="INTEGER" />
+    <result column="anchorwomanname" property="anchorwomanname" jdbcType="VARCHAR" />
+    <result column="anchorwomanidentity" property="anchorwomanidentity" jdbcType="VARCHAR" />
+    <result column="anchorwomanaccount" property="anchorwomanaccount" jdbcType="VARCHAR" />
+    <result column="anchorwomanpass" property="anchorwomanpass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    anchorwomanid, anchorwomanname, anchorwomanidentity, anchorwomanaccount, anchorwomanpass
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_anchorwoman
+    where anchorwomanid = #{anchorwomanid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_anchorwoman
+    where anchorwomanid = #{anchorwomanid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Anchorwomans" >
+    insert into enj_anchorwoman (anchorwomanid, anchorwomanname, anchorwomanidentity, 
+      anchorwomanaccount, anchorwomanpass)
+    values (#{anchorwomanid,jdbcType=INTEGER}, #{anchorwomanname,jdbcType=VARCHAR}, #{anchorwomanidentity,jdbcType=VARCHAR}, 
+      #{anchorwomanaccount,jdbcType=VARCHAR}, #{anchorwomanpass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Anchorwomans" >
+    insert into enj_anchorwoman
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="anchorwomanid != null" >
+        anchorwomanid,
+      </if>
+      <if test="anchorwomanname != null" >
+        anchorwomanname,
+      </if>
+      <if test="anchorwomanidentity != null" >
+        anchorwomanidentity,
+      </if>
+      <if test="anchorwomanaccount != null" >
+        anchorwomanaccount,
+      </if>
+      <if test="anchorwomanpass != null" >
+        anchorwomanpass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="anchorwomanid != null" >
+        #{anchorwomanid,jdbcType=INTEGER},
+      </if>
+      <if test="anchorwomanname != null" >
+        #{anchorwomanname,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorwomanidentity != null" >
+        #{anchorwomanidentity,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorwomanaccount != null" >
+        #{anchorwomanaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorwomanpass != null" >
+        #{anchorwomanpass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Anchorwomans" >
+    update enj_anchorwoman
+    <set >
+      <if test="anchorwomanname != null" >
+        anchorwomanname = #{anchorwomanname,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorwomanidentity != null" >
+        anchorwomanidentity = #{anchorwomanidentity,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorwomanaccount != null" >
+        anchorwomanaccount = #{anchorwomanaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorwomanpass != null" >
+        anchorwomanpass = #{anchorwomanpass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where anchorwomanid = #{anchorwomanid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Anchorwomans" >
+    update enj_anchorwoman
+    set anchorwomanname = #{anchorwomanname,jdbcType=VARCHAR},
+      anchorwomanidentity = #{anchorwomanidentity,jdbcType=VARCHAR},
+      anchorwomanaccount = #{anchorwomanaccount,jdbcType=VARCHAR},
+      anchorwomanpass = #{anchorwomanpass,jdbcType=VARCHAR}
+    where anchorwomanid = #{anchorwomanid,jdbcType=INTEGER}
+  </update>
+</mapper>

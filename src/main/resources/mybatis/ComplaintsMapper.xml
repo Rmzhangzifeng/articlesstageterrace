@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.ComplaintsMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Complaints" >
+    <id column="complaintid" property="complaintid" jdbcType="INTEGER" />
+    <result column="usermid" property="usermid" jdbcType="INTEGER" />
+    <result column="complaintcontent" property="complaintcontent" jdbcType="VARCHAR" />
+    <result column="complainttime" property="complainttime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    complaintid, usermid, complaintcontent, complainttime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_complaint
+    where complaintid = #{complaintid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_complaint
+    where complaintid = #{complaintid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Complaints" >
+    insert into enj_complaint (complaintid, usermid, complaintcontent, 
+      complainttime)
+    values (#{complaintid,jdbcType=INTEGER}, #{usermid,jdbcType=INTEGER}, #{complaintcontent,jdbcType=VARCHAR}, 
+      #{complainttime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Complaints" >
+    insert into enj_complaint
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="complaintid != null" >
+        complaintid,
+      </if>
+      <if test="usermid != null" >
+        usermid,
+      </if>
+      <if test="complaintcontent != null" >
+        complaintcontent,
+      </if>
+      <if test="complainttime != null" >
+        complainttime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="complaintid != null" >
+        #{complaintid,jdbcType=INTEGER},
+      </if>
+      <if test="usermid != null" >
+        #{usermid,jdbcType=INTEGER},
+      </if>
+      <if test="complaintcontent != null" >
+        #{complaintcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="complainttime != null" >
+        #{complainttime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Complaints" >
+    update enj_complaint
+    <set >
+      <if test="usermid != null" >
+        usermid = #{usermid,jdbcType=INTEGER},
+      </if>
+      <if test="complaintcontent != null" >
+        complaintcontent = #{complaintcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="complainttime != null" >
+        complainttime = #{complainttime,jdbcType=DATE},
+      </if>
+    </set>
+    where complaintid = #{complaintid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Complaints" >
+    update enj_complaint
+    set usermid = #{usermid,jdbcType=INTEGER},
+      complaintcontent = #{complaintcontent,jdbcType=VARCHAR},
+      complainttime = #{complainttime,jdbcType=DATE}
+    where complaintid = #{complaintid,jdbcType=INTEGER}
+  </update>
+</mapper>

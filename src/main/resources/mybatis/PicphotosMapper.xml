@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.PicphotosMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Picphotos" >
+    <id column="picphotoid" property="picphotoid" jdbcType="INTEGER" />
+    <result column="picphotourl" property="picphotourl" jdbcType="VARCHAR" />
+    <result column="picuplodtime" property="picuplodtime" jdbcType="DATE" />
+    <result column="picuplodperson" property="picuplodperson" jdbcType="VARCHAR" />
+    <result column="piccontent" property="piccontent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    picphotoid, picphotourl, picuplodtime, picuplodperson, piccontent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_picphoto
+    where picphotoid = #{picphotoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_picphoto
+    where picphotoid = #{picphotoid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Picphotos" >
+    insert into enj_picphoto (picphotoid, picphotourl, picuplodtime, 
+      picuplodperson, piccontent)
+    values (#{picphotoid,jdbcType=INTEGER}, #{picphotourl,jdbcType=VARCHAR}, #{picuplodtime,jdbcType=DATE}, 
+      #{picuplodperson,jdbcType=VARCHAR}, #{piccontent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Picphotos" >
+    insert into enj_picphoto
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="picphotoid != null" >
+        picphotoid,
+      </if>
+      <if test="picphotourl != null" >
+        picphotourl,
+      </if>
+      <if test="picuplodtime != null" >
+        picuplodtime,
+      </if>
+      <if test="picuplodperson != null" >
+        picuplodperson,
+      </if>
+      <if test="piccontent != null" >
+        piccontent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="picphotoid != null" >
+        #{picphotoid,jdbcType=INTEGER},
+      </if>
+      <if test="picphotourl != null" >
+        #{picphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="picuplodtime != null" >
+        #{picuplodtime,jdbcType=DATE},
+      </if>
+      <if test="picuplodperson != null" >
+        #{picuplodperson,jdbcType=VARCHAR},
+      </if>
+      <if test="piccontent != null" >
+        #{piccontent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Picphotos" >
+    update enj_picphoto
+    <set >
+      <if test="picphotourl != null" >
+        picphotourl = #{picphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="picuplodtime != null" >
+        picuplodtime = #{picuplodtime,jdbcType=DATE},
+      </if>
+      <if test="picuplodperson != null" >
+        picuplodperson = #{picuplodperson,jdbcType=VARCHAR},
+      </if>
+      <if test="piccontent != null" >
+        piccontent = #{piccontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where picphotoid = #{picphotoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Picphotos" >
+    update enj_picphoto
+    set picphotourl = #{picphotourl,jdbcType=VARCHAR},
+      picuplodtime = #{picuplodtime,jdbcType=DATE},
+      picuplodperson = #{picuplodperson,jdbcType=VARCHAR},
+      piccontent = #{piccontent,jdbcType=VARCHAR}
+    where picphotoid = #{picphotoid,jdbcType=INTEGER}
+  </update>
+</mapper>

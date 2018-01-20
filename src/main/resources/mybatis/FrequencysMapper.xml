@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.FrequencysMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Frequencys" >
+    <id column="frequencyid" property="frequencyid" jdbcType="INTEGER" />
+    <result column="frequencytitle" property="frequencytitle" jdbcType="VARCHAR" />
+    <result column="anchorid" property="anchorid" jdbcType="INTEGER" />
+    <result column="frequencysource" property="frequencysource" jdbcType="VARCHAR" />
+    <result column="releasetime" property="releasetime" jdbcType="DATE" />
+    <result column="frequencyconver" property="frequencyconver" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    frequencyid, frequencytitle, anchorid, frequencysource, releasetime, frequencyconver
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_frequency
+    where frequencyid = #{frequencyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_frequency
+    where frequencyid = #{frequencyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Frequencys" >
+    insert into enj_frequency (frequencyid, frequencytitle, anchorid, 
+      frequencysource, releasetime, frequencyconver
+      )
+    values (#{frequencyid,jdbcType=INTEGER}, #{frequencytitle,jdbcType=VARCHAR}, #{anchorid,jdbcType=INTEGER}, 
+      #{frequencysource,jdbcType=VARCHAR}, #{releasetime,jdbcType=DATE}, #{frequencyconver,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Frequencys" >
+    insert into enj_frequency
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="frequencyid != null" >
+        frequencyid,
+      </if>
+      <if test="frequencytitle != null" >
+        frequencytitle,
+      </if>
+      <if test="anchorid != null" >
+        anchorid,
+      </if>
+      <if test="frequencysource != null" >
+        frequencysource,
+      </if>
+      <if test="releasetime != null" >
+        releasetime,
+      </if>
+      <if test="frequencyconver != null" >
+        frequencyconver,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="frequencyid != null" >
+        #{frequencyid,jdbcType=INTEGER},
+      </if>
+      <if test="frequencytitle != null" >
+        #{frequencytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorid != null" >
+        #{anchorid,jdbcType=INTEGER},
+      </if>
+      <if test="frequencysource != null" >
+        #{frequencysource,jdbcType=VARCHAR},
+      </if>
+      <if test="releasetime != null" >
+        #{releasetime,jdbcType=DATE},
+      </if>
+      <if test="frequencyconver != null" >
+        #{frequencyconver,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Frequencys" >
+    update enj_frequency
+    <set >
+      <if test="frequencytitle != null" >
+        frequencytitle = #{frequencytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorid != null" >
+        anchorid = #{anchorid,jdbcType=INTEGER},
+      </if>
+      <if test="frequencysource != null" >
+        frequencysource = #{frequencysource,jdbcType=VARCHAR},
+      </if>
+      <if test="releasetime != null" >
+        releasetime = #{releasetime,jdbcType=DATE},
+      </if>
+      <if test="frequencyconver != null" >
+        frequencyconver = #{frequencyconver,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where frequencyid = #{frequencyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Frequencys" >
+    update enj_frequency
+    set frequencytitle = #{frequencytitle,jdbcType=VARCHAR},
+      anchorid = #{anchorid,jdbcType=INTEGER},
+      frequencysource = #{frequencysource,jdbcType=VARCHAR},
+      releasetime = #{releasetime,jdbcType=DATE},
+      frequencyconver = #{frequencyconver,jdbcType=VARCHAR}
+    where frequencyid = #{frequencyid,jdbcType=INTEGER}
+  </update>
+</mapper>

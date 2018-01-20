@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.JestlikesMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Jestlikes" >
+    <id column="jestlikeid" property="jestlikeid" jdbcType="INTEGER" />
+    <result column="jestnid" property="jestnid" jdbcType="INTEGER" />
+    <result column="jestlikeconunt" property="jestlikeconunt" jdbcType="INTEGER" />
+    <result column="userfid" property="userfid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    jestlikeid, jestnid, jestlikeconunt, userfid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_jestlike
+    where jestlikeid = #{jestlikeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_jestlike
+    where jestlikeid = #{jestlikeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Jestlikes" >
+    insert into enj_jestlike (jestlikeid, jestnid, jestlikeconunt, 
+      userfid)
+    values (#{jestlikeid,jdbcType=INTEGER}, #{jestnid,jdbcType=INTEGER}, #{jestlikeconunt,jdbcType=INTEGER}, 
+      #{userfid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Jestlikes" >
+    insert into enj_jestlike
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jestlikeid != null" >
+        jestlikeid,
+      </if>
+      <if test="jestnid != null" >
+        jestnid,
+      </if>
+      <if test="jestlikeconunt != null" >
+        jestlikeconunt,
+      </if>
+      <if test="userfid != null" >
+        userfid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jestlikeid != null" >
+        #{jestlikeid,jdbcType=INTEGER},
+      </if>
+      <if test="jestnid != null" >
+        #{jestnid,jdbcType=INTEGER},
+      </if>
+      <if test="jestlikeconunt != null" >
+        #{jestlikeconunt,jdbcType=INTEGER},
+      </if>
+      <if test="userfid != null" >
+        #{userfid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Jestlikes" >
+    update enj_jestlike
+    <set >
+      <if test="jestnid != null" >
+        jestnid = #{jestnid,jdbcType=INTEGER},
+      </if>
+      <if test="jestlikeconunt != null" >
+        jestlikeconunt = #{jestlikeconunt,jdbcType=INTEGER},
+      </if>
+      <if test="userfid != null" >
+        userfid = #{userfid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where jestlikeid = #{jestlikeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Jestlikes" >
+    update enj_jestlike
+    set jestnid = #{jestnid,jdbcType=INTEGER},
+      jestlikeconunt = #{jestlikeconunt,jdbcType=INTEGER},
+      userfid = #{userfid,jdbcType=INTEGER}
+    where jestlikeid = #{jestlikeid,jdbcType=INTEGER}
+  </update>
+</mapper>

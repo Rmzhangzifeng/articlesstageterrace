@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.EditsMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Edits" >
+    <id column="editid" property="editid" jdbcType="INTEGER" />
+    <result column="editpid" property="editpid" jdbcType="INTEGER" />
+    <result column="edittext" property="edittext" jdbcType="VARCHAR" />
+    <result column="editurl" property="editurl" jdbcType="VARCHAR" />
+    <result column="editstatus" property="editstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    editid, editpid, edittext, editurl, editstatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enj_edit
+    where editid = #{editid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enj_edit
+    where editid = #{editid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.maker.pojo.Edits" >
+    insert into enj_edit (editid, editpid, edittext, 
+      editurl, editstatus)
+    values (#{editid,jdbcType=INTEGER}, #{editpid,jdbcType=INTEGER}, #{edittext,jdbcType=VARCHAR}, 
+      #{editurl,jdbcType=VARCHAR}, #{editstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.maker.pojo.Edits" >
+    insert into enj_edit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="editid != null" >
+        editid,
+      </if>
+      <if test="editpid != null" >
+        editpid,
+      </if>
+      <if test="edittext != null" >
+        edittext,
+      </if>
+      <if test="editurl != null" >
+        editurl,
+      </if>
+      <if test="editstatus != null" >
+        editstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="editid != null" >
+        #{editid,jdbcType=INTEGER},
+      </if>
+      <if test="editpid != null" >
+        #{editpid,jdbcType=INTEGER},
+      </if>
+      <if test="edittext != null" >
+        #{edittext,jdbcType=VARCHAR},
+      </if>
+      <if test="editurl != null" >
+        #{editurl,jdbcType=VARCHAR},
+      </if>
+      <if test="editstatus != null" >
+        #{editstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Edits" >
+    update enj_edit
+    <set >
+      <if test="editpid != null" >
+        editpid = #{editpid,jdbcType=INTEGER},
+      </if>
+      <if test="edittext != null" >
+        edittext = #{edittext,jdbcType=VARCHAR},
+      </if>
+      <if test="editurl != null" >
+        editurl = #{editurl,jdbcType=VARCHAR},
+      </if>
+      <if test="editstatus != null" >
+        editstatus = #{editstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where editid = #{editid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Edits" >
+    update enj_edit
+    set editpid = #{editpid,jdbcType=INTEGER},
+      edittext = #{edittext,jdbcType=VARCHAR},
+      editurl = #{editurl,jdbcType=VARCHAR},
+      editstatus = #{editstatus,jdbcType=VARCHAR}
+    where editid = #{editid,jdbcType=INTEGER}
+  </update>
+</mapper>
