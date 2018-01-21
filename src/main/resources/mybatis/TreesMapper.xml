@@ -12,93 +12,12 @@
   <sql id="Base_Column_List" >
     id, text, href, pid, target, icon
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from enj_tree
-    where id = #{id,jdbcType=INTEGER}
+
+
+  <!-- 查询菜单树 -->
+  <select resultType="org.maker.pojo.Trees" id="queryByPid">
+         select * from enj_tree where pid=#{pid}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from enj_tree
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="org.maker.pojo.Trees" >
-    insert into enj_tree (id, text, href, 
-      pid, target, icon)
-    values (#{id,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, 
-      #{pid,jdbcType=INTEGER}, #{target,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="org.maker.pojo.Trees" >
-    insert into enj_tree
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="text != null" >
-        text,
-      </if>
-      <if test="href != null" >
-        href,
-      </if>
-      <if test="pid != null" >
-        pid,
-      </if>
-      <if test="target != null" >
-        target,
-      </if>
-      <if test="icon != null" >
-        icon,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="text != null" >
-        #{text,jdbcType=VARCHAR},
-      </if>
-      <if test="href != null" >
-        #{href,jdbcType=VARCHAR},
-      </if>
-      <if test="pid != null" >
-        #{pid,jdbcType=INTEGER},
-      </if>
-      <if test="target != null" >
-        #{target,jdbcType=VARCHAR},
-      </if>
-      <if test="icon != null" >
-        #{icon,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Trees" >
-    update enj_tree
-    <set >
-      <if test="text != null" >
-        text = #{text,jdbcType=VARCHAR},
-      </if>
-      <if test="href != null" >
-        href = #{href,jdbcType=VARCHAR},
-      </if>
-      <if test="pid != null" >
-        pid = #{pid,jdbcType=INTEGER},
-      </if>
-      <if test="target != null" >
-        target = #{target,jdbcType=VARCHAR},
-      </if>
-      <if test="icon != null" >
-        icon = #{icon,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Trees" >
-    update enj_tree
-    set text = #{text,jdbcType=VARCHAR},
-      href = #{href,jdbcType=VARCHAR},
-      pid = #{pid,jdbcType=INTEGER},
-      target = #{target,jdbcType=VARCHAR},
-      icon = #{icon,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+
 </mapper>

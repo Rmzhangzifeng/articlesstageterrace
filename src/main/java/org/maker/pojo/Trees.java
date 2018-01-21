@@ -1,23 +1,23 @@
 package org.maker.pojo;
 
+import java.util.List;
+
 public class Trees {
-    private Integer id;
 
+
+
+    private String id;
     private String text;
-
+    private String pid;
     private String href;
+    private List<Trees> nodes;//子节点列表
 
-    private Integer pid;
 
-    private String target;
-
-    private String icon;
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -26,7 +26,15 @@ public class Trees {
     }
 
     public void setText(String text) {
-        this.text = text == null ? null : text.trim();
+        this.text = text;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public String getHref() {
@@ -34,30 +42,14 @@ public class Trees {
     }
 
     public void setHref(String href) {
-        this.href = href == null ? null : href.trim();
+        this.href = href;
     }
 
-    public Integer getPid() {
-        return pid;
+    public List<Trees> getNodes() {
+        return nodes;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public void setTarget(String target) {
-        this.target = target == null ? null : target.trim();
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon == null ? null : icon.trim();
+    public void setNodes(List<Trees> nodes) {
+        this.nodes = nodes;
     }
 }
