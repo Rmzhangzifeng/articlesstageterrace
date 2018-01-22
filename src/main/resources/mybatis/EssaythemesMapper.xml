@@ -11,6 +11,28 @@
   <sql id="Base_Column_List" >
     articletopicid, title, themecontent, themestarttime, themeendtime
   </sql>
+
+
+  <!--查询总条数-->
+  <select id="queryEssayThemeListTotal" resultType="Long">
+      SELECT count(*) from enj_essaytheme
+  </select>
+
+  <!--查询当前页所需数据-->
+  <select id="queryEssayThemeListPage" resultType="org.maker.pojo.Essaythemes">
+      SELECT * FROM enj_essaytheme limit #{start},#{rows}
+  </select>
+
+
+
+
+
+
+
+
+
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

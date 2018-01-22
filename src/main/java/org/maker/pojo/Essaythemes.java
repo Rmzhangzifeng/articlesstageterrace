@@ -13,6 +13,16 @@ public class Essaythemes {
 
     private Date themeendtime;
 
+    private Integer themeendreview;
+
+    public Integer getThemeendreview() {
+        return themeendreview;
+    }
+
+    public void setThemeendreview(Integer themeendreview) {
+        this.themeendreview = themeendreview;
+    }
+
     public Integer getArticletopicid() {
         return articletopicid;
     }

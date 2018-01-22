@@ -13,6 +13,18 @@
     solicitarticlesid, solicitarticlestitle, userqid, solicitarticlestime, gambitid, 
     solicitarticlescover
   </sql>
+
+  <!--查询总条数-->
+  <select id="querSolicitarticlessListTotal" resultType="Long">
+      SELECT count(*) FROM enj_solicitarticles
+  </select>
+
+  <!--查询当前页数据-->
+  <select id="querSolicitarticlessListPage" resultType="org.maker.pojo.Solicitarticless">
+    SELECT * FROM enj_solicitarticles limit #{start},#{rows}
+  </select>
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
