@@ -21,6 +21,8 @@ public class Solicitarticless {
     private String soliusername;
     //微话题
     private String soligambitname;
+    /*是否推广*/
+    private Integer spreadstatus;
 
     public String getSoliusername() {
         return soliusername;
@@ -92,5 +94,13 @@ public class Solicitarticless {
 
     public void setSolicitarticlescover(String solicitarticlescover) {
         this.solicitarticlescover = solicitarticlescover == null ? null : solicitarticlescover.trim();
+    }
+
+    public Integer getSpreadstatus() {
+        return spreadstatus;
+    }
+
+    public void setSpreadstatus(Integer spreadstatus) {
+        this.spreadstatus = spreadstatus;
     }
 }
