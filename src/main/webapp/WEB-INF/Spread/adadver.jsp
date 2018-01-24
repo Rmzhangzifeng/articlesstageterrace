@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td>展示日期</td>
-            <td><input type="text" id="sdate" name="addate"  onblur="checkdate()"></td>
+            <td><input type="text" id="sdate" name="addate"  onchange="checkdate()"></td>
         </tr>
         <tr>
             <td>链接地址</td>
