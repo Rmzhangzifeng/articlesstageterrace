@@ -43,7 +43,7 @@
     <link href="js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
     <!-- bootstrap-fileinput css -->
     <link href="js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/js/uploadify/uploadify.css">
 </head>
 <body class="skin-blue">
 <!-- header logo: style can be found in header.less -->
@@ -75,7 +75,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                    <img src="img/dakangshuji.jpg" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
                     <p>Hello,王哥</p>
@@ -140,8 +140,8 @@
 <!-- iCheck -->
 <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 
-<!-- AdminLTE App -->
-<script src="js/AdminLTE/app.js" type="text/javascript"></script>
+<%--<!-- AdminLTE App -->
+<script src="js/AdminLTE/app.js" type="text/javascript"></script>--%>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
@@ -167,6 +167,7 @@
 <!-- bootstrap-fileinput -->
 <script src="js/bootstrap-fileinput/js/fileinput.js"></script>
 <script src="js/bootstrap-fileinput/js/locales/zh.js"></script>
+<script src="<%=request.getContextPath()%>/js/uploadify/jquery.uploadify.min.js"></script>
 <script>
 
     //获取数据
