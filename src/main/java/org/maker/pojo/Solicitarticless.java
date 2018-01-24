@@ -15,37 +15,6 @@ public class Solicitarticless {
 
     private String solicitarticlescover;
 
-    private int greatnumber;
-
-    //提交人姓名
-    private String soliusername;
-    //微话题
-    private String soligambitname;
-
-    public String getSoliusername() {
-        return soliusername;
-    }
-
-    public void setSoliusername(String soliusername) {
-        this.soliusername = soliusername;
-    }
-
-    public String getSoligambitname() {
-        return soligambitname;
-    }
-
-    public void setSoligambitname(String soligambitname) {
-        this.soligambitname = soligambitname;
-    }
-
-    public int getGreatnumber() {
-        return greatnumber;
-    }
-
-    public void setGreatnumber(int greatnumber) {
-        this.greatnumber = greatnumber;
-    }
-
     public Integer getSolicitarticlesid() {
         return solicitarticlesid;
     }

@@ -1,7 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.maker.dao.ComplaintsMapper" >
-  <resultMap id="BaseResultMap" type="org.maker.pojo.Complaints" >
+<mapper namespace="org.maker.dao.ComplaintsMapperYM" >
+
+
+  <!-- queryComCountYM-->
+  <select id="queryComCountYM" resultType="long" >
+    select count(*)  from enj_complaint where complaintstates = 1
+  </select>
+  <!--  queryComPageYM-->
+  <select id="queryComPageYM" resultType="org.maker.pojo.Complaints">
+     select * from enj_complaint cc ,enj_users uu  WHERE  cc.usermid=uu.userid  and cc.complaintstates = 1 limit ${start},${end}
+  </select>
+
+<!--  updateSevenYM-->
+
+  <update id="updateSevenYM"  >
+    update enj_complaint
+    set
+    complainthuifu = #{complainthuifu},
+    complaintstates = 2
+    where complaintid = #{complaintid}
+  </update>
+  <!-- queryComCountYMss-->
+  <select id="queryComCountYMss" resultType="long" >
+    select count(*)  from enj_complaint where complaintstates = 2
+  </select>
+  <!--  queryComPageYMss-->
+  <select id="queryComPageYMss" resultType="org.maker.pojo.Complaints">
+    select * from enj_complaint cc ,enj_users uu  WHERE  cc.usermid=uu.userid  and cc.complaintstates = 2 limit ${start},${end}
+  </select>
+
+
+ <!-- updateAllStaffComplaintYM-->
+  <update id="updateAllStaffComplaintYM"  >
+    update enj_complaint
+    set
+    complainthuifu = #{complainthuifu},
+    complaintstates = 2
+    where complaintid in
+    <foreach collection="mmp" item="mmp" index="index" open="(" separator="," close=")">
+      ${mmp}
+    </foreach>
+  </update>
+
+
+
+
+
+
+
+
+  <!--<resultMap id="BaseResultMap" type="org.maker.pojo.Complaints" >
     <id column="complaintid" property="complaintid" jdbcType="INTEGER" />
     <result column="usermid" property="usermid" jdbcType="INTEGER" />
     <result column="complaintcontent" property="complaintcontent" jdbcType="VARCHAR" />
@@ -11,7 +60,7 @@
     complaintid, usermid, complaintcontent, complainttime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from enj_complaint
     where complaintid = #{complaintid,jdbcType=INTEGER}
@@ -21,9 +70,9 @@
     where complaintid = #{complaintid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.maker.pojo.Complaints" >
-    insert into enj_complaint (complaintid, usermid, complaintcontent, 
+    insert into enj_complaint (complaintid, usermid, complaintcontent,
       complainttime)
-    values (#{complaintid,jdbcType=INTEGER}, #{usermid,jdbcType=INTEGER}, #{complaintcontent,jdbcType=VARCHAR}, 
+    values (#{complaintid,jdbcType=INTEGER}, #{usermid,jdbcType=INTEGER}, #{complaintcontent,jdbcType=VARCHAR},
       #{complainttime,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="org.maker.pojo.Complaints" >
@@ -78,5 +127,5 @@
       complaintcontent = #{complaintcontent,jdbcType=VARCHAR},
       complainttime = #{complainttime,jdbcType=DATE}
     where complaintid = #{complaintid,jdbcType=INTEGER}
-  </update>
+  </update>-->
 </mapper>
