@@ -29,7 +29,7 @@ public class SolicitArticlesManCon {
         return "SOlicitArt/EssaythemeSystem";
     }
 
-    /**
+       /**
      *
      * @return 征文管理页面
      */
