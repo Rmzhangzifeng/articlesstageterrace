@@ -48,7 +48,7 @@
   <select id="queryPicGoup" resultType="org.maker.pojo.Picgroup">
     select * from enj_picgroup p where  p.picid=#{picid}
   </select>
-  <insert id="addWybPictheme" parameterType="org.maker.pojo.Pictheme">
+  <insert id="addWybPictheme" parameterType="org.maker.pojo.Picthemes">
 
     insert into enj_pictheme(picgroupid,pictypeid,picgroupreview,picgrouptitle) values(#{picgroupid},#{pictypeid},1,#{picgrouptitle})
 
@@ -72,7 +72,7 @@
     delete from enj_picphoto where picphotoid in(${picid})
 
   </delete>
-  <delete id="deletePicTheme" parameterType="org.maker.pojo.Pictheme">
+  <delete id="deletePicTheme" parameterType="org.maker.pojo.Picthemes">
 
   delete from enj_pictheme where picgroupid=#{picorganizeid}
 
