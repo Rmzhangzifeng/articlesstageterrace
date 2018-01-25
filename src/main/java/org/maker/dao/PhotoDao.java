@@ -19,7 +19,7 @@ public interface PhotoDao {
 
     Picgroup queryPicGoup(Picgroup group);
 
-    int addWybPictheme(Pictheme pic);
+    int addWybPictheme(Picthemes pic);
 
     List<Picphoto> queryPicGroupByIds(Picgroup ids);
 

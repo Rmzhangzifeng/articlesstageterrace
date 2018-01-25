@@ -19,7 +19,7 @@ public interface PhotoService {
 
     Picgroup queryPicGoup(Picgroup group);
 
-    int addWybPictheme(Pictheme pic);
+    int addWybPictheme(Picthemes pic);
 
     List<Picphoto> queryPicGroupByIds(Picgroup id);
 

@@ -71,7 +71,7 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public int addWybPictheme(Pictheme pic) {
+    public int addWybPictheme(Picthemes pic) {
         return photoDao.addWybPictheme(pic);
     }
 
