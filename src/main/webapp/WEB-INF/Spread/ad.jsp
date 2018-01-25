@@ -34,7 +34,7 @@
             paginationLoop: true,//开启分页无限循环
             pageNumber: 1,//当前页数
             pageSize: 5,//每页条数
-            pageList: [5, 10, 15, 20],//如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。
+            pageList: [5,10,15,20],//如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。
             sidePagination: "server",//
             method: 'post',//发送请求的方式
             contentType: "application/x-www-form-urlencoded",//必须的否则条件查询时会乱码

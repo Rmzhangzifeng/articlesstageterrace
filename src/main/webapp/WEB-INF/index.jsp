@@ -47,7 +47,7 @@
     <%--Lobibox--%>
     <link rel="stylesheet" href="../Lobibox/demo/demo.css"/>
     <link rel="stylesheet" type="text/css" href="../Lobibox/css/default.css">
-    <link rel="stylesheet" href="../Lobibox/dist/css/Lobibox.min.css"/>
+ <%--   <link rel="stylesheet" href="../Lobibox/dist/css/Lobibox.min.css"/>--%>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/uploadify/uploadify.css">
 
     <%
@@ -57,7 +57,7 @@
         String loginUserImg = users.getUserimg();
     %>
     <link href="<%=request.getContextPath()%>/js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/js/uploadify/uploadify.css">
+   <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/js/uploadify/uploadify.css">--%>
 </head>
 <body class="skin-blue">
 <!-- header logo: style can be found in header.less -->
@@ -169,7 +169,9 @@
 <!-- bootStrap addTabs -->
 <script src="<%=request.getContextPath()%>/js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
 <!-- bootStrap table -->
-
+<!-- bootStrap table -->
+<script src="<%=request.getContextPath() %>/js/bootstrap-table/dist/bootstrap-table.js"></script>
+<!-- bootStrap table 语言包中文-->
 <script src="<%=request.getContextPath()%>/js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
 <!-- bootstrap-datetimepicker -->
 <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>

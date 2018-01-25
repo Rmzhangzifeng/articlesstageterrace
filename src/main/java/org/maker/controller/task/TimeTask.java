@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 public class TimeTask {
     @Autowired
     private Adverservice adverservice;
-    @Scheduled(cron= "0 0 1 * * ?") //每天上午1.00触发
+  /*  @Scheduled(cron= "0 0 1 * * ?") //每天上午1.00触发*/
+    @Scheduled(cron= " 0 0/5 * * * ?") //五分钟一次
     public void statusCheck() {
         adverservice.updateadStatus();
     }
