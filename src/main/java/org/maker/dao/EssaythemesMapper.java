@@ -11,4 +11,12 @@ public interface EssaythemesMapper {
     long queryEssayThemeListTotal(Essaythemes essaythemes);
 
     List<Essaythemes> queryEssayThemeListPage(@Param("start") int start, @Param("rows") int rows, @Param("essaythemes") Essaythemes essaythemes);
+
+    int insertEssayTheme(Essaythemes essaythemes);
+
+    int deleteEssayTheme(Essaythemes essaythemes);
+
+    int updateEssayTheme(Essaythemes essaythemes);
+
+    List<Essaythemes> querygambitidSelections();
 }

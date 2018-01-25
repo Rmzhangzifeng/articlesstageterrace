@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.maker.dao.SolicitarticlessMapper" >
-  <resultMap id="BaseResultMap" type="org.maker.pojo.Solicitarticless" >
-    <id column="solicitarticlesid" property="solicitarticlesid" jdbcType="INTEGER" />
-    <result column="solicitarticlestitle" property="solicitarticlestitle" jdbcType="VARCHAR" />
-    <result column="userqid" property="userqid" jdbcType="INTEGER" />
-    <result column="solicitarticlestime" property="solicitarticlestime" jdbcType="DATE" />
-    <result column="gambitid" property="gambitid" jdbcType="INTEGER" />
-    <result column="solicitarticlescover" property="solicitarticlescover" jdbcType="VARCHAR" />
-  </resultMap>
   <sql id="Base_Column_List" >
     solicitarticlesid, solicitarticlestitle, userqid, solicitarticlestime, gambitid, 
-    solicitarticlescover
+    solicitarticlescover,greatnumber,spreadstatus,username solicusername,
   </sql>
+
+  <!--征文管理 start-->
 
   <!--查询总条数-->
   <select id="querSolicitarticlessListTotal" resultType="Long">
@@ -21,99 +15,32 @@
 
   <!--查询当前页数据-->
   <select id="querSolicitarticlessListPage" resultType="org.maker.pojo.Solicitarticless">
-    SELECT * FROM enj_solicitarticles limit #{start},#{rows}
+    select so.solicitarticlesid,so.solicitarticlestitle,so.userqid,so.solicitarticlestime,so.gambitid,so.solicitarticlescover,so.greatnumber,so.spreadstatus,us.username solicusername,es.title gambitnameStr
+      from enj_solicitarticles so ,enj_users us , enj_essaytheme es
+		where so.userqid  = us.userid and so.gambitid = es.articletopicid
+              limit #{start},#{rows}
   </select>
 
-
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from enj_solicitarticles
-    where solicitarticlesid = #{solicitarticlesid,jdbcType=INTEGER}
+  <!--新增查询最大ID-->
+  <select id="queryMaxId" resultType="int">
+    select max(solicitarticlesid) FROM enj_solicitarticles
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from enj_solicitarticles
-    where solicitarticlesid = #{solicitarticlesid,jdbcType=INTEGER}
+
+  <!--新增征文信息-->
+  <insert id="InsertSolicitarticless">
+    INSERT  INTO enj_solicitarticles(solicitarticlesid,solicitarticlestitle,userqid,solicitarticlestime,gambitid,solicitarticlescover,greatnumber,spreadstatus)
+    VALUES (#{solicitarticlesid},#{solicitarticlestitle},#{userqid},#{solicitarticlestimeStr},#{gambitid},#{solicitarticlescover},0,1)
+  </insert>
+
+  <!--批量删除征文信息-->
+  <delete id="deleteSolicitarticless" >
+    DELETE  FROM enj_solicitarticles WHERE solicitarticlesid IN (${idStr})
   </delete>
-  <insert id="insert" parameterType="org.maker.pojo.Solicitarticless" >
-    insert into enj_solicitarticles (solicitarticlesid, solicitarticlestitle, 
-      userqid, solicitarticlestime, gambitid, 
-      solicitarticlescover)
-    values (#{solicitarticlesid,jdbcType=INTEGER}, #{solicitarticlestitle,jdbcType=VARCHAR}, 
-      #{userqid,jdbcType=INTEGER}, #{solicitarticlestime,jdbcType=DATE}, #{gambitid,jdbcType=INTEGER}, 
-      #{solicitarticlescover,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="org.maker.pojo.Solicitarticless" >
-    insert into enj_solicitarticles
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="solicitarticlesid != null" >
-        solicitarticlesid,
-      </if>
-      <if test="solicitarticlestitle != null" >
-        solicitarticlestitle,
-      </if>
-      <if test="userqid != null" >
-        userqid,
-      </if>
-      <if test="solicitarticlestime != null" >
-        solicitarticlestime,
-      </if>
-      <if test="gambitid != null" >
-        gambitid,
-      </if>
-      <if test="solicitarticlescover != null" >
-        solicitarticlescover,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="solicitarticlesid != null" >
-        #{solicitarticlesid,jdbcType=INTEGER},
-      </if>
-      <if test="solicitarticlestitle != null" >
-        #{solicitarticlestitle,jdbcType=VARCHAR},
-      </if>
-      <if test="userqid != null" >
-        #{userqid,jdbcType=INTEGER},
-      </if>
-      <if test="solicitarticlestime != null" >
-        #{solicitarticlestime,jdbcType=DATE},
-      </if>
-      <if test="gambitid != null" >
-        #{gambitid,jdbcType=INTEGER},
-      </if>
-      <if test="solicitarticlescover != null" >
-        #{solicitarticlescover,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Solicitarticless" >
-    update enj_solicitarticles
-    <set >
-      <if test="solicitarticlestitle != null" >
-        solicitarticlestitle = #{solicitarticlestitle,jdbcType=VARCHAR},
-      </if>
-      <if test="userqid != null" >
-        userqid = #{userqid,jdbcType=INTEGER},
-      </if>
-      <if test="solicitarticlestime != null" >
-        solicitarticlestime = #{solicitarticlestime,jdbcType=DATE},
-      </if>
-      <if test="gambitid != null" >
-        gambitid = #{gambitid,jdbcType=INTEGER},
-      </if>
-      <if test="solicitarticlescover != null" >
-        solicitarticlescover = #{solicitarticlescover,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where solicitarticlesid = #{solicitarticlesid,jdbcType=INTEGER}
+
+  <!--修改征文信息-->
+  <update id="updateSolicitarticless">
+    UPDATE enj_solicitarticles SET solicitarticlestitle = #{solicitarticlestitle},solicitarticlescover = #{solicitarticlescover} WHERE solicitarticlesid = #{solicitarticlesid}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Solicitarticless" >
-    update enj_solicitarticles
-    set solicitarticlestitle = #{solicitarticlestitle,jdbcType=VARCHAR},
-      userqid = #{userqid,jdbcType=INTEGER},
-      solicitarticlestime = #{solicitarticlestime,jdbcType=DATE},
-      gambitid = #{gambitid,jdbcType=INTEGER},
-      solicitarticlescover = #{solicitarticlescover,jdbcType=VARCHAR}
-    where solicitarticlesid = #{solicitarticlesid,jdbcType=INTEGER}
-  </update>
+
+  <!--征文管理 end-->
 </mapper>

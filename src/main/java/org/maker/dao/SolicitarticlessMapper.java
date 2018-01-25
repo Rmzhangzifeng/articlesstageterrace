@@ -14,4 +14,11 @@ public interface SolicitarticlessMapper {
 
     List<Solicitarticless> querSolicitarticlessListPage(@Param("start") int start,@Param("rows") int rows,@Param("solicitarticless") Solicitarticless solicitarticless);
 
+    int InsertSolicitarticless(Solicitarticless solicitarticless);
+
+    int queryMaxId();
+
+    int deleteSolicitarticless(Solicitarticless solicitarticless);
+
+    int updateSolicitarticless(Solicitarticless solicitarticless);
 }

@@ -11,7 +11,15 @@
     <title>征文管理</title>
 </head>
 <body>
-
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <input type="button" class="btn btn-info btn-sm" value="添加" onclick="addSolicitarticless()"/>
+                <input type="button" class="btn btn-primary btn-sm" value="修改" onclick="updateSolicitarticless()"/>
+                <input type="button" class="btn btn-success btn-sm" value="删除" onclick="delSolicitarticless()">
+            </div>
+        </div>
+    </div>
     <table id="SolicitarticlessTable"></table>
 
     <script>
@@ -22,13 +30,13 @@
 
         function querSolicitarticless() {
             $('#SolicitarticlessTable').bootstrapTable({
-                url: '/querSolicitarticlessList',
+                url: '<%=request.getContextPath()%>/SolicitArticlesManCon/querySolicitarticlessList',
                 striped: true,//隔行变色
-                showColumns: true,//是否显示 内容列下拉框
-                showPaginationSwitch: true,//是否显示 分页工具栏
+                showColumns: false,//是否显示 内容列下拉框
+                showPaginationSwitch: false,//是否显示 分页工具栏
                 minimumCountColumns: 1,//最小留下一个
-                showRefresh: true,//显示刷新按钮
-                showToggle: true,//显示切换视图
+                showRefresh: false,//显示刷新按钮
+                showToggle: false,//显示切换视图
                 search: true,//是否显示搜索框
                 searchOnEnterKey: true,//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
                 pagination: true,//开启分页
@@ -46,30 +54,18 @@
                     }
                 },
                 columns: [{
+                    checkbox:true,
+                    title:''
+                }, {
                     field: 'solicitarticlestitle',
                     title: '标题',
                     width: 100,
                 }, {
-                    field: 'content',
+                    field: 'contentStr',
                     title: '内容',
                     width: 100,
-                    formatter:function (value,rows,index){
-                        $.ajax({
-                            url:"",
-                            data:{"":rows.solicitarticlesid},
-                            type:"post",
-                            dataType:"json",
-                            success:function (){
-
-                            },
-                            error:function (){
-                                return "<无内容>";
-                            }
-                        });
-                        return "<无内容>";
-                    }
                 }, {
-                    field: 'soliusername',
+                    field: 'solicusername',
                     title: '提交人',
                     width: 100,
                 }, {
@@ -77,8 +73,8 @@
                     title: '提交时间',
                     width: 100
                 }, {
-                    field: 'soligambitname',
-                    title: '微话题',
+                    field: 'gambitnameStr',
+                    title: '征文话题',
                     width: 100
                 }, {
                     field: 'greatnumber',
@@ -89,7 +85,7 @@
                     title: '封面',
                     width: 100,
                     formatter:function (value,rows,index){
-                        var imgStr = "<img src='<%=request.getContextPath()%>"+value+"'/>";
+                        var imgStr = "<img src='<%=request.getContextPath()%>"+value+"' width='70px' height='40px'/>";
                           return imgStr;
                     }
                 }], //列
@@ -103,12 +99,134 @@
                 onLoadError: function (data) {
                     $('#SolicitarticlessTable').bootstrapTable('removeAll');
                 },
-                onClickRow: function (row) {
-
-                },
+                onClickRow: function (row) {},
             });
         }
 
+        /*添加*/
+        function addSolicitarticless(){
+            BootstrapDialog.show({
+                title: '添加话题标题',
+                message: $('<div></div>').load('<%=request.getContextPath()%>/ANDY_jspPage/InsertSolicitarticlessPage.jsp'),
+                buttons: [{
+                    label: '添加',
+                    action: function(dialog) {
+                        $.ajax({
+                            url:"<%=request.getContextPath()%>/SolicitArticlesManCon/InsertSolicitarticless",
+                            type:"post",
+                            data: $("#Solicitarticless-insertform").serialize(),
+                            dataType:"text",
+                            async: false,
+                            success:function (InsertFlag){
+                                if(InsertFlag > 0){
+                                    Lobibox.alert('success', {
+                                        msg: "insert successful！"
+                                    });
+                                    dialog.close();
+                                    $("#SolicitarticlessTable").bootstrapTable('refresh');
+                                }
+                            },
+                            error:function (){
+                                alert("程序出点小问题，请联系管理员！！！");
+                            }
+                        });
+                    }
+                }, {
+                    label: '取消',
+                    action: function(dialog) {
+                        dialog.close();
+                    }
+                }]
+            });
+        }
+        /*删除*/
+        function delSolicitarticless(){
+            Lobibox.confirm({
+                msg: "Are you sure you want to delete them?",
+                callback: function ($this, type, ev) {
+                    if (type === 'yes') {
+                        var b = $("#SolicitarticlessTable").bootstrapTable('getSelections');
+                        var idstr="";
+                        for (var i = 0; i < b.length; i++) {
+                            idstr+=","+b[i].solicitarticlesid;
+                        }
+                        var id = idstr.substr(1);
+                        $.ajax({
+                            url:"<%=request.getContextPath()%>/SolicitArticlesManCon/deleteSolicitarticless",
+                            type:"post",
+                            data:{'idStr':id},
+                            dataType:"text",
+                            async:false,
+                            success:function (data){
+                                if(data>0){
+                                    Lobibox.alert('success', {
+                                        msg: "delete successful！"
+                                    });
+                                    $("#SolicitarticlessTable").bootstrapTable('refresh');
+                                    dialog.close();
+                                }
+                            },
+                            error:function (){
+                                alert("程序出点小问题，请联系管理员！！！");
+                            }
+                        });
+                    } else if (type === 'no') {
+
+                    }
+                }
+            });
+        }
+
+        /*修改*/
+        function updateSolicitarticless(){
+            var b = $("#SolicitarticlessTable").bootstrapTable('getSelections');
+            if(b.length > 1 || b.length == 0){
+                BootstrapDialog.show({
+                    message: "每次有且只能修改一条",
+                    buttons: [{
+                        label: '确定',
+                        action: function(dialog) {
+                            dialog.close();
+                        }
+                    }]
+                });
+            }else if(b.length > 0 && b.length < 2){
+                console.info(b[0])
+                BootstrapDialog.show({
+                    title:"修改征文信息",
+                    message: $('<div></div>').load('<%=request.getContextPath()%>/SolicitArticlesManCon/toUpdateSolicitarticlessPage?solicitarticlesid='+b[0].solicitarticlesid+"&solicitarticlestitle="+b[0].solicitarticlestitle+"&contentStr="+b[0].contentStr+"&solicitarticlescover="+b[0].solicitarticlescover),
+                    buttons: [{
+                        label: '修改',
+                        action: function(dialog) {
+                            $.ajax({
+                                url:"<%=request.getContextPath()%>/SolicitArticlesManCon/updateSolicitarticless",
+                                type:"post",
+                                data: $("#Solicitarticless-updateform").serialize(),
+                                dataType:"text",
+                                async: false,
+                                success:function (UpdateFlag){
+                                    if(UpdateFlag > 0){
+                                        Lobibox.alert('success', {
+                                            msg: "update successful！"
+                                        });
+                                        dialog.close();
+                                        $("#SolicitarticlessTable").bootstrapTable('refresh');
+                                    }
+                                },
+                                error:function (){
+                                    alert("程序出点小问题，请联系管理员！！！");
+                                }
+                            });
+                        }
+                    },{
+                        label: '取消',
+                        action: function(dialog) {
+                            dialog.close();
+                        }
+                    }]
+                })
+            }
+        }
     </script>
 </body>
 </html>

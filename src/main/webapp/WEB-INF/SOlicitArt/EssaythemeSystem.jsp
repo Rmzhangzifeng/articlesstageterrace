@@ -12,24 +12,32 @@
 </head>
 <body>
 
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <input type="button" class="btn btn-info btn-sm" value="添加" onclick="addEssayTheme()"/>
+            <input type="button" class="btn btn-primary btn-sm" value="修改" onclick="updateEssayTheme()"/>
+            <input type="button" class="btn btn-success btn-sm" value="删除" onclick="delEssayTheme()">
+        </div>
+    </div>
+</div>
+
         <table id="essayThemeTable"></table>
-
-
 <script>
 
-    $(function (){
-        queryEssayTheme();
-    })
+        $(function (){
+            queryEssayTheme();
+        })
 
     function queryEssayTheme() {
         $('#essayThemeTable').bootstrapTable({
-            url: '/queryEssayThemeList',
+            url: '<%=request.getContextPath()%>/SolicitArticlesManCon/queryEssayThemeList',
             striped: true,//隔行变色
-            showColumns: true,//是否显示 内容列下拉框
-            showPaginationSwitch: true,//是否显示 分页工具栏
+            showColumns: false,//是否显示 内容列下拉框
+            showPaginationSwitch: false,//是否显示 分页工具栏
             minimumCountColumns: 1,//最小留下一个
-            showRefresh: true,//显示刷新按钮
-            showToggle: true,//显示切换视图
+            showRefresh: false,//显示刷新按钮
+            showToggle: false,//显示切换视图
             search: true,//是否显示搜索框
             searchOnEnterKey: true,//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
             pagination: true,//开启分页
@@ -47,6 +55,9 @@
                 }
             },
             columns: [{
+                checkbox:true,
+                title: '',
+            }, {
                 field: 'title',
                 title: '标题',
                 width: 100,
@@ -55,7 +66,12 @@
                 title: '内容',
                 width: 100,
                 formatter:function (value,rows,index){
-                    var contentStr = value.substring(0,10)+"...   <a href='javascript:lookContent(\""+value+"\")'>查看</a>";
+                    var contentStr;
+                    if(value.length >10){
+                         contentStr = value.substring(0,10)+"...   <a href='javascript:lookContent(\""+value+"\")'>查看</a>";
+                    }else {
+                        contentStr = value;
+                    }
                     return contentStr;
                 }
             }, {
@@ -72,9 +88,9 @@
                 width: 100,
                 formatter:function (value,rows,index){
                     if(value == 1){
-                        return "审核中";
+                        return "<font color='red'>审核中</font>";
                     }else if(value == 2){
-                        return "审核通过";
+                        return "<font color='#006400'>审核通过</font>";
                     }
                 }
             }], //列
@@ -110,7 +126,131 @@
         })
     }
 
+    /*添加本期话题*/
+    function addEssayTheme(){
+        BootstrapDialog.show({
+            title: '添加话题标题',
+            message: $('<div></div>').load('<%=request.getContextPath()%>/ANDY_jspPage/InsertEssayThemePage.jsp'),
+            buttons: [{
+                label: '添加',
+                action: function(dialog) {
+                    $.ajax({
+                        url:"<%=request.getContextPath()%>/SolicitArticlesManCon/insertEssayTheme",
+                        type:"post",
+                        data: $("#EssayTheme-addform").serialize(),
+                        dataType:"text",
+                        async: false,
+                        success:function (InserFlag){
+                                if(InserFlag > 0){
+                                    Lobibox.alert('success', {
+                                        msg: "insert successful！"
+                                    });
+                                    dialog.close();
+                                    $("#essayThemeTable").bootstrapTable('refresh');
+                                }
+                        },
+                         error:function (){
+                             alert("程序出点小问题，请联系管理员！！！");
+                         }
+                    });
+                }
+            }, {
+                label: '取消',
+                action: function(dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
 
+    /*修改*/
+    function updateEssayTheme(){
+        var b = $("#essayThemeTable").bootstrapTable('getSelections');
+        if(b.length > 1 || b.length == 0){
+            BootstrapDialog.show({
+                message: "每次有且只能修改一条",
+                buttons: [{
+                    label: '确定',
+                    action: function(dialog) {
+                        dialog.close();
+                    }
+                }]
+            });
+        }else if(b.length > 0 && b.length < 2){
+            console.info(b[0])
+            BootstrapDialog.show({
+                title:"修改话题标题",
+                message: $('<div></div>').load('<%=request.getContextPath()%>/SolicitArticlesManCon/toUpdateEssayThemePage?articletopicid='+b[0].articletopicid+"&title="+b[0].title+"&themecontent="+b[0].themecontent),
+                buttons: [{
+                    label: '修改',
+                    action: function(dialog) {
+                        $.ajax({
+                            url:"<%=request.getContextPath()%>/SolicitArticlesManCon/updateEssayTheme",
+                            type:"post",
+                            data: $("#EssayTheme-updateform").serialize(),
+                            dataType:"text",
+                            async: false,
+                            success:function (UpdateFlag){
+                                if(UpdateFlag > 0){
+                                    Lobibox.alert('success', {
+                                        msg: "update successful！"
+                                    });
+                                    dialog.close();
+                                    $("#essayThemeTable").bootstrapTable('refresh');
+                                }
+                            },
+                            error:function (){
+                                alert("程序出点小问题，请联系管理员！！！");
+                            }
+                        });
+                    }
+                },{
+                    label: '取消',
+                    action: function(dialog) {
+                        dialog.close();
+                    }
+                }]
+            })
+        }
+    }
+
+    /*删除*/
+    function delEssayTheme(){
+        Lobibox.confirm({
+            msg: "Are you sure you want to delete them?",
+            callback: function ($this, type, ev) {
+                if (type === 'yes') {
+                    var b = $("#essayThemeTable").bootstrapTable('getSelections');
+                    var idstr="";
+                    for (var i = 0; i < b.length; i++) {
+                        idstr+=","+b[i].articletopicid;
+                    }
+                    var id = idstr.substr(1);
+                    $.ajax({
+                        url:"<%=request.getContextPath()%>/SolicitArticlesManCon/deleteEssayTheme",
+                        type:"post",
+                        data:{'idStr':id},
+                        dataType:"text",
+                        async:false,
+                        success:function (data){
+                            if(data>0){
+                                Lobibox.alert('success', {
+                                    msg: "delete successful！"
+                                });
+                                $("#essayThemeTable").bootstrapTable('refresh');
+                                dialog.close();
+                            }
+                        },
+                        error:function (){
+                            alert("程序出点小问题，请联系管理员！！！");
+                        }
+                    });
+                } else if (type === 'no') {
+
+                }
+            }
+        });
+    }
 </script>
 
 </body>
