@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.ReviewMapperYM" >
+
+   <!-- queryCount-->
+    <select id="queryCount" resultType="long" >
+        select count(*)  from enj_essaytheme WHERE  themeendreview=1
+    </select>
+  <!--  queryPage-->
+    <select id="queryPage" resultType="org.maker.pojo.Essaythemes">
+        select es.title,es.themeendreview,es.articletopicid   from    enj_essaytheme es WHERE  es.themeendreview=1  limit ${start},${end}
+    </select>
+    <!-- queryCountss-->
+    <select id="queryCountss" resultType="long" >
+        select count(*)  from enj_essaytheme WHERE  themeendreview=2
+    </select>
+    <!--  queryPagess-->
+    <select id="queryPagess" resultType="org.maker.pojo.Essaythemes">
+        select es.title,es.themeendreview,es.articletopicid   from enj_essaytheme es WHERE  es.themeendreview=2 limit ${start},${end}
+    </select>
+    <!-- queryPicCount-->
+    <select id="queryPicCount" resultType="long" >
+        select count(*)  from enj_pictheme WHERE  picgroupreview =1
+    </select>
+    <!--  queryPicPage-->
+    <select id="queryPicPage" resultType="org.maker.pojo.Picthemes">
+       select pic.picgrouptitle,pic.picgroupreview,pic.picgroupid from enj_pictheme pic  WHERE  pic.picgroupreview =1 limit ${start},${end}
+    </select>
+    <!-- queryPicCountss-->
+    <select id="queryPicCountss" resultType="long" >
+        select count(*)  from enj_pictheme WHERE  picgroupreview =2
+    </select>
+    <!--  queryPicPagess-->
+    <select id="queryPicPagess" resultType="org.maker.pojo.Picthemes">
+        select pic.picgrouptitle,pic.picgroupreview,pic.picgroupid from enj_pictheme pic WHERE  pic.picgroupreview =2 limit ${start},${end}
+    </select>
+
+   <!-- from enj_frequency-->
+    <!-- queryFreCount-->
+    <select id="queryFreCount" resultType="long" >
+        select count(*)  from enj_frequency  WHERE  frequencyreview =1
+    </select>
+    <!--  queryFrePage-->
+    <select id="queryFrePage" resultType="org.maker.pojo.Frequencys">
+         select fre.frequencytitle,fre.frequencyreview,fre.frequencyid from enj_frequency fre WHERE  fre.frequencyreview =1 limit ${start},${end}
+    </select>
+    <!-- queryFreCountss-->
+    <select id="queryFreCountss" resultType="long" >
+        select count(*)  from enj_frequency WHERE  frequencyreview =2
+    </select>
+    <!--  queryFrePagess-->
+    <select id="queryFrePagess" resultType="org.maker.pojo.Frequencys">
+        select fre.frequencytitle,fre.frequencyreview,fre.frequencyid from enj_frequency fre  WHERE  fre.frequencyreview =2 limit ${start},${end}
+    </select>
+   <!-- updateEssaytheme-->
+    <update id="updateEssaytheme">
+        update enj_essaytheme
+        set themeendreview = #{themeendreview}
+        where articletopicid = #{articletopicid}
+    </update>
+   <!-- updateAllStaffEssaythemeYM-->
+    <update id="updateAllStaffEssaythemeYM">
+        update enj_essaytheme
+        set themeendreview = 2
+        where articletopicid in
+        <foreach collection="ess" item="ess" index="index" open="(" separator="," close=")">
+            ${ess}
+        </foreach>
+    </update>
+    <!--updatePicthemeYm-->
+    <update id="updatePicthemeYm">
+        update enj_pictheme
+        set picgroupreview = #{picgroupreview}
+        where picgroupid = #{picgroupid}
+    </update>
+    <!--updateStaffAllPicthemeYM-->
+    <update id="updateStaffAllPicthemeYM">
+        update enj_pictheme
+        set picgroupreview = 2
+        where picgroupid in
+    <foreach collection="pss" item="pss" index="index" open="(" separator="," close=")">
+        ${pss}
+    </foreach>
+    </update>
+   <!-- updateFrequencyYm-->
+    <update id="updateFrequencyYm">
+        update enj_frequency
+        set frequencyreview = #{frequencyreview}
+        where frequencyid = #{frequencyid}
+    </update>
+    <!--updateAllStaffFrequencyYM-->
+    <update id="updateAllStaffFrequencyYM">
+        update enj_frequency
+        set frequencyreview = 2
+        where frequencyid in
+        <foreach collection="fyids" item="fyids" index="index" open="(" separator="," close=")">
+            ${fyids}
+        </foreach>
+
+    </update>
+</mapper>

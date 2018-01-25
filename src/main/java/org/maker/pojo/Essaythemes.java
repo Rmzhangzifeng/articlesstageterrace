@@ -46,6 +46,16 @@ public class Essaythemes {
     }
 
 
+    private String articletopicids;
+
+    public String getArticletopicids() {
+        return articletopicids;
+    }
+
+    public void setArticletopicids(String articletopicids) {
+        this.articletopicids = articletopicids;
+    }
+
     public Integer getThemeendreview() {
         return themeendreview;
     }

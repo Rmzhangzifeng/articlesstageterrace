@@ -15,6 +15,26 @@ public class Frequencys {
 
     private String frequencyconver;
 
+    private Integer frequencyreview;
+
+    private String frequencyids;
+
+    public String getFrequencyids() {
+        return frequencyids;
+    }
+
+    public void setFrequencyids(String frequencyids) {
+        this.frequencyids = frequencyids;
+    }
+
+    public Integer getFrequencyreview() {
+        return frequencyreview;
+    }
+
+    public void setFrequencyreview(Integer frequencyreview) {
+        this.frequencyreview = frequencyreview;
+    }
+
     public Integer getFrequencyid() {
         return frequencyid;
     }
