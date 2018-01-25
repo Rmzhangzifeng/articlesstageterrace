@@ -21,7 +21,7 @@
 
     function querSpread() {
         $('#SpreadTable').bootstrapTable({
-            url: '/querSolicitarticlessList',
+            url: '<%=request.getContextPath()%>/SolicitArticlesManCon/querySolicitarticlessList',
             striped: true,//隔行变色
             showColumns: true,//是否显示 内容列下拉框
             showPaginationSwitch: true,//是否显示 分页工具栏
@@ -85,9 +85,8 @@
                 field: 'solicitarticlescover',
                 title: '封面',
                 width: 100,
-                formatter: function (value, rows, index) {
-                    console.info(rows)
-                    var imgStr = "<img src='<%=request.getContextPath()%>" + value + "'/>";
+                formatter:function (value,rows,index){
+                    var imgStr = "<img src='<%=request.getContextPath()%>"+value+"' width='70px' height='40px'/>";
                     return imgStr;
                 }
             }, {
