@@ -13,6 +13,37 @@ public class Discusss {
 
     private Integer essaygid;
 
+    //用户名
+    private String disusername;
+    //评论征文名
+    private String disEssayname;
+    //批量删除id集合
+    private String idStr;
+
+    public String getIdStr() {
+        return idStr;
+    }
+
+    public void setIdStr(String idStr) {
+        this.idStr = idStr;
+    }
+
+    public String getDisEssayname() {
+        return disEssayname;
+    }
+
+    public void setDisEssayname(String disEssayname) {
+        this.disEssayname = disEssayname;
+    }
+
+    public String getDisusername() {
+        return disusername;
+    }
+
+    public void setDisusername(String disusername) {
+        this.disusername = disusername;
+    }
+
     public Integer getDiscussid() {
         return discussid;
     }

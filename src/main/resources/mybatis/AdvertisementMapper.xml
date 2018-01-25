@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.AdvertisementMapper">
+    <resultMap id="BaseResultMap" type="org.maker.pojo.Advertisement">
+        <id column="adid" property="adid" jdbcType="INTEGER"/>
+        <result column="adname" property="adname" jdbcType="VARCHAR"/>
+        <result column="adimg" property="adimg" jdbcType="VARCHAR"/>
+        <result column="adshowdate" property="adshowdate" jdbcType="DATE"/>
+        <result column="adstataus" property="adstataus" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    adid, adname, adimg, adshowdate, adstataus
+  </sql>
+
+    <!-- long queryadtotal(Advertisement a);-->
+    <select id="queryadtotal" resultType="Long">
+   select count(*) from enj_ad
+  </select>
+    <!--  List<Advertisement> queryList(int start, int rows, Advertisement a);-->
+    <select id="queryList" resultMap="BaseResultMap">
+     select  *  from enj_ad order by adshowdate  limit #{st},#{rw}
+  </select>
+    <!-- int updateSpread(String ids);-->
+    <update id="updateSpread">
+update enj_solicitarticles a set a.spreadstatus=${idd} where a.solicitarticlesid in(${ids})
+</update>
+    <!--  int delad(@Param("ids") String idsString ids);-->
+    <delete id="delad">
+    DELETE FROM enj_ad  where  adid in(${ids})
+</delete>
+    <!--  int addad(Advertisement a);-->
+    <insert id="addad">
+  insert into enj_ad(adname,adimg,adshowdate,adstataus,adhttp)
+ VALUES (#{adname},#{adimg},STR_TO_DATE(#{addate},'%Y-%m-%d'),1,#{adhttp})
+  </insert>
+    <!--    int datecheck(Advertisement a);-->
+    <select id="datecheck" resultType="int">
+        select count(*) from enj_ad a where a.adshowdate=#{addate}
+    </select>
+    <!--   void up1();-->
+    <update id="up1">
+        update enj_ad a set a.adstataus=0 where a.adshowdate &lt; CURRENT_DATE()
+    </update>
+    <!--  void up2();-->
+    <update id="up2">
+      update enj_ad a set a.adstataus=1 where a.adshowdate > CURRENT_DATE()
+    </update>
+    <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+      select
+      <include refid="Base_Column_List" />
+      from enj_ad
+      where adid = #{adid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+      delete from enj_ad
+      where adid = #{adid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.jk.model.Advertisement" >
+      insert into enj_ad (adid, adname, adimg,
+        adshowdate, adstataus)
+      values (#{adid,jdbcType=INTEGER}, #{adname,jdbcType=VARCHAR}, #{adimg,jdbcType=VARCHAR},
+        #{adshowdate,jdbcType=DATE}, #{adstataus,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.jk.model.Advertisement" >
+      insert into enj_ad
+      <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="adid != null" >
+          adid,
+        </if>
+        <if test="adname != null" >
+          adname,
+        </if>
+        <if test="adimg != null" >
+          adimg,
+        </if>
+        <if test="adshowdate != null" >
+          adshowdate,
+        </if>
+        <if test="adstataus != null" >
+          adstataus,
+        </if>
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <if test="adid != null" >
+          #{adid,jdbcType=INTEGER},
+        </if>
+        <if test="adname != null" >
+          #{adname,jdbcType=VARCHAR},
+        </if>
+        <if test="adimg != null" >
+          #{adimg,jdbcType=VARCHAR},
+        </if>
+        <if test="adshowdate != null" >
+          #{adshowdate,jdbcType=DATE},
+        </if>
+        <if test="adstataus != null" >
+          #{adstataus,jdbcType=INTEGER},
+        </if>
+      </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.Advertisement" >
+      update enj_ad
+      <set >
+        <if test="adname != null" >
+          adname = #{adname,jdbcType=VARCHAR},
+        </if>
+        <if test="adimg != null" >
+          adimg = #{adimg,jdbcType=VARCHAR},
+        </if>
+        <if test="adshowdate != null" >
+          adshowdate = #{adshowdate,jdbcType=DATE},
+        </if>
+        <if test="adstataus != null" >
+          adstataus = #{adstataus,jdbcType=INTEGER},
+        </if>
+      </set>
+      where adid = #{adid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jk.model.Advertisement" >
+      update enj_ad
+      set adname = #{adname,jdbcType=VARCHAR},
+        adimg = #{adimg,jdbcType=VARCHAR},
+        adshowdate = #{adshowdate,jdbcType=DATE},
+        adstataus = #{adstataus,jdbcType=INTEGER}
+      where adid = #{adid,jdbcType=INTEGER}
+    </update>-->
+</mapper>

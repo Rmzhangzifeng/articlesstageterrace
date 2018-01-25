@@ -11,83 +11,40 @@
   <sql id="Base_Column_List" >
     articletopicid, title, themecontent, themestarttime, themeendtime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from enj_essaytheme
-    where articletopicid = #{articletopicid,jdbcType=INTEGER}
+
+<!--话题管理 start-->
+
+  <!--查询总条数-->
+  <select id="queryEssayThemeListTotal" resultType="Long">
+      SELECT count(*) from enj_essaytheme
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from enj_essaytheme
-    where articletopicid = #{articletopicid,jdbcType=INTEGER}
+
+  <!--查询当前页所需数据-->
+  <select id="queryEssayThemeListPage" resultType="org.maker.pojo.Essaythemes">
+      SELECT * FROM enj_essaytheme limit #{start},#{rows}
+  </select>
+
+  <!--新增本期话题-->
+  <insert id="insertEssayTheme" >
+    INSERT  INTO  enj_essaytheme(title,themecontent,themestarttime,themeendtime)
+    VALUES (#{title},#{themecontent},#{startTimeStr},#{endTimeStr})
+  </insert>
+
+  <!--批量删除话题-->
+  <delete id="deleteEssayTheme" >
+    DELETE FROM enj_essaytheme WHERE articletopicid in(${idStr})
   </delete>
-  <insert id="insert" parameterType="org.maker.pojo.Essaythemes" >
-    insert into enj_essaytheme (articletopicid, title, themecontent, 
-      themestarttime, themeendtime)
-    values (#{articletopicid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{themecontent,jdbcType=VARCHAR}, 
-      #{themestarttime,jdbcType=DATE}, #{themeendtime,jdbcType=DATE})
-  </insert>
-  <insert id="insertSelective" parameterType="org.maker.pojo.Essaythemes" >
-    insert into enj_essaytheme
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="articletopicid != null" >
-        articletopicid,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="themecontent != null" >
-        themecontent,
-      </if>
-      <if test="themestarttime != null" >
-        themestarttime,
-      </if>
-      <if test="themeendtime != null" >
-        themeendtime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="articletopicid != null" >
-        #{articletopicid,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="themecontent != null" >
-        #{themecontent,jdbcType=VARCHAR},
-      </if>
-      <if test="themestarttime != null" >
-        #{themestarttime,jdbcType=DATE},
-      </if>
-      <if test="themeendtime != null" >
-        #{themeendtime,jdbcType=DATE},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Essaythemes" >
-    update enj_essaytheme
-    <set >
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="themecontent != null" >
-        themecontent = #{themecontent,jdbcType=VARCHAR},
-      </if>
-      <if test="themestarttime != null" >
-        themestarttime = #{themestarttime,jdbcType=DATE},
-      </if>
-      <if test="themeendtime != null" >
-        themeendtime = #{themeendtime,jdbcType=DATE},
-      </if>
-    </set>
-    where articletopicid = #{articletopicid,jdbcType=INTEGER}
+
+  <!--修改话题-->
+  <update id="updateEssayTheme" >
+    UPDATE enj_essaytheme SET title = #{title},themecontent = #{themecontent} WHERE articletopicid = #{articletopicid}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Essaythemes" >
-    update enj_essaytheme
-    set title = #{title,jdbcType=VARCHAR},
-      themecontent = #{themecontent,jdbcType=VARCHAR},
-      themestarttime = #{themestarttime,jdbcType=DATE},
-      themeendtime = #{themeendtime,jdbcType=DATE}
-    where articletopicid = #{articletopicid,jdbcType=INTEGER}
-  </update>
+
+  <!---->
+  <select id="querygambitidSelections" resultType="org.maker.pojo.Essaythemes">
+    SELECT articletopicid,title FROM enj_essaytheme
+  </select>
+
+  <!--话题管理 end-->
+
 </mapper>
