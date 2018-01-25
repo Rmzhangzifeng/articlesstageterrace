@@ -1,5 +1,7 @@
 package org.maker.pojo;
 
+import java.util.List;
+
 public class Edits {
     private Integer editid;
 
@@ -11,6 +13,14 @@ public class Edits {
 
     private String editstatus;
 
+    private Integer id;
+
+    private Integer pid;
+
+    private String text;
+
+    private  String href;
+    private List<Edits> nodes;
     public Integer getEditid() {
         return editid;
     }
@@ -49,5 +59,43 @@ public class Edits {
 
     public void setEditstatus(String editstatus) {
         this.editstatus = editstatus == null ? null : editstatus.trim();
+    }
+
+    public List<Edits> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<Edits> nodes) {
+        this.nodes = nodes;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPid() { return pid; }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
     }
 }

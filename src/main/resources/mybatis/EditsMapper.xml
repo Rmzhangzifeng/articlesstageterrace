@@ -8,6 +8,26 @@
     <result column="editurl" property="editurl" jdbcType="VARCHAR" />
     <result column="editstatus" property="editstatus" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="queryTotal" resultType="long">
+    select count(*) from enj_edit
+  </select>
+
+<select id="queryStudentPage" resultType="org.maker.pojo.Edits">
+  SELECT  * FROM enj_edit limit #{start},#{end}
+</select>
+
+
+  <!-- 查询菜单树 -->
+  <select resultType="org.maker.pojo.Edits" id="queryByPidybq">
+  select t.editid id,t.editpid pid,t.edittext text,t.editurl href from enj_edit t WHERE t.editpid=#{s} ORDER BY  t.editid
+  </select>
+
+<insert id="insertedits">
+  INSERT INTO enj_edit (editpid,edittext)VALUES (#{edits.editpid},#{edits.edittext})
+</insert>
+
+
   <sql id="Base_Column_List" >
     editid, editpid, edittext, editurl, editstatus
   </sql>
