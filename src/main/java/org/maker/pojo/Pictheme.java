@@ -1,41 +1,17 @@
 package org.maker.pojo;
 
-public class Picthemes {
+import java.io.Serializable;
+
+public class Pictheme implements Serializable {
     private Integer picthemeid;
 
     private Integer picgroupid;
 
     private Integer pictypeid;
 
-    private String picgrouptitle;
     private Integer picgroupreview;
 
-    private String picthemeids;
-
-    public String getPicthemeids() {
-
-        return picthemeids;
-    }
-
-    public void setPicthemeids(String picthemeids) {
-        this.picthemeids = picthemeids;
-    }
-
-    public Integer getPicgroupreview() {
-        return picgroupreview;
-    }
-
-    public void setPicgroupreview(Integer picgroupreview) {
-        this.picgroupreview = picgroupreview;
-    }
-
-    public String getPicgrouptitle() {
-        return picgrouptitle;
-    }
-
-    public void setPicgrouptitle(String picgrouptitle) {
-        this.picgrouptitle = picgrouptitle;
-    }
+    private String picgrouptitle;
 
     public Integer getPicthemeid() {
         return picthemeid;
@@ -59,5 +35,21 @@ public class Picthemes {
 
     public void setPictypeid(Integer pictypeid) {
         this.pictypeid = pictypeid;
+    }
+
+    public Integer getPicgroupreview() {
+        return picgroupreview;
+    }
+
+    public void setPicgroupreview(Integer picgroupreview) {
+        this.picgroupreview = picgroupreview;
+    }
+
+    public String getPicgrouptitle() {
+        return picgrouptitle;
+    }
+
+    public void setPicgrouptitle(String picgrouptitle) {
+        this.picgrouptitle = picgrouptitle;
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.maker.dao.PicreviewsMapper" >
-  <resultMap id="BaseResultMap" type="org.maker.pojo.Picreviews" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Picreview" >
     <id column="picreviewid" property="picreviewid" jdbcType="INTEGER" />
     <result column="picreviewcontent" property="picreviewcontent" jdbcType="VARCHAR" />
     <result column="usernid" property="usernid" jdbcType="INTEGER" />
@@ -21,13 +21,13 @@
     delete from enj_picreview
     where picreviewid = #{picreviewid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="org.maker.pojo.Picreviews" >
+  <insert id="insert" parameterType="org.maker.pojo.Picreview" >
     insert into enj_picreview (picreviewid, picreviewcontent, usernid, 
       picphotosid, pictopicszid)
     values (#{picreviewid,jdbcType=INTEGER}, #{picreviewcontent,jdbcType=VARCHAR}, #{usernid,jdbcType=INTEGER}, 
       #{picphotosid,jdbcType=INTEGER}, #{pictopicszid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="org.maker.pojo.Picreviews" >
+  <insert id="insertSelective" parameterType="org.maker.pojo.Picreview" >
     insert into enj_picreview
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="picreviewid != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Picreviews" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Picreview" >
     update enj_picreview
     <set >
       <if test="picreviewcontent != null" >
@@ -82,7 +82,7 @@
     </set>
     where picreviewid = #{picreviewid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Picreviews" >
+  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Picreview" >
     update enj_picreview
     set picreviewcontent = #{picreviewcontent,jdbcType=VARCHAR},
       usernid = #{usernid,jdbcType=INTEGER},

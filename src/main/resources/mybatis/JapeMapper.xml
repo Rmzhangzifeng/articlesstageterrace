@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.JapeMapper" >
+  <select id="queryJape" resultType="long">
+    select count(*) from enj_jape j,enj_users u where j.wybjapeid=u.userid and j.wybtypeid=#{id}
+  </select>
+
+  <select id="queryJapePage" resultType="org.maker.pojo.Jape">
+    select * from enj_jape j,enj_users u where j.wybjapeid=u.userid
+    <if test="id !=null and id!=''">and j.wybtypeid=#{id}</if>
+    limit #{start},#{end}
+  </select>
+
+  <select id="queryJapeDiscuess" resultType="long">
+    select count(*) from enj_japediscuss j,enj_users u where j.usergid=u.userid and j.japecid=#{japecid}
+  </select>
+
+  <select id="queryJapeDiscuessPage" resultType="org.maker.pojo.Japediscusss">
+    select * from enj_japediscuss j,enj_users u where j.usergid=u.userid and j.japecid=#{dis.japecid}
+    limit #{start},#{end}
+  </select>
+
+  <select id="queryJapeById" resultType="org.maker.pojo.Jape">
+    select * from enj_jape j,enj_users u where j.wybjapeid=u.userid
+    and j.wybid=#{wybid}
+  </select>
+  <insert id="AddJape" parameterType="org.maker.pojo.Jape">
+
+    insert into enj_jape(wybjapename,wybjapetime,wybcontent,wybtypeid,wybjapeid,wybfist,wybgood) values(#{wybjapename},date_format(#{wybdate},'%Y%m%d'),#{wybcontent},#{wybtypeid},#{wybjapeid},#{wybfist},#{wybgood})
+
+  </insert>
+  <update id="updateWyb" parameterType="org.maker.pojo.Jape">
+
+    update enj_jape set wybfist=#{wybfist},wybgood=#{wybgood} where wybid=#{wybid}
+
+  </update>
+  <delete id="deleteJape" parameterType="org.maker.pojo.Jape">
+
+      delete from enj_jape where wybid=#{wybid}
+
+  </delete>
+
+  <delete id="deleteJapeDiscuess" parameterType="org.maker.pojo.Japediscusss">
+
+    delete from enj_japediscuss where japecid=#{wybid}
+
+  </delete>
+  <update id="updateJape" parameterType="org.maker.pojo.Jape">
+
+    update enj_jape set wybjapename=#{wybjapename},wybcontent=#{wybcontent} where wybid=#{wybid}
+
+  </update>
+
+  <insert id="addJapeDiscuss" parameterType="org.maker.pojo.Japediscusss">
+
+    insert into enj_japediscuss(usergid,japediscusscontent,japediscusstime,japediscussstatus,japecid) values(#{usergid},#{japediscusscontent},date_format(#{japedate},'%Y%m%d'),#{japediscussstatus},#{japecid})
+
+  </insert>
+</mapper>

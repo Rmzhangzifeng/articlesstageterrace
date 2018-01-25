@@ -15,6 +15,11 @@ public class Japediscusss {
 
     private Integer japecid;
 
+    private String japedate;
+
+
+    private String username;
+
     public Integer getJapediscussid() {
         return japediscussid;
     }
@@ -61,5 +66,21 @@ public class Japediscusss {
 
     public void setJapecid(Integer japecid) {
         this.japecid = japecid;
+    }
+
+    public String getJapedate() {
+        return japedate;
+    }
+
+    public void setJapedate(String japedate) {
+        this.japedate = japedate;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

@@ -1,93 +1,95 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.maker.dao.PicphotosMapper" >
-  <resultMap id="BaseResultMap" type="org.maker.pojo.Picphotos" >
-    <id column="picphotoid" property="picphotoid" jdbcType="INTEGER" />
-    <result column="picphotourl" property="picphotourl" jdbcType="VARCHAR" />
-    <result column="picuplodtime" property="picuplodtime" jdbcType="DATE" />
-    <result column="picuplodperson" property="picuplodperson" jdbcType="VARCHAR" />
-    <result column="piccontent" property="piccontent" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    picphotoid, picphotourl, picuplodtime, picuplodperson, piccontent
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from enj_picphoto
-    where picphotoid = #{picphotoid,jdbcType=INTEGER}
+<mapper namespace="org.maker.dao.PhotoDao" >
+
+
+  <select id="queryEdit" resultType="org.maker.pojo.EnjEdit">
+    select * from enj_edit where editpid=#{id}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from enj_picphoto
-    where picphotoid = #{picphotoid,jdbcType=INTEGER}
+
+  <select id="queryPic" resultType="long">
+    select count(*) from enj_pictheme e,enj_picgroup p,enj_picphoto h where e.picgroupid=p.picorganizeid and p.piccover=h.picphotoid
+    and e.pictypeid=#{id}
+  </select>
+
+  <select id="queryPicPage" resultType="org.maker.pojo.Picgroup">
+    select e.picgroupreview,e.picgrouptitle,p.picorganizeid,p.picid,p.picname,h.piccontent,p.piclike,h.picphotoid,h.picphotourl,h.picuplodperson from enj_pictheme e,enj_picgroup p,enj_picphoto h where e.picgroupid=p.picorganizeid and p.piccover=h.picphotoid
+    <if test="id !=null and id != ''">and e.pictypeid=#{id}</if>
+    limit #{start},#{end}
+  </select>
+
+
+  <select id="queryPicReview" resultType="long">
+    select count(*) from enj_picgroup p,enj_picphoto h ,enj_picreview w ,enj_users u where  w.picphotosid=p.picorganizeid and w.pictopicszid=h.picphotoid and u.userid=w.usernid
+    and w.picphotosid=#{picphotosid}
+  </select>
+
+  <select id="queryPicReviewPage" resultType="org.maker.pojo.Picreview">
+    select * from enj_picgroup p,enj_picphoto h ,enj_picreview w ,enj_users u where  w.picphotosid=p.picorganizeid and w.pictopicszid=h.picphotoid and u.userid=w.usernid
+    and w.picphotosid=#{pic.picphotosid} limit #{start},#{end}
+  </select>
+
+  <insert id="AddPicPhoto" parameterType="org.maker.pojo.Picphoto">
+
+    insert into enj_picphoto(picphotourl,picuplodtime,picuplodperson,piccontent) values(#{picphotourl},#{picuplodtime},#{picuplodperson},#{piccontent})
+
+  </insert>
+
+  <select id="queryPicPhotos" resultType="org.maker.pojo.Picphoto">
+    select * from enj_picphoto where picphotourl=#{picphotourl}
+  </select>
+
+  <insert id="AddPicGroup" parameterType="org.maker.pojo.Picgroup">
+
+    insert into enj_picgroup(picid,picname,piccover,piclike) values(#{picid},#{picname},#{piccover},#{piclike})
+
+  </insert>
+
+  <select id="queryPicGoup" resultType="org.maker.pojo.Picgroup">
+    select * from enj_picgroup p where  p.picid=#{picid}
+  </select>
+  <insert id="addWybPictheme" parameterType="org.maker.pojo.Pictheme">
+
+    insert into enj_pictheme(picgroupid,pictypeid,picgroupreview,picgrouptitle) values(#{picgroupid},#{pictypeid},1,#{picgrouptitle})
+
+  </insert>
+
+  <select id="queryPicGroupByIds" resultType="org.maker.pojo.Picphoto">
+    select * from enj_picphoto where picphotoid in(${picid})
+  </select>
+  <update id="UpdateGroupById" parameterType="org.maker.pojo.Picgroup">
+
+      update enj_picgroup set piccover=#{piccover} where picorganizeid=#{picorganizeid}
+
+  </update>
+  <delete id="deletePicGroup" parameterType="org.maker.pojo.Picgroup">
+
+    delete from enj_picgroup where picorganizeid=#{picorganizeid}
+
   </delete>
-  <insert id="insert" parameterType="org.maker.pojo.Picphotos" >
-    insert into enj_picphoto (picphotoid, picphotourl, picuplodtime, 
-      picuplodperson, piccontent)
-    values (#{picphotoid,jdbcType=INTEGER}, #{picphotourl,jdbcType=VARCHAR}, #{picuplodtime,jdbcType=DATE}, 
-      #{picuplodperson,jdbcType=VARCHAR}, #{piccontent,jdbcType=VARCHAR})
+  <delete id="deletePicPhoto" parameterType="org.maker.pojo.Picphoto">
+
+    delete from enj_picphoto where picphotoid in(${picid})
+
+  </delete>
+  <delete id="deletePicTheme" parameterType="org.maker.pojo.Pictheme">
+
+  delete from enj_pictheme where picgroupid=#{picorganizeid}
+
+</delete>
+<update id="updatePicGroupByLike" parameterType="org.maker.pojo.Picgroup">
+
+  update enj_picgroup set piclike=#{piclike} where picorganizeid=#{picorganizeid}
+
+</update>
+
+  <insert id="addPhotoreviem" parameterType="org.maker.pojo.Picreview">
+
+    insert into enj_picreview(picreviewcontent,usernid,picphotosid,pictopicszid,picstatus,picwybdate) values(#{picreviewcontent},#{usernid},#{picphotosid},#{pictopicszid},#{picstatus},date_format(#{pictime},'%Y%m%d'))
   </insert>
-  <insert id="insertSelective" parameterType="org.maker.pojo.Picphotos" >
-    insert into enj_picphoto
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="picphotoid != null" >
-        picphotoid,
-      </if>
-      <if test="picphotourl != null" >
-        picphotourl,
-      </if>
-      <if test="picuplodtime != null" >
-        picuplodtime,
-      </if>
-      <if test="picuplodperson != null" >
-        picuplodperson,
-      </if>
-      <if test="piccontent != null" >
-        piccontent,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="picphotoid != null" >
-        #{picphotoid,jdbcType=INTEGER},
-      </if>
-      <if test="picphotourl != null" >
-        #{picphotourl,jdbcType=VARCHAR},
-      </if>
-      <if test="picuplodtime != null" >
-        #{picuplodtime,jdbcType=DATE},
-      </if>
-      <if test="picuplodperson != null" >
-        #{picuplodperson,jdbcType=VARCHAR},
-      </if>
-      <if test="piccontent != null" >
-        #{piccontent,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.maker.pojo.Picphotos" >
-    update enj_picphoto
-    <set >
-      <if test="picphotourl != null" >
-        picphotourl = #{picphotourl,jdbcType=VARCHAR},
-      </if>
-      <if test="picuplodtime != null" >
-        picuplodtime = #{picuplodtime,jdbcType=DATE},
-      </if>
-      <if test="picuplodperson != null" >
-        picuplodperson = #{picuplodperson,jdbcType=VARCHAR},
-      </if>
-      <if test="piccontent != null" >
-        piccontent = #{piccontent,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where picphotoid = #{picphotoid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.maker.pojo.Picphotos" >
-    update enj_picphoto
-    set picphotourl = #{picphotourl,jdbcType=VARCHAR},
-      picuplodtime = #{picuplodtime,jdbcType=DATE},
-      picuplodperson = #{picuplodperson,jdbcType=VARCHAR},
-      piccontent = #{piccontent,jdbcType=VARCHAR}
-    where picphotoid = #{picphotoid,jdbcType=INTEGER}
-  </update>
+  <delete id="deletePcDiscuess" parameterType="org.maker.pojo.Picreview">
+
+    delete from enj_picreview where picphotosid=#{picorganizeid}
+
+  </delete>
 </mapper>
