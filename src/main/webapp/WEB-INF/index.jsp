@@ -231,7 +231,10 @@
                 }
 
             }
-        })
+        }).treeview('collapseAll', {// 节点展开
+        silent : true
+    });
+
 
 </script>
 </body>

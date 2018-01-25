@@ -51,25 +51,6 @@
                 title: '标题',
                 width: 100,
             }, {
-                field: 'content',
-                title: '内容',
-                width: 100,
-                formatter: function (value, rows, index) {
-                    $.ajax({
-                        url: "",
-                        data: {"": rows.solicitarticlesid},
-                        type: "post",
-                        dataType: "json",
-                        success: function () {
-
-                        },
-                        error: function () {
-                            return "<无内容>";
-                        }
-                    });
-                    return "<无内容>";
-                }
-            }, {
                 field: 'soliusername',
                 title: '提交人',
                 width: 100,
