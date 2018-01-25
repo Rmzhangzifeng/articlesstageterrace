@@ -11,6 +11,38 @@ public class Complaints {
 
     private Date complainttime;
 
+   private  Integer complaintstates;
+
+   private String complainthuifu;
+
+   private String complaintids;
+
+    public String getComplaintids() {
+        return complaintids;
+    }
+
+    public void setComplaintids(String complaintids) {
+        this.complaintids = complaintids;
+    }
+
+    public String getComplainthuifu() {
+
+        return complainthuifu;
+    }
+
+    public void setComplainthuifu(String complainthuifu) {
+        this.complainthuifu = complainthuifu;
+    }
+
+    public Integer getComplaintstates() {
+
+        return complaintstates;
+    }
+
+    public void setComplaintstates(Integer complaintstates) {
+        this.complaintstates = complaintstates;
+    }
+
     public Integer getComplaintid() {
         return complaintid;
     }

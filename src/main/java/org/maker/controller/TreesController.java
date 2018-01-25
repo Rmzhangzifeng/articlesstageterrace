@@ -13,7 +13,6 @@ import java.util.List;
 
 
 @Controller
-@EnableAutoConfiguration
 public class TreesController {
 
 
@@ -23,7 +22,6 @@ public class TreesController {
 
     @RequestMapping(value = "/homes")
     public String home() {
-        System.out.println("跳转页面");
         return "../index";
     }
     @RequestMapping("/queryTree")

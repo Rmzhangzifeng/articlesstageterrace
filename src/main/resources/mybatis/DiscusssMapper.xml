@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.DiscusssMapper" >
+  <resultMap id="BaseResultMap" type="org.maker.pojo.Discusss" >
+    <id column="discussid" property="discussid" jdbcType="INTEGER" />
+    <result column="userwid" property="userwid" jdbcType="INTEGER" />
+    <result column="discusscontent" property="discusscontent" jdbcType="VARCHAR" />
+    <result column="discusstime" property="discusstime" jdbcType="DATE" />
+    <result column="essaygid" property="essaygid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    discussid, userwid, discusscontent, discusstime, essaygid ,username disusername,solicitarticlestitle disEssayname
+  </sql>
+
+  <!--征文评论管理 start-->
+
+  <!--查询总条数-->
+  <select id="queryArticleDiscussListTotal" resultType="Long">
+    SELECT COUNT(*) FROM enj_discuss
+  </select>
+
+  <!--查询当前页数据-->
+  <select id="queryArticleDiscussListPage" resultType="org.maker.pojo.Discusss">
+      select
+        <include refid="Base_Column_List"/>
+       from enj_discuss di,enj_users us ,enj_solicitarticles so
+      where di.userwid = us.userid and di.essaygid = so.solicitarticlesid
+	   limit #{start},#{rows}
+  </select>
+
+  <!--批量删除征文评论信息-->
+  <delete id="deleteArticleDiscuss">
+    DELETE FROM enj_discuss WHERE discussid IN (${idStr})
+  </delete>
+
+  <!--修改征文评论信息-->
+  <update id="updateArticleDiscuss">
+    UPDATE enj_discuss SET discusscontent = #{discusscontent} WHERE discussid = #{discussid}
+  </update>
+
+  <!--征文评论管理 end-->
+
+
+</mapper>
