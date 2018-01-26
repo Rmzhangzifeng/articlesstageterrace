@@ -2,7 +2,7 @@ package org.maker.pojo;
 
 import java.io.Serializable;
 
-public class Picthemes implements Serializable {
+public class Pictheme implements Serializable {
     private Integer picthemeid;
 
     private Integer picgroupid;

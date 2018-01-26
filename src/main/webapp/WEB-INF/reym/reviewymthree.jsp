@@ -103,7 +103,7 @@
         //循环切割
         strIds = strIds.substr(0, strIds.length - 1);
         alert(strIds)
-        $.post('<%=request.getContextPath()%>updateAllStaffFrequencyYM?frequencyids=' + strIds, function (jsonObj) {
+        $.post('<%=request.getContextPath()%>/updateAllStaffFrequencyYM?frequencyids=' + strIds, function (jsonObj) {
             if (jsonObj > 0) {
                 $("#review-frequency").bootstrapTable("refresh");
             } else {

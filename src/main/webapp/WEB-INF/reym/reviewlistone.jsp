@@ -102,7 +102,7 @@
         }
         //循环切割
         strIds = strIds.substr(0, strIds.length - 1);
-        $.post('<%=request.getContextPath()%>updateAllStaffEssaythemeYM?articletopicids=' + strIds, function (jsonObj) {
+        $.post('<%=request.getContextPath()%>/updateAllStaffEssaythemeYM?articletopicids=' + strIds, function (jsonObj) {
             if (jsonObj > 0) {
                 $("#review-essaytheme").bootstrapTable("refresh");
             } else {

@@ -25,7 +25,7 @@
 
     $(function (){
         $('#pic-review').bootstrapTable({
-            url: '/queryPicReview',
+            url: '<%=request.getContextPath()%>/queryPicReview',
             striped: true,//隔行变色
             showColumns:true,//是否显示 内容列下拉框
             showPaginationSwitch:true,//是否显示 分页工具栏

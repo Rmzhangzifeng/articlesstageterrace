@@ -29,7 +29,7 @@
 
     function fabiao(){
         $.ajax({
-            url:"/addJapeDiscuss",
+            url:"<%=request.getContextPath()%>/addJapeDiscuss",
             type:"post",
             data:$("#discuss-form").serialize(),
             dataType:"json",

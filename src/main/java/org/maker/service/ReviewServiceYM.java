@@ -3,25 +3,25 @@ package org.maker.service;
 import com.alibaba.fastjson.JSONObject;
 import org.maker.pojo.Essaythemes;
 import org.maker.pojo.Frequencys;
-import org.maker.pojo.Picthemes;
+import org.maker.pojo.Pictheme;
 
 public interface ReviewServiceYM {
 
     JSONObject queryBookPage(int page, int rows, Essaythemes essaythemes);
 
-    JSONObject queryPictheme(int page, int rows, Picthemes picthemes);
+    JSONObject queryPictheme(int page, int rows, Pictheme pictheme);
 
     JSONObject queryFrequency(int page, int rows, Frequencys frequencys);
 
     int updateEssaytheme(Essaythemes essaythemes);
 
-    int updatePicthemeYm(Picthemes picthemes);
+    int updatePicthemeYm(Pictheme pictheme);
 
     int updateFrequencyYm(Frequencys frequencys);
 
     JSONObject queryEssaythemess(int page, int rows, Essaythemes essaythemes);
 
-    JSONObject queryPicthemess(int page, int rows, Picthemes picthemes);
+    JSONObject queryPicthemess(int page, int rows, Pictheme pictheme);
 
     JSONObject queryFrequencyss(int page, int rows, Frequencys frequencys);
 
@@ -29,5 +29,5 @@ public interface ReviewServiceYM {
 
     int updateAllStaffEssaythemeYM(Essaythemes essaythemes);
 
-    int updateStaffAllPicthemeYM(Picthemes picthemes);
+    int updateStaffAllPicthemeYM(Pictheme pictheme);
 }

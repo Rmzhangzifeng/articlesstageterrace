@@ -33,7 +33,7 @@
 <script>
     $(function (){
         $('#jape-table').bootstrapTable({
-            url: '/queryJapepage',
+            url: '<%=request.getContextPath()%>/queryJapepage',
 
             striped: true,//隔行变色
             showColumns: true,//是否显示 内容列下拉框
@@ -133,7 +133,7 @@
     function updateWyb(mark,wyblike,wyb,wybid){
             wyblike
             $.ajax({
-                url:"/updateWyb",
+                url:"<%=request.getContextPath()%>/updateWyb",
                 type:"post",
                 data:{"mark":mark,"wyblike":wyblike,"wybid":wybid,"wyblikes":wyb},
                 dataType:"json",
@@ -157,12 +157,12 @@
     function UpdaJape(id){
         BootstrapDialog.show({
             title: '修改页面',
-            message: $('<div></div>').load('/getUpdateJape?wybid='+id),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getUpdateJape?wybid='+id),
             buttons: [{
                 label: '修改',
                 action: function(dialog) {
                     $.ajax({
-                        url:"/updateJape",
+                        url:"<%=request.getContextPath()%>/updateJape",
                         type:"post",
                         data:$("#jape-upda").serialize(),
                         dataType:"json",
@@ -193,7 +193,7 @@
     }
     function deleteJape(id){
         $.ajax({
-            url:"/deleteJape",
+            url:"<%=request.getContextPath()%>/deleteJape",
             type:"post",
             data:{"wybid":id},
             dataType:"json",
@@ -218,7 +218,7 @@
     function queryJapeByContent(id){
         BootstrapDialog.show({
             title: '查看页面',
-            message: $('<div></div>').load('/getPicJape?wybid='+id),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getPicJape?wybid='+id),
             buttons: [{
                 label: '取消',
                 action: function(dialog) {
@@ -230,7 +230,7 @@
     function dialogAddJape(){
         BootstrapDialog.show({
             title: '新增页面',
-            message: $('<div></div>').load('/getaddJape?typeid='+$("#editid").val()),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getaddJape?typeid='+$("#editid").val()),
             buttons: [{
                 label: '保存',
                 action: function(dialog) {
@@ -269,7 +269,7 @@
     function queryDis(id){
         BootstrapDialog.show({
             title: '查看页面',
-            message: $('<div></div>').load('/getDiscuess?wybid='+id),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getDiscuess?wybid='+id),
             buttons: [{
                 label: '取消',
                 action: function(dialog) {
