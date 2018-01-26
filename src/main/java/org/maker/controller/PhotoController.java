@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -78,8 +79,8 @@ public class PhotoController {
 
     @RequestMapping("/AddPicPhoto")
     @ResponseBody
-    public Object AddPicPhoto(Picphoto po){
-        int i=photoService.AddPicPhoto(po);
+    public Object AddPicPhoto(Picphoto po,HttpSession session){
+        int i=photoService.AddPicPhoto(po,session);
         Picphoto pp=new Picphoto();
         if(i>0){
             pp=photoService.queryPicPhotos(po);
@@ -89,9 +90,9 @@ public class PhotoController {
 
     @RequestMapping("/AddPicGroup")
     @ResponseBody
-    public Object AddPicGroup(Picgroup group, HttpServletRequest req){
+    public Object AddPicGroup(Picgroup group, HttpServletRequest req,HttpSession session){
 
-        int i=photoService.AddPicGroup(group);
+        int i=photoService.AddPicGroup(group,session);
         Picgroup group1=new Picgroup();
 
         if(i>0){
@@ -136,8 +137,9 @@ public class PhotoController {
 
     @RequestMapping("/addPhotoreviem")
     @ResponseBody
-    public Object addPhotoreviem(Picreview reviews){
-        reviews.setUsernid(1);
+    public Object addPhotoreviem(Picreview reviews,HttpSession session){
+        Users user=(Users) session.getAttribute("loginUserMsg");
+        reviews.setUsernid(user.getUserid());
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
         reviews.setPictime(sim.format(new Date()));
         int i=photoService.addPhotoreviem(reviews);
