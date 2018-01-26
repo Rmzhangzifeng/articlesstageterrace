@@ -4,6 +4,7 @@ package org.maker.service;
 import com.alibaba.fastjson.JSONObject;
 import org.maker.pojo.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface PhotoService {
@@ -11,15 +12,15 @@ public interface PhotoService {
 
     JSONObject queryPic(String id, int page, int rows);
 
-    int AddPicPhoto(Picphoto po);
+    int AddPicPhoto(Picphoto po,HttpSession session);
 
     Picphoto queryPicPhotos(Picphoto po);
 
-    int AddPicGroup(Picgroup group);
+    int AddPicGroup(Picgroup group,HttpSession session);
 
     Picgroup queryPicGoup(Picgroup group);
 
-    int addWybPictheme(Pictheme pic);
+    int addWybPictheme(Picthemes pic);
 
     List<Picphoto> queryPicGroupByIds(Picgroup id);
 

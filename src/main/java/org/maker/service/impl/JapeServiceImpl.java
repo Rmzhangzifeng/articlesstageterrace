@@ -6,10 +6,12 @@ import org.maker.dao.JapeMapper;
 import org.maker.pojo.Jape;
 import org.maker.pojo.Japediscusss;
 import org.maker.pojo.Picgroup;
+import org.maker.pojo.Users;
 import org.maker.service.JapeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -44,8 +46,9 @@ public class JapeServiceImpl implements JapeService {
     }
 
     @Override
-    public int AddJape(Jape jape) {
-        jape.setWybjapeid(1);
+    public int AddJape(Jape jape,HttpSession session) {
+        Users user=(Users) session.getAttribute("loginUserMsg");
+        jape.setWybjapeid(user.getUserid());
         jape.setWybfist(0);
         jape.setWybgood(0);
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
@@ -69,8 +72,9 @@ public class JapeServiceImpl implements JapeService {
     }
 
     @Override
-    public int addJapeDiscuss(Japediscusss dis) {
-        dis.setUsergid(1);
+    public int addJapeDiscuss(Japediscusss dis, HttpSession session) {
+        Users user=(Users) session.getAttribute("loginUserMsg");
+        dis.setUsergid(user.getUserid());
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
 
         dis.setJapedate(sim.format(new Date()));
