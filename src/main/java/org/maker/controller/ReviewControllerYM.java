@@ -3,10 +3,9 @@ package org.maker.controller;
 import com.alibaba.fastjson.JSONObject;
 import org.maker.pojo.Essaythemes;
 import org.maker.pojo.Frequencys;
-import org.maker.pojo.Pictheme;
+import org.maker.pojo.Picthemes;
 import org.maker.service.ReviewServiceYM;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -72,19 +71,19 @@ public class ReviewControllerYM {
     }
     @RequestMapping("/queryPictheme")
     @ResponseBody
-    public Object queryPictheme(int page, int rows, Pictheme pictheme){
+    public Object queryPictheme(int page, int rows, Picthemes pictheme){
         JSONObject json  = reviewServiceYM.queryPictheme(page,rows, pictheme);
         return json;
     }
     @RequestMapping("/queryPicthemess")
     @ResponseBody
-    public Object queryPicthemess(int page, int rows, Pictheme pictheme){
+    public Object queryPicthemess(int page, int rows, Picthemes pictheme){
         JSONObject json  = reviewServiceYM.queryPicthemess(page,rows, pictheme);
         return json;
     }
     @RequestMapping("/updatePicthemeYm")
     @ResponseBody
-    public Object updatePicthemeYm(Pictheme pictheme){
+    public Object updatePicthemeYm(Picthemes pictheme){
         if(pictheme.getPicgroupreview() == 1){
             pictheme.setPicgroupreview(2);
         }
@@ -94,7 +93,7 @@ public class ReviewControllerYM {
     /*upStaffAllPicthemeYM*/
     @RequestMapping("/upStaffAllPicthemeYM")
     @ResponseBody
-    public Object upStaffAllPicthemeYM(Pictheme pictheme){
+    public Object upStaffAllPicthemeYM(Picthemes pictheme){
         int ss = reviewServiceYM.updateStaffAllPicthemeYM(pictheme);
         return ss;
     }

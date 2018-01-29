@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.maker.dao.ReviewMapperYM;
 import org.maker.pojo.Essaythemes;
 import org.maker.pojo.Frequencys;
-import org.maker.pojo.Pictheme;
+import org.maker.pojo.Picthemes;
 import org.maker.service.ReviewServiceYM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,12 +33,12 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     }
 
     @Override
-    public JSONObject queryPictheme(int page, int rows, Pictheme pictheme) {
+    public JSONObject queryPictheme(int page, int rows, Picthemes pictheme) {
         long total = reviewMapperYM.queryPicCount(pictheme);
 //		当前页数据
         int start = (page-1)*rows;
         int end = start+rows;
-        List<Pictheme> picthe;
+        List<Picthemes> picthe;
         picthe = reviewMapperYM.queryPicPage(start,end, pictheme);
         JSONObject json = new JSONObject();
         json.put("total", total);
@@ -66,7 +66,7 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     }
 
     @Override
-    public int updatePicthemeYm(Pictheme pictheme) {
+    public int updatePicthemeYm(Picthemes pictheme) {
         return reviewMapperYM.updatePicthemeYm(pictheme);
     }
 
@@ -90,12 +90,12 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     }
 
     @Override
-    public JSONObject queryPicthemess(int page, int rows, Pictheme pictheme) {
+    public JSONObject queryPicthemess(int page, int rows, Picthemes pictheme) {
         long total = reviewMapperYM.queryPicCountss(pictheme);
 //		当前页数据
         int start = (page-1)*rows;
         int end = start+rows;
-        List<Pictheme> picthe;
+        List<Picthemes> picthe;
         picthe = reviewMapperYM.queryPicPagess(start,end, pictheme);
         JSONObject json = new JSONObject();
         json.put("total", total);
@@ -128,7 +128,7 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     }
 
     @Override
-    public int updateStaffAllPicthemeYM(Pictheme pictheme) {
+    public int updateStaffAllPicthemeYM(Picthemes pictheme) {
         return reviewMapperYM.updateStaffAllPicthemeYM(pictheme);
     }
 }

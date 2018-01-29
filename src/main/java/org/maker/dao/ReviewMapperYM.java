@@ -4,7 +4,7 @@ package org.maker.dao;
 import org.apache.ibatis.annotations.Param;
 import org.maker.pojo.Essaythemes;
 import org.maker.pojo.Frequencys;
-import org.maker.pojo.Pictheme;
+import org.maker.pojo.Picthemes;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ public interface ReviewMapperYM {
 
     List<Essaythemes> queryPage(@Param("start") int start,@Param("end") int end,@Param("essaythemes") Essaythemes essaythemes);
 
-    long queryPicCount(Pictheme pictheme);
+    long queryPicCount(Picthemes pictheme);
 
-    List<Pictheme> queryPicPage(@Param("start")int start, @Param("end") int end, @Param("pictheme") Pictheme pictheme);
+    List<Picthemes> queryPicPage(@Param("start")int start, @Param("end") int end, @Param("pictheme") Picthemes pictheme);
 
     long queryFreCount(Frequencys frequencys);
 
@@ -25,7 +25,7 @@ public interface ReviewMapperYM {
 
     int updateEssaytheme(Essaythemes essaythemes);
 
-    int updatePicthemeYm(Pictheme pictheme);
+    int updatePicthemeYm(Picthemes pictheme);
 
     int updateFrequencyYm(Frequencys frequencys);
 
@@ -33,9 +33,9 @@ public interface ReviewMapperYM {
 
     List<Essaythemes> queryPagess(@Param("start")int start,@Param("end") int end,@Param("essaythemes") Essaythemes essaythemes);
 
-    long queryPicCountss(Pictheme pictheme);
+    long queryPicCountss(Picthemes pictheme);
 
-    List<Pictheme> queryPicPagess(@Param("start")int start, @Param("end") int end, @Param("pictheme") Pictheme pictheme);
+    List<Picthemes> queryPicPagess(@Param("start")int start, @Param("end") int end, @Param("pictheme") Picthemes pictheme);
 
     long queryFreCountss(Frequencys frequencys);
 
@@ -45,5 +45,5 @@ public interface ReviewMapperYM {
 
     int updateAllStaffEssaythemeYM(@Param(value="ess")String[] ess);
 
-    int updateStaffAllPicthemeYM(@Param(value="pss")Pictheme pictheme);
+    int updateStaffAllPicthemeYM(@Param(value="pss")Picthemes pictheme);
 }
