@@ -56,25 +56,27 @@ public class ReviewControllerYM {
     @RequestMapping("/queryEssaytheme")
     @ResponseBody
     public Object queryEssaytheme(int page, int rows, Essaythemes essaythemes){
-        JSONObject json  = reviewServiceYM.queryBookPage(page,rows,essaythemes);
-        return json;
+        if(essaythemes.getEmroles()==1 || essaythemes.getEmroles()==2){
+            JSONObject json  = reviewServiceYM.queryBookPage(page,rows,essaythemes);
+            return json;
+        }else{
+            return false;
+        }
     }
    @RequestMapping("/queryEssaythemess")
    @ResponseBody
    public Object queryEssaythemess(int page, int rows, Essaythemes essaythemes){
-       JSONObject json  = reviewServiceYM.queryEssaythemess(page,rows,essaythemes);
-       return json;
+           JSONObject json = reviewServiceYM.queryEssaythemess(page, rows, essaythemes);
+           return json;
    }
     /*updateEssaytheme*/
     @RequestMapping("/updateEssaytheme")
     @ResponseBody
     public Object updateEssaytheme(Essaythemes essaythemes){
-        if(essaythemes.getThemeendreview() == 1){
+       if(essaythemes.getThemeendreview() == 1){
             essaythemes.setThemeendreview(2);
         }else if(essaythemes.getThemeendreview() == 2){
             essaythemes.setThemeendreview(3);
-        }else if(essaythemes.getThemeendreview() == 3){
-            essaythemes.setThemeendreview(4);
         }
         int mm = reviewServiceYM.updateEssaytheme(essaythemes);
         return mm;
@@ -83,21 +85,24 @@ public class ReviewControllerYM {
     @RequestMapping("/updateAllStaffEssaythemeYM")
     @ResponseBody
     public Object updateAllStaffEssaythemeYM(Essaythemes essaythemes){
-         if(essaythemes.getThemeendreview() == 1){
+        if(essaythemes.getThemeendreview() == 1){
             essaythemes.setThemeendreview(2);
         }else if(essaythemes.getThemeendreview() == 2){
-             essaythemes.setThemeendreview(3);
-         }else if(essaythemes.getThemeendreview() == 3){
-             essaythemes.setThemeendreview(4);
-         }
+            essaythemes.setThemeendreview(3);
+        }
         int ee = reviewServiceYM.updateAllStaffEssaythemeYM(essaythemes);
         return ee;
     }
     @RequestMapping("/queryPictheme")
     @ResponseBody
     public Object queryPictheme(int page, int rows, Picthemes picthemes){
-        JSONObject json  = reviewServiceYM.queryPictheme(page,rows,picthemes);
-        return json;
+        if(picthemes.getPicroles()==1 || picthemes.getPicroles()==2){
+            JSONObject json  = reviewServiceYM.queryPictheme(page,rows,picthemes);
+            return json;
+        }else{
+            return false;
+        }
+
     }
     @RequestMapping("/queryPicthemess")
     @ResponseBody
@@ -112,8 +117,6 @@ public class ReviewControllerYM {
             picthemes.setPicgroupreview(2);
         }else if(picthemes.getPicgroupreview() == 2){
             picthemes.setPicgroupreview(3);
-        }else if(picthemes.getPicgroupreview() == 3){
-            picthemes.setPicgroupreview(4);
         }
         int pp = reviewServiceYM.updatePicthemeYm(picthemes);
         return pp;
@@ -126,8 +129,6 @@ public class ReviewControllerYM {
             picthemes.setPicgroupreview(2);
         }else if(picthemes.getPicgroupreview() == 2){
             picthemes.setPicgroupreview(3);
-        }else if(picthemes.getPicgroupreview() == 3){
-            picthemes.setPicgroupreview(4);
         }
         int ss = reviewServiceYM.updateStaffAllPicthemeYM(picthemes);
         return ss;
@@ -135,24 +136,27 @@ public class ReviewControllerYM {
     @RequestMapping("/queryFrequency")
     @ResponseBody
     public Object queryFrequency(int page, int rows, Frequencys frequencys){
-        JSONObject json  = reviewServiceYM.queryFrequency(page,rows,frequencys);
-        return json;
+        if(frequencys.getFrerole()==1 || frequencys.getFrerole()==2){
+            JSONObject json  = reviewServiceYM.queryFrequency(page,rows,frequencys);
+            return json;
+        }else{
+            return false;
+        }
+
     }
     @RequestMapping("/queryFrequencyss")
     @ResponseBody
     public Object queryFrequencyss(int page, int rows, Frequencys frequencys){
-        JSONObject json  = reviewServiceYM.queryFrequencyss(page,rows,frequencys);
-        return json;
+            JSONObject json  = reviewServiceYM.queryFrequencyss(page,rows,frequencys);
+            return json;
     }
     @RequestMapping("/updateFrequencyYm")
     @ResponseBody
     public Object updateFrequencyYm(Frequencys frequencys){
-        if(frequencys.getFrequencyreview() == 1){
+         if(frequencys.getFrequencyreview() == 1){
             frequencys.setFrequencyreview(2);
         }else if(frequencys.getFrequencyreview() == 2){
             frequencys.setFrequencyreview(3);
-        }else if(frequencys.getFrequencyreview() == 3){
-            frequencys.setFrequencyreview(4);
         }
         int ff = reviewServiceYM.updateFrequencyYm(frequencys);
         return ff;
@@ -165,8 +169,6 @@ public class ReviewControllerYM {
             frequencys.setFrequencyreview(2);
         }else if(frequencys.getFrequencyreview() == 2){
             frequencys.setFrequencyreview(3);
-        }else if(frequencys.getFrequencyreview() == 3){
-            frequencys.setFrequencyreview(4);
         }
         int dd = reviewServiceYM.updateAllStaffFrequencyYM(frequencys);
         return dd;

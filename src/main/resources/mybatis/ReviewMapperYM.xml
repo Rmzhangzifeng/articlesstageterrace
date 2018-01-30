@@ -12,7 +12,7 @@
     </select>
     <!-- queryCountss-->
     <select id="queryCountss" resultType="long" >
-        select count(*)  from enj_essaytheme WHERE  themeendreview=4
+        select count(*)  from enj_essaytheme WHERE  themeendreview=3
     </select>
     <!--  queryPagess-->
     <select id="queryPagess" resultType="org.maker.pojo.Essaythemes">
@@ -28,7 +28,7 @@
     </select>
     <!-- queryPicCountss-->
     <select id="queryPicCountss" resultType="long" >
-        select count(*)  from enj_pictheme WHERE  picgroupreview =4
+        select count(*)  from enj_pictheme WHERE  picgroupreview =3
     </select>
     <!--  queryPicPagess-->
     <select id="queryPicPagess" resultType="org.maker.pojo.Picthemes">
@@ -46,7 +46,7 @@
     </select>
     <!-- queryFreCountss-->
     <select id="queryFreCountss" resultType="long" >
-        select count(*)  from enj_frequency WHERE  frequencyreview =4
+        select count(*)  from enj_frequency WHERE  frequencyreview =3
     </select>
     <!--  queryFrePagess-->
     <select id="queryFrePagess" resultType="org.maker.pojo.Frequencys">
