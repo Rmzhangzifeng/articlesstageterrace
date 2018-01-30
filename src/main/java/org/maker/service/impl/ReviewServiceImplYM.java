@@ -2,9 +2,7 @@ package org.maker.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import org.maker.dao.ReviewMapperYM;
-import org.maker.pojo.Essaythemes;
-import org.maker.pojo.Frequencys;
-import org.maker.pojo.Picthemes;
+import org.maker.pojo.*;
 import org.maker.service.ReviewServiceYM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -119,16 +117,21 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
 
     @Override
     public int updateAllStaffFrequencyYM(Frequencys frequencys) {
-        return reviewMapperYM.updateAllStaffFrequencyYM(frequencys.getFrequencyids().split(","));
+        return reviewMapperYM.updateAllStaffFrequencyYM(frequencys.getFrequencyids().split(","),frequencys.getFrequencyreview());
     }
 
     @Override
     public int updateAllStaffEssaythemeYM(Essaythemes essaythemes) {
-        return reviewMapperYM.updateAllStaffEssaythemeYM(essaythemes.getArticletopicids().split(","));
+        return reviewMapperYM.updateAllStaffEssaythemeYM(essaythemes.getArticletopicids().split(","),essaythemes.getThemeendreview());
     }
 
     @Override
     public int updateStaffAllPicthemeYM(Picthemes picthemes) {
-        return reviewMapperYM.updateStaffAllPicthemeYM(picthemes);
+        return reviewMapperYM.updateStaffAllPicthemeYM(picthemes.getPicthemeids().split(","),picthemes.getPicgroupreview());
+    }
+
+    @Override
+    public Roles queryRolesYM(Users user) {
+        return reviewMapperYM.queryRolesYM(user);
     }
 }

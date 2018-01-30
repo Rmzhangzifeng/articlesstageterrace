@@ -21,6 +21,16 @@ public class Essaythemes {
     //删除的id集合
     private String idStr;
 
+    private Integer emroles;
+
+    public Integer getEmroles() {
+        return emroles;
+    }
+
+    public void setEmroles(Integer emroles) {
+        this.emroles = emroles;
+    }
+
     public String getIdStr() {
         return idStr;
     }

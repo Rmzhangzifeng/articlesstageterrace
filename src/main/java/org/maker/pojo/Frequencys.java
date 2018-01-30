@@ -19,6 +19,16 @@ public class Frequencys {
 
     private String frequencyids;
 
+    private Integer frerole;
+
+    public Integer getFrerole() {
+        return frerole;
+    }
+
+    public void setFrerole(Integer frerole) {
+        this.frerole = frerole;
+    }
+
     public String getFrequencyids() {
         return frequencyids;
     }

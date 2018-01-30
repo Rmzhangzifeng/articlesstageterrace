@@ -42,7 +42,8 @@
         queryParams:function(){
             return {
                 page:this.pageNumber,//当前页
-                rows:this.pageSize //每页条数
+                rows:this.pageSize, //每页条数
+                frerole:${roles2.roleid}
             }
         },
         columns: [ {
@@ -63,7 +64,7 @@
             title: '操作',
             width: 50,
             formatter:function(value,row,index){
-                return row.frequencyreview == 1 ? "<input type='button' value='审核' onclick='upStaffthree(\""+row.frequencyid+"\",\""+row.frequencyreview+"\")'/>":"审核已通过";
+                return row.frequencyreview == 4 ? "审核已通过": "<input type='button' value='审核' onclick='upStaffthree(\""+row.frequencyid+"\",\""+row.frequencyreview+"\")'/>";
             }
         } ]
     })
@@ -103,7 +104,7 @@
         //循环切割
         strIds = strIds.substr(0, strIds.length - 1);
         alert(strIds)
-        $.post('<%=request.getContextPath()%>updateAllStaffFrequencyYM?frequencyids=' + strIds, function (jsonObj) {
+        $.post('<%=request.getContextPath()%>/updateAllStaffFrequencyYM?frequencyids=' + strIds+'&frequencyreview='+${roles2.roleid}, function (jsonObj) {
             if (jsonObj > 0) {
                 $("#review-frequency").bootstrapTable("refresh");
             } else {

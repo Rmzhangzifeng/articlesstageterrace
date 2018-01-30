@@ -21,7 +21,7 @@
 </div>
 
 <script>
-
+alert(${roles2.roleid});
     $("#review-pictheme").bootstrapTable({
         url:"<%=request.getContextPath()%>/queryPictheme",
         /*  striped: true,//隔行变色
@@ -43,7 +43,8 @@
         queryParams:function(){
             return {
                 page:this.pageNumber,//当前页
-                rows:this.pageSize //每页条数
+                rows:this.pageSize, //每页条数
+                picroles:${roles2.roleid}
             }
         },
         columns: [ {
@@ -64,7 +65,7 @@
             title: '操作',
             width: 50,
             formatter:function(value,row,index){
-                return row.picgroupreview == 1 ? "<input type='button' value='审核' onclick='upStafftow(\""+row.picgroupid+"\",\""+row.picgroupreview+"\")'/>":"审核已通过";
+                return row.picgroupreview == 4 ? "审核已通过":"<input type='button' value='审核' onclick='upStafftow(\""+row.picthemeid+"\",\""+row.picgroupreview+"\")'/>";
             }
         } ]
     })
@@ -73,12 +74,11 @@
         $.ajax({
             url:"<%=request.getContextPath() %>/updatePicthemeYm",
             type:"post",
-            data:{"picgroupid":id,"picgroupreview":status},
+            data:{"picthemeid":id,"picgroupreview":status},
             dataType:"text",
             async:false,
             success:function (Flag){
                 if(Flag == 1){
-                    /* alert("修改状态成功"); */
                     $("#review-pictheme").bootstrapTable("refresh");
                 }
             },
@@ -104,7 +104,7 @@
         //循环切割
         strIds = strIds.substr(0, strIds.length - 1);
         alert(strIds)
-        $.post('<%=request.getContextPath()%>upStaffAllPicthemeYM?picthemeids=' + strIds, function (jsonObj) {
+        $.post('<%=request.getContextPath()%>/upStaffAllPicthemeYM?picthemeids=' + strIds+'&picgroupreview='+${roles2.roleid}, function (jsonObj) {
             if (jsonObj > 0) {
                 $("#review-pictheme").bootstrapTable("refresh");
             } else {

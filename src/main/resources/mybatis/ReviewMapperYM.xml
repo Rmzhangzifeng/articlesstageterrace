@@ -4,53 +4,53 @@
 
    <!-- queryCount-->
     <select id="queryCount" resultType="long" >
-        select count(*)  from enj_essaytheme WHERE  themeendreview=1
+        select count(*)  from enj_essaytheme WHERE  themeendreview=${emroles}
     </select>
   <!--  queryPage-->
     <select id="queryPage" resultType="org.maker.pojo.Essaythemes">
-        select es.title,es.themeendreview,es.articletopicid   from    enj_essaytheme es WHERE  es.themeendreview=1  limit ${start},${end}
+        select es.title,es.themeendreview,es.articletopicid   from    enj_essaytheme es WHERE  es.themeendreview=${essaythemes.emroles}  limit ${start},${end}
     </select>
     <!-- queryCountss-->
     <select id="queryCountss" resultType="long" >
-        select count(*)  from enj_essaytheme WHERE  themeendreview=2
+        select count(*)  from enj_essaytheme WHERE  themeendreview=4
     </select>
     <!--  queryPagess-->
     <select id="queryPagess" resultType="org.maker.pojo.Essaythemes">
-        select es.title,es.themeendreview,es.articletopicid   from enj_essaytheme es WHERE  es.themeendreview=2 limit ${start},${end}
+        select es.title,es.themeendreview,es.articletopicid   from enj_essaytheme es WHERE  es.themeendreview=4 limit ${start},${end}
     </select>
     <!-- queryPicCount-->
     <select id="queryPicCount" resultType="long" >
-        select count(*)  from enj_pictheme WHERE  picgroupreview =1
+        select count(*)  from enj_pictheme WHERE  picgroupreview =${picroles}
     </select>
     <!--  queryPicPage-->
     <select id="queryPicPage" resultType="org.maker.pojo.Picthemes">
-       select pic.picgrouptitle,pic.picgroupreview,pic.picgroupid from enj_pictheme pic  WHERE  pic.picgroupreview =1 limit ${start},${end}
+       select pic.picgrouptitle,pic.picgroupreview,pic.picthemeid from enj_pictheme pic  WHERE  pic.picgroupreview =${picthemes.picroles} limit ${start},${end}
     </select>
     <!-- queryPicCountss-->
     <select id="queryPicCountss" resultType="long" >
-        select count(*)  from enj_pictheme WHERE  picgroupreview =2
+        select count(*)  from enj_pictheme WHERE  picgroupreview =4
     </select>
     <!--  queryPicPagess-->
     <select id="queryPicPagess" resultType="org.maker.pojo.Picthemes">
-        select pic.picgrouptitle,pic.picgroupreview,pic.picgroupid from enj_pictheme pic WHERE  pic.picgroupreview =2 limit ${start},${end}
+        select pic.picgrouptitle,pic.picgroupreview,pic.picgroupid from enj_pictheme pic WHERE  pic.picgroupreview =4 limit ${start},${end}
     </select>
 
    <!-- from enj_frequency-->
     <!-- queryFreCount-->
     <select id="queryFreCount" resultType="long" >
-        select count(*)  from enj_frequency  WHERE  frequencyreview =1
+        select count(*)  from enj_frequency  WHERE  frequencyreview = ${frerole}
     </select>
     <!--  queryFrePage-->
     <select id="queryFrePage" resultType="org.maker.pojo.Frequencys">
-         select fre.frequencytitle,fre.frequencyreview,fre.frequencyid from enj_frequency fre WHERE  fre.frequencyreview =1 limit ${start},${end}
+         select fre.frequencytitle,fre.frequencyreview,fre.frequencyid from enj_frequency fre WHERE  fre.frequencyreview =${frequencys.frerole} limit ${start},${end}
     </select>
     <!-- queryFreCountss-->
     <select id="queryFreCountss" resultType="long" >
-        select count(*)  from enj_frequency WHERE  frequencyreview =2
+        select count(*)  from enj_frequency WHERE  frequencyreview =4
     </select>
     <!--  queryFrePagess-->
     <select id="queryFrePagess" resultType="org.maker.pojo.Frequencys">
-        select fre.frequencytitle,fre.frequencyreview,fre.frequencyid from enj_frequency fre  WHERE  fre.frequencyreview =2 limit ${start},${end}
+        select fre.frequencytitle,fre.frequencyreview,fre.frequencyid from enj_frequency fre  WHERE  fre.frequencyreview =4 limit ${start},${end}
     </select>
    <!-- updateEssaytheme-->
     <update id="updateEssaytheme">
@@ -61,7 +61,7 @@
    <!-- updateAllStaffEssaythemeYM-->
     <update id="updateAllStaffEssaythemeYM">
         update enj_essaytheme
-        set themeendreview = 2
+        set themeendreview = #{themeendreview}
         where articletopicid in
         <foreach collection="ess" item="ess" index="index" open="(" separator="," close=")">
             ${ess}
@@ -71,13 +71,13 @@
     <update id="updatePicthemeYm">
         update enj_pictheme
         set picgroupreview = #{picgroupreview}
-        where picgroupid = #{picgroupid}
+        where picgroupid = #{picthemeid}
     </update>
     <!--updateStaffAllPicthemeYM-->
     <update id="updateStaffAllPicthemeYM">
         update enj_pictheme
-        set picgroupreview = 2
-        where picgroupid in
+        set picgroupreview = #{picgroupreview}
+        where picthemeid in
     <foreach collection="pss" item="pss" index="index" open="(" separator="," close=")">
         ${pss}
     </foreach>
@@ -91,11 +91,23 @@
     <!--updateAllStaffFrequencyYM-->
     <update id="updateAllStaffFrequencyYM">
         update enj_frequency
-        set frequencyreview = 2
+        set frequencyreview = #{frequencyreview}
         where frequencyid in
         <foreach collection="fyids" item="fyids" index="index" open="(" separator="," close=")">
             ${fyids}
         </foreach>
 
     </update>
+
+
+
+    <select id="queryRolesYM"  resultType="org.maker.pojo.Roles">
+        select * FROM enj_role  rr WHERE rr.roleid = #{userroleid}
+
+    </select>
+
+
+
+
+
 </mapper>
