@@ -39,24 +39,14 @@
             showColumns: true,//是否显示 内容列下拉框
             showPaginationSwitch: true,//是否显示 分页工具栏
             minimumCountColumns: 1,//最小留下一个
-            showRefresh: true,//显示刷新按钮
-            showToggle: true,//显示切换视图
             pagination: true,//开启分页
             paginationLoop: true,//开启分页无限循环
-
-
             pageNumber: 1,//当前页数
-
             pageSize: 9,//每页条数
-
             pageList: [9, 12, 15],//如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。
-
             sidePagination: "server",//
-
             method: 'post',//发送请求的方式
-
             contentType: "application/x-www-form-urlencoded",//必须的否则条件查询时会乱码
-
             queryParams: function (params) {
 
                 var id=$("#editid").val();
@@ -124,7 +114,7 @@
 
     function queryJape(id) {
         $("#editid").val(id)
-        if(id!=32){
+        if(id!=32&&id!=""){
             $("#japeadd-id").attr("style","")
         }
         $("#jape-table").bootstrapTable("refresh",{'pageNumber':1});

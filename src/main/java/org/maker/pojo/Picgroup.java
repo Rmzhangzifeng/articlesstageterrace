@@ -24,6 +24,8 @@ public class Picgroup implements Serializable {
 
     private Integer picgroupreview;
 
+
+
     public Integer getPicorganizeid() {
         return picorganizeid;
     }

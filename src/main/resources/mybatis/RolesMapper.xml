@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.maker.dao.RoleMapper" >
+    <select id="queryUser" resultType="long">
+        select count(*) from enj_users where userroleid != 2 or userroleid is null
+    </select>
+
+    <select id="queryUserPage" resultType="org.maker.pojo.Users">
+        select * from enj_users where userroleid != 2 or userroleid is null
+        limit #{start},#{end}
+    </select>
+
+    <select id="queryRole" resultType="org.maker.pojo.Role">
+        select * from enj_role where roleid != 2
+    </select>
+
+    <select id="queryRoles" resultType="org.maker.pojo.Users">
+        select * from enj_users where userid=#{userid}
+    </select>
+    <update id="updateRole" parameterType="org.maker.pojo.Users">
+
+        update enj_users set userroleid=#{userroleid} where userid=#{userid}
+
+    </update>
+</mapper>

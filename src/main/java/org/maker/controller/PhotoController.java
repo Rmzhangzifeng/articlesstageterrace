@@ -96,7 +96,7 @@ public class PhotoController {
         if(i>0){
             group1=photoService.queryPicGoup(group);
             Picthemes pic=new Picthemes();
-            System.out.println(group1.getPicorganizeid());
+
             pic.setPicgroupid(group1.getPicorganizeid());
             pic.setPictypeid(group.getTypeid());
             pic.setPicgrouptitle(group.getPicgrouptitle());

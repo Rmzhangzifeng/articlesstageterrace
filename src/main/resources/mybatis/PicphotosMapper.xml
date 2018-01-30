@@ -9,7 +9,7 @@
 
   <select id="queryPic" resultType="long">
     select count(*) from enj_pictheme e,enj_picgroup p,enj_picphoto h where e.picgroupid=p.picorganizeid and p.piccover=h.picphotoid
-    and e.pictypeid=#{id}
+    <if test="id !=null and id != ''">and e.pictypeid=#{id}</if>
   </select>
 
   <select id="queryPicPage" resultType="org.maker.pojo.Picgroup">

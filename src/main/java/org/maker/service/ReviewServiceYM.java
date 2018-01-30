@@ -1,9 +1,7 @@
 package org.maker.service;
 
 import com.alibaba.fastjson.JSONObject;
-import org.maker.pojo.Essaythemes;
-import org.maker.pojo.Frequencys;
-import org.maker.pojo.Picthemes;
+import org.maker.pojo.*;
 
 public interface ReviewServiceYM {
 
@@ -30,4 +28,6 @@ public interface ReviewServiceYM {
     int updateAllStaffEssaythemeYM(Essaythemes essaythemes);
 
     int updateStaffAllPicthemeYM(Picthemes picthemes);
+
+    Roles queryRolesYM(Users user);
 }

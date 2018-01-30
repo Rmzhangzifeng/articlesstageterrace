@@ -47,7 +47,7 @@ update enj_solicitarticles a set a.spreadstatus=${idd} where a.solicitarticlesid
     </update>
 <!--    void up3();-->
     <update id="up3">
-    update enj_ad a set a.adstataus=2 where a.adshowdate > CURRENT_DATE()
+    update enj_ad a set a.adstataus=2 where a.adshowdate = CURRENT_DATE()
 </update>
 
     <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

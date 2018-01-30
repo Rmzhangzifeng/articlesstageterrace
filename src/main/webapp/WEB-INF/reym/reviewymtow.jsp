@@ -15,14 +15,14 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <input type="button" class="btn btn-primary btn-sm" value="批量审核信息" onclick="upStaffAllPicthemeYM()">
-            <table class="table" id="review-picthemes" border="1"></table>
+            <table class="table" id="review-pictheme" border="1"></table>
         </div>
     </div>
 </div>
 
 <script>
-
-    $("#review-picthemes").bootstrapTable({
+alert(${roles2.roleid});
+    $("#review-pictheme").bootstrapTable({
         url:"<%=request.getContextPath()%>/queryPictheme",
         /*  striped: true,//隔行变色
          showColumns:true,//是否显示 内容列下拉框 */
@@ -43,7 +43,8 @@
         queryParams:function(){
             return {
                 page:this.pageNumber,//当前页
-                rows:this.pageSize //每页条数
+                rows:this.pageSize, //每页条数
+                picroles:${roles2.roleid}
             }
         },
         columns: [ {
@@ -64,22 +65,22 @@
             title: '操作',
             width: 50,
             formatter:function(value,row,index){
-                return row.picgroupreview == 1 ? "<input type='button' value='审核' onclick='upStafftow(\""+row.picgroupid+"\",\""+row.picgroupreview+"\")'/>":"审核已通过";
+                return row.picgroupreview == 4 ? "审核已通过":"<input type='button' value='审核' onclick='upStafftow(\""+row.picthemeid+"\",\""+row.picgroupreview+"\")'/>";
             }
         } ]
     })
 
     function upStafftow(id,status) {
+        alert(1);
         $.ajax({
             url:"<%=request.getContextPath() %>/updatePicthemeYm",
             type:"post",
-            data:{"picgroupid":id,"picgroupreview":status},
+            data:{"picthemeid":id,"picgroupreview":status},
             dataType:"text",
             async:false,
             success:function (Flag){
                 if(Flag == 1){
-                    /* alert("修改状态成功"); */
-                    $("#review-picthemes").bootstrapTable("refresh");
+                    $("#review-pictheme").bootstrapTable("refresh");
                 }
             },
             error:function (){
@@ -89,7 +90,7 @@
     }
     
     function upStaffAllPicthemeYM() {
-        var selectRows = $("#review-picthemes").bootstrapTable("getSelections");
+        var selectRows = $("#review-pictheme").bootstrapTable("getSelections");
         if (selectRows.length < 1) {
             $.messager.alert("提示消息", "请选择要审核的记录！", 'info');
             return;
@@ -104,9 +105,9 @@
         //循环切割
         strIds = strIds.substr(0, strIds.length - 1);
         alert(strIds)
-        $.post('<%=request.getContextPath()%>/upStaffAllPicthemeYM?picthemeids=' + strIds, function (jsonObj) {
+        $.post('<%=request.getContextPath()%>/upStaffAllPicthemeYM?picthemeids=' + strIds+'&picgroupreview='+${roles2.roleid}, function (jsonObj) {
             if (jsonObj > 0) {
-                $("#review-picthemes").bootstrapTable("refresh");
+                $("#review-pictheme").bootstrapTable("refresh");
             } else {
 
                 alert('审核失败，请联系管理员！');

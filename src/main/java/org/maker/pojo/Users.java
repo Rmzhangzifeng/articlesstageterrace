@@ -37,6 +37,18 @@ public class Users {
 
     private String userpass;
 
+    private Integer userroleid;
+
+
+
+    public Integer getUserroleid() {
+        return userroleid;
+    }
+
+    public void setUserroleid(Integer userroleid) {
+        this.userroleid = userroleid;
+    }
+
     public Integer getUserid() {
         return userid;
     }
