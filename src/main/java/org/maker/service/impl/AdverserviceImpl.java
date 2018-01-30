@@ -54,5 +54,6 @@ public class AdverserviceImpl implements Adverservice {
     public void updateadStatus() {
         advertisementMapper.up1();
         advertisementMapper.up2();
+        advertisementMapper.up3();
     }
 }

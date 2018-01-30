@@ -27,4 +27,6 @@ public interface AdvertisementMapper {
     void up1();
 
     void up2();
+
+    void up3();
 }

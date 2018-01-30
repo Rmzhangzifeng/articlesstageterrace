@@ -8,6 +8,7 @@ import org.maker.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -41,9 +42,10 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public int AddPicPhoto(Picphoto po) {
+    public int AddPicPhoto(Picphoto po,HttpSession session) {
         po.setPicuplodtime(new Date());
-        po.setPicuplodperson("123");
+        Users user=(Users) session.getAttribute("loginUserMsg");
+        po.setPicuplodperson(user.getUsername());
         return photoDao.AddPicPhoto(po);
     }
 
@@ -53,7 +55,8 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public int AddPicGroup(Picgroup group) {
+    public int AddPicGroup(Picgroup group,HttpSession session) {
+        Users user=(Users) session.getAttribute("loginUserMsg");
         if(group.getPicid().indexOf(",")==-1){
             group.setPiccover(Integer.parseInt(group.getPicid()));
         }else{
@@ -62,6 +65,7 @@ public class PhotoServiceImpl implements PhotoService {
             group.setPiccover(c);
         }
         group.setPiclike(0);
+        group.setPicname(user.getUsername());
         return photoDao.AddPicGroup(group);
     }
 
