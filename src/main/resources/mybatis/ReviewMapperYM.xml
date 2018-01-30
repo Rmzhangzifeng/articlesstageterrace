@@ -23,7 +23,7 @@
         select count(*)  from enj_pictheme WHERE  picgroupreview =1
     </select>
     <!--  queryPicPage-->
-    <select id="queryPicPage" resultType="org.maker.pojo.Pictheme">
+    <select id="queryPicPage" resultType="org.maker.pojo.Picthemes">
        select pic.picgrouptitle,pic.picgroupreview,pic.picgroupid from enj_pictheme pic  WHERE  pic.picgroupreview =1 limit ${start},${end}
     </select>
     <!-- queryPicCountss-->
@@ -31,7 +31,7 @@
         select count(*)  from enj_pictheme WHERE  picgroupreview =2
     </select>
     <!--  queryPicPagess-->
-    <select id="queryPicPagess" resultType="org.maker.pojo.Pictheme">
+    <select id="queryPicPagess" resultType="org.maker.pojo.Picthemes">
         select pic.picgrouptitle,pic.picgroupreview,pic.picgroupid from enj_pictheme pic WHERE  pic.picgroupreview =2 limit ${start},${end}
     </select>
 

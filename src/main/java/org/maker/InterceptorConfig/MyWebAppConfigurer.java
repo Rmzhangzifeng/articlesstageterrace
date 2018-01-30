@@ -4,7 +4,7 @@ package org.maker.InterceptorConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
+//integrationConvert
 @Configuration
 public class MyWebAppConfigurer  extends WebMvcConfigurerAdapter{
 
@@ -15,5 +15,4 @@ public class MyWebAppConfigurer  extends WebMvcConfigurerAdapter{
         registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
-
 }

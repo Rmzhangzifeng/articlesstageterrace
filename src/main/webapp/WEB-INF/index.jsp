@@ -211,7 +211,7 @@ vascript"></script>
             onNodeSelected:function(event,node){
                 if(node.href!=null && node.href!=""){
                     $.ajax({
-                        url:node.href+"?id="+node.id,
+                        url:"<%=request.getContextPath()%>"+node.href+"?id="+node.id,
                         type:"post",
                         success:function(data){
                             $.addtabs.add({

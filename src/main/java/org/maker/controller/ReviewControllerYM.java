@@ -3,10 +3,9 @@ package org.maker.controller;
 import com.alibaba.fastjson.JSONObject;
 import org.maker.pojo.Essaythemes;
 import org.maker.pojo.Frequencys;
-import org.maker.pojo.Pictheme;
+import org.maker.pojo.Picthemes;
 import org.maker.service.ReviewServiceYM;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -72,30 +71,30 @@ public class ReviewControllerYM {
     }
     @RequestMapping("/queryPictheme")
     @ResponseBody
-    public Object queryPictheme(int page, int rows, Pictheme pictheme){
-        JSONObject json  = reviewServiceYM.queryPictheme(page,rows, pictheme);
+    public Object queryPictheme(int page, int rows, Picthemes picthemes){
+        JSONObject json  = reviewServiceYM.queryPictheme(page,rows, picthemes);
         return json;
     }
     @RequestMapping("/queryPicthemess")
     @ResponseBody
-    public Object queryPicthemess(int page, int rows, Pictheme pictheme){
-        JSONObject json  = reviewServiceYM.queryPicthemess(page,rows, pictheme);
+    public Object queryPicthemess(int page, int rows, Picthemes picthemes){
+        JSONObject json  = reviewServiceYM.queryPicthemess(page,rows, picthemes);
         return json;
     }
     @RequestMapping("/updatePicthemeYm")
     @ResponseBody
-    public Object updatePicthemeYm(Pictheme pictheme){
-        if(pictheme.getPicgroupreview() == 1){
-            pictheme.setPicgroupreview(2);
+    public Object updatePicthemeYm(Picthemes picthemes){
+        if(picthemes.getPicgroupreview() == 1){
+            picthemes.setPicgroupreview(2);
         }
-        int pp = reviewServiceYM.updatePicthemeYm(pictheme);
+        int pp = reviewServiceYM.updatePicthemeYm(picthemes);
         return pp;
     }
     /*upStaffAllPicthemeYM*/
     @RequestMapping("/upStaffAllPicthemeYM")
     @ResponseBody
-    public Object upStaffAllPicthemeYM(Pictheme pictheme){
-        int ss = reviewServiceYM.updateStaffAllPicthemeYM(pictheme);
+    public Object upStaffAllPicthemeYM(Picthemes picthemes){
+        int ss = reviewServiceYM.updateStaffAllPicthemeYM(picthemes);
         return ss;
     }
     @RequestMapping("/queryFrequency")

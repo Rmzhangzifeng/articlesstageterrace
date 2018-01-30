@@ -15,14 +15,14 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <input type="button" class="btn btn-primary btn-sm" value="批量审核信息" onclick="upStaffAllPicthemeYM()">
-            <table class="table" id="review-pictheme" border="1"></table>
+            <table class="table" id="review-picthemes" border="1"></table>
         </div>
     </div>
 </div>
 
 <script>
 
-    $("#review-pictheme").bootstrapTable({
+    $("#review-picthemes").bootstrapTable({
         url:"<%=request.getContextPath()%>/queryPictheme",
         /*  striped: true,//隔行变色
          showColumns:true,//是否显示 内容列下拉框 */
@@ -79,7 +79,7 @@
             success:function (Flag){
                 if(Flag == 1){
                     /* alert("修改状态成功"); */
-                    $("#review-pictheme").bootstrapTable("refresh");
+                    $("#review-picthemes").bootstrapTable("refresh");
                 }
             },
             error:function (){
@@ -89,7 +89,7 @@
     }
     
     function upStaffAllPicthemeYM() {
-        var selectRows = $("#review-pictheme").bootstrapTable("getSelections");
+        var selectRows = $("#review-picthemes").bootstrapTable("getSelections");
         if (selectRows.length < 1) {
             $.messager.alert("提示消息", "请选择要审核的记录！", 'info');
             return;
@@ -106,7 +106,7 @@
         alert(strIds)
         $.post('<%=request.getContextPath()%>/upStaffAllPicthemeYM?picthemeids=' + strIds, function (jsonObj) {
             if (jsonObj > 0) {
-                $("#review-pictheme").bootstrapTable("refresh");
+                $("#review-picthemes").bootstrapTable("refresh");
             } else {
 
                 alert('审核失败，请联系管理员！');
