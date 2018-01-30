@@ -25,7 +25,7 @@
 
     $(function (){
         $('#dis-cuess').bootstrapTable({
-            url: '/queryJapeDiscuess',
+            url: '<%=request.getContextPath()%>/queryJapeDiscuess',
             striped: true,//隔行变色
             showPaginationSwitch:true,//是否显示 分页工具栏
             minimumCountColumns:1,//最小留下一个

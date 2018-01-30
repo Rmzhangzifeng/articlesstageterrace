@@ -33,13 +33,13 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     }
 
     @Override
-    public JSONObject queryPictheme(int page, int rows, Picthemes picthemes) {
-        long total = reviewMapperYM.queryPicCount(picthemes);
+    public JSONObject queryPictheme(int page, int rows, Picthemes pictheme) {
+        long total = reviewMapperYM.queryPicCount(pictheme);
 //		当前页数据
         int start = (page-1)*rows;
         int end = start+rows;
         List<Picthemes> picthe;
-        picthe = reviewMapperYM.queryPicPage(start,end,picthemes);
+        picthe = reviewMapperYM.queryPicPage(start,end, pictheme);
         JSONObject json = new JSONObject();
         json.put("total", total);
         json.put("rows", picthe);
@@ -66,8 +66,8 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     }
 
     @Override
-    public int updatePicthemeYm(Picthemes picthemes) {
-        return reviewMapperYM.updatePicthemeYm(picthemes);
+    public int updatePicthemeYm(Picthemes pictheme) {
+        return reviewMapperYM.updatePicthemeYm(pictheme);
     }
 
     @Override
@@ -90,13 +90,13 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     }
 
     @Override
-    public JSONObject queryPicthemess(int page, int rows, Picthemes picthemes) {
-        long total = reviewMapperYM.queryPicCountss(picthemes);
+    public JSONObject queryPicthemess(int page, int rows, Picthemes pictheme) {
+        long total = reviewMapperYM.queryPicCountss(pictheme);
 //		当前页数据
         int start = (page-1)*rows;
         int end = start+rows;
         List<Picthemes> picthe;
-        picthe = reviewMapperYM.queryPicPagess(start,end,picthemes);
+        picthe = reviewMapperYM.queryPicPagess(start,end, pictheme);
         JSONObject json = new JSONObject();
         json.put("total", total);
         json.put("rows", picthe);
@@ -128,7 +128,7 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     }
 
     @Override
-    public int updateStaffAllPicthemeYM(Picthemes picthemes) {
-        return reviewMapperYM.updateStaffAllPicthemeYM(picthemes);
+    public int updateStaffAllPicthemeYM(Picthemes pictheme) {
+        return reviewMapperYM.updateStaffAllPicthemeYM(pictheme);
     }
 }

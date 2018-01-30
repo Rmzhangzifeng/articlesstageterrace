@@ -15,9 +15,9 @@ public interface ReviewMapperYM {
 
     List<Essaythemes> queryPage(@Param("start") int start,@Param("end") int end,@Param("essaythemes") Essaythemes essaythemes);
 
-    long queryPicCount(Picthemes picthemes);
+    long queryPicCount(Picthemes pictheme);
 
-    List<Picthemes> queryPicPage(@Param("start")int start,@Param("end") int end,@Param("picthemes") Picthemes picthemes);
+    List<Picthemes> queryPicPage(@Param("start")int start, @Param("end") int end, @Param("pictheme") Picthemes pictheme);
 
     long queryFreCount(Frequencys frequencys);
 
@@ -25,7 +25,7 @@ public interface ReviewMapperYM {
 
     int updateEssaytheme(Essaythemes essaythemes);
 
-    int updatePicthemeYm(Picthemes picthemes);
+    int updatePicthemeYm(Picthemes pictheme);
 
     int updateFrequencyYm(Frequencys frequencys);
 
@@ -33,9 +33,9 @@ public interface ReviewMapperYM {
 
     List<Essaythemes> queryPagess(@Param("start")int start,@Param("end") int end,@Param("essaythemes") Essaythemes essaythemes);
 
-    long queryPicCountss(Picthemes picthemes);
+    long queryPicCountss(Picthemes pictheme);
 
-    List<Picthemes> queryPicPagess(@Param("start")int start,@Param("end") int end,@Param("picthemes") Picthemes picthemes);
+    List<Picthemes> queryPicPagess(@Param("start")int start, @Param("end") int end, @Param("pictheme") Picthemes pictheme);
 
     long queryFreCountss(Frequencys frequencys);
 
@@ -45,5 +45,5 @@ public interface ReviewMapperYM {
 
     int updateAllStaffEssaythemeYM(@Param(value="ess")String[] ess);
 
-    int updateStaffAllPicthemeYM(@Param(value="pss")Picthemes picthemes);
+    int updateStaffAllPicthemeYM(@Param(value="pss")Picthemes pictheme);
 }

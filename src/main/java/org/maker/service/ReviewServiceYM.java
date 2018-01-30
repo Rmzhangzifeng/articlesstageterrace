@@ -9,19 +9,19 @@ public interface ReviewServiceYM {
 
     JSONObject queryBookPage(int page, int rows, Essaythemes essaythemes);
 
-    JSONObject queryPictheme(int page, int rows, Picthemes picthemes);
+    JSONObject queryPictheme(int page, int rows, Picthemes pictheme);
 
     JSONObject queryFrequency(int page, int rows, Frequencys frequencys);
 
     int updateEssaytheme(Essaythemes essaythemes);
 
-    int updatePicthemeYm(Picthemes picthemes);
+    int updatePicthemeYm(Picthemes pictheme);
 
     int updateFrequencyYm(Frequencys frequencys);
 
     JSONObject queryEssaythemess(int page, int rows, Essaythemes essaythemes);
 
-    JSONObject queryPicthemess(int page, int rows, Picthemes picthemes);
+    JSONObject queryPicthemess(int page, int rows, Picthemes pictheme);
 
     JSONObject queryFrequencyss(int page, int rows, Frequencys frequencys);
 
@@ -29,5 +29,5 @@ public interface ReviewServiceYM {
 
     int updateAllStaffEssaythemeYM(Essaythemes essaythemes);
 
-    int updateStaffAllPicthemeYM(Picthemes picthemes);
+    int updateStaffAllPicthemeYM(Picthemes pictheme);
 }

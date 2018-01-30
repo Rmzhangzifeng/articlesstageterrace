@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@EnableAutoConfiguration
 public class WJapeController {
 
     @Autowired

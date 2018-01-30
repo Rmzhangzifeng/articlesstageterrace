@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@EnableAutoConfiguration
 public class PhotoController {
 
         @Autowired

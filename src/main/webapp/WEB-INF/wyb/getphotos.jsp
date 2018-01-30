@@ -37,7 +37,7 @@
 
     $(function (){
         $('#reportTable').bootstrapTable({
-            url: '/queryPic',
+            url: '<%=request.getContextPath()%>/queryPic',
             striped: true,//隔行变色
             showPaginationSwitch:true,//是否显示 分页工具栏
             showRefresh:false,//显示刷新按钮
@@ -125,7 +125,7 @@
     }
     function piclike(id,like,number){
         $.ajax({
-            url:"/updatePicGroupByLike",
+            url:"<%=request.getContextPath()%>/updatePicGroupByLike",
             type:"post",
             data:{"picorganizeid":id,"piclike":like},
             dataType:"json",
@@ -149,7 +149,7 @@
 
         BootstrapDialog.show({
             title: '新增页面',
-            message: $('<div></div>').load('/getPicPhoto'),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getPicPhoto'),
             buttons: [{
                 label: '保存',
                 action: function(dialog) {
@@ -187,13 +187,13 @@
     function editGroup(id,id1){
         BootstrapDialog.show({
             title: '修改页面',
-            message: $('<div></div>').load('/getPicPhotoById?picid='+id+'&picorganizeid='+id1),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getPicPhotoById?picid='+id+'&picorganizeid='+id1),
             buttons: [{
                 label: '保存',
                 action: function(dialog) {
                     if($("#piccover-id").val()!=null&&$("#piccover-id").val()!=""){
                         $.ajax({
-                            url:"/UpdateGroupById",
+                            url:"<%=request.getContextPath()%>/UpdateGroupById",
                             type:"post",
                             data:$("#update-form").serialize(),
                             dataType:"json",
@@ -232,7 +232,7 @@
     }
     function delePic(id,ids){
         $.ajax({
-            url:"/deletePicGroup",
+            url:"<%=request.getContextPath()%>/deletePicGroup",
             type:"post",
             data:{"picorganizeid":id,"picid":ids},
             dataType:"json",
@@ -257,7 +257,7 @@
     function queryByIdPhoto(id){
         BootstrapDialog.show({
             title: '查看页面',
-            message: $('<div></div>').load('/getPhotoQueryById?picid='+id),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getPhotoQueryById?picid='+id),
             buttons: [{
                 label: '取消',
                 action: function(dialog) {
@@ -270,7 +270,7 @@
     function querypicreview(id){
         BootstrapDialog.show({
             title: '查看页面',
-            message: $('<div></div>').load('/getqueryPicreview?picorganizeid='+id),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getqueryPicreview?picorganizeid='+id),
             width:350,
             height:200,
             buttons: [{

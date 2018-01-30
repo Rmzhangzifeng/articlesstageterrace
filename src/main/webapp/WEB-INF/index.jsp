@@ -7,48 +7,48 @@
     <title>征文运营平台</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
-    <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
-    <link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
-    <link href="<%=request.getContextPath()%>/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Morris chart -->
-    <link href="<%=request.getContextPath()%>/css/morris/morris.css" rel="stylesheet" type="text/css" />
+    <link href="../css/morris/morris.css" rel="stylesheet" type="text/css" />
     <!-- jvectormap -->
-    <link href="<%=request.getContextPath()%>/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <link href="../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <!-- fullCalendar -->
-    <link href="<%=request.getContextPath()%>/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+    <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
     <!-- Daterange picker -->
-    <link href="<%=request.getContextPath()%>/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <link href="../css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <!-- bootstrap wysihtml5 - text editor -->
-    <link href="<%=request.getContextPath()%>/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="<%=request.getContextPath()%>/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 
-    <link href="<%=request.getContextPath()%>/js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <!-- Bootstrap 核心css -->
-    <link href="<%=request.getContextPath()%>/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap TreeView css -->
-    <link href="<%=request.getContextPath()%>/js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
 
     <!-- Bootstrap addTabs css -->
-    <link href="<%=request.getContextPath()%>/js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
 
     <!-- Bootstrap table css -->
-    <link href="<%=request.getContextPath()%>/js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
     <!-- bootstrap-datetimepicker css -->
-    <link href="<%=request.getContextPath()%>/js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
     <!-- bootstrap-dialog css -->
-    <link href="<%=request.getContextPath()%>/js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
     <!-- bootstrap-fileinput css -->
     <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
     <%--Lobibox--%>
     <link rel="stylesheet" href="../Lobibox/demo/demo.css"/>
     <link rel="stylesheet" type="text/css" href="../Lobibox/css/default.css">
- <%--   <link rel="stylesheet" href="../Lobibox/dist/css/Lobibox.min.css"/>--%>
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/uploadify/uploadify.css">
+    <link rel="stylesheet" href="../Lobibox/dist/css/Lobibox.min.css"/>
+    <link rel="stylesheet" href="../uploadify/uploadify.css">
 
     <%
         HttpSession httpSession = request.getSession();
@@ -56,8 +56,8 @@
         String loginUserName = users.getUsername();
         String loginUserImg = users.getUserimg();
     %>
-    <link href="<%=request.getContextPath()%>/js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
-   <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/js/uploadify/uploadify.css">--%>
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
 </head>
 <body class="skin-blue">
 <!-- header logo: style can be found in header.less -->
@@ -92,7 +92,7 @@
                     <img src="../img/<%=loginUserImg%>" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p>Hello,王哥</p>
+                    <p>Hello,<%=loginUserName%></p>
 
                     <a href="#"> <i class="fa fa-circle text-success"></i>Online</a>
                 </div>
@@ -126,9 +126,6 @@
 
 </div>
 </body>
-
-
-
 <!-- jQuery 2.0.2 -->
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <!-- jQuery UI 1.10.3 -->
@@ -148,7 +145,8 @@
 <!-- jQuery Knob Chart -->
 <script src="<%=request.getContextPath()%>/js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
 <!-- daterangepicker -->
-<script src="<%=request.getContextPath()%>/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/plugins/daterangepicker/daterangepicker.js" type="text/ja
+vascript"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<%=request.getContextPath()%>/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
 <!-- iCheck -->
@@ -169,7 +167,6 @@
 <!-- bootStrap addTabs -->
 <script src="<%=request.getContextPath()%>/js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
 <!-- bootStrap table -->
-<!-- bootStrap table -->
 <script src="<%=request.getContextPath() %>/js/bootstrap-table/dist/bootstrap-table.js"></script>
 <!-- bootStrap table 语言包中文-->
 <script src="<%=request.getContextPath()%>/js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
@@ -186,16 +183,14 @@
 <script src="<%=request.getContextPath()%>/Lobibox/dist/js/lobibox.js"></script>
 <script src="<%=request.getContextPath()%>/Lobibox/demo/demo.js"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath() %>/uploadify/jquery.uploadify.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap-fileinput/js/fileinput.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap-fileinput/js/locales/zh.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/uploadify/jquery.uploadify.js"></script>>
 <script>
 
     //获取数据
     function getTreeData(){
         var tree_data = "";
         $.ajax({
-            url:"/queryTree",
+            url:"<%=request.getContextPath()%>/queryTree",
             type:"post",
             dataType:"json",
             async:false,
@@ -214,7 +209,6 @@
         {
             data:getTreeData(),
             onNodeSelected:function(event,node){
-                //alert(node.href);
                 if(node.href!=null && node.href!=""){
                     $.ajax({
                         url:node.href+"?id="+node.id,
@@ -234,7 +228,6 @@
         }).treeview('collapseAll', {// 节点展开
         silent : true
     });
-
 
 </script>
 </body>
