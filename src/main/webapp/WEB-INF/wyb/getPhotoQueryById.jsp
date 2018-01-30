@@ -36,7 +36,7 @@
 
     function pic(id){
         $.ajax({
-            url:"/addPhotoreviem",
+            url:"<%=request.getContextPath()%>/addPhotoreviem",
             type:"post",
             data:$("#reviem-form"+id+"").serialize(),
             dataType:"json",

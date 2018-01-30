@@ -20,7 +20,8 @@
     </div>
 </div>
 <script>
-
+    var yimi = ${roles2.roleid}
+        alert(yimi);
     $("#review-essaytheme").bootstrapTable({
         url:"<%=request.getContextPath()%>/queryEssaytheme",
         /*  striped: true,//隔行变色
@@ -42,7 +43,8 @@
         queryParams:function(){
             return {
                 page:this.pageNumber,//当前页
-                rows:this.pageSize //每页条数
+                rows:this.pageSize, //每页条数
+                emroles:${roles2.roleid}
             }
         },
         columns: [ {
@@ -63,7 +65,7 @@
             title: '操作',
             width: 50,
             formatter:function(value,row,index){
-                return row.themeendreview == 1 ? "<input type='button' value='审核' onclick='upStaffone(\""+row.articletopicid+"\",\""+row.themeendreview+"\")'/>":"审核已通过";
+                return row.themeendreview == 4 ?"审核已通过": "<input type='button' value='审核' onclick='upStaffone(\""+row.articletopicid+"\",\""+row.themeendreview+"\")'/>";
             }
         }]
     })
@@ -102,7 +104,7 @@
         }
         //循环切割
         strIds = strIds.substr(0, strIds.length - 1);
-        $.post('<%=request.getContextPath()%>updateAllStaffEssaythemeYM?articletopicids=' + strIds, function (jsonObj) {
+        $.post('<%=request.getContextPath()%>/updateAllStaffEssaythemeYM?articletopicids=' + strIds+'&themeendreview='+${roles2.roleid}, function (jsonObj) {
             if (jsonObj > 0) {
                 $("#review-essaytheme").bootstrapTable("refresh");
             } else {

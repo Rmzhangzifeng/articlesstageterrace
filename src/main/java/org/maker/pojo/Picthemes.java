@@ -13,6 +13,26 @@ public class Picthemes implements Serializable {
 
     private String picgrouptitle;
 
+    private String picthemeids;
+
+    private  Integer picroles;
+
+    public String getPicthemeids() {
+        return picthemeids;
+    }
+
+    public void setPicthemeids(String picthemeids) {
+        this.picthemeids = picthemeids;
+    }
+
+    public Integer getPicroles() {
+        return picroles;
+    }
+
+    public void setPicroles(Integer picroles) {
+        this.picroles = picroles;
+    }
+
     public Integer getPicthemeid() {
         return picthemeid;
     }

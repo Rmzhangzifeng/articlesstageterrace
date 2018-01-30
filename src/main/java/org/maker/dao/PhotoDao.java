@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PhotoDao {
     List<EnjEdit> queryEdit(String id);
-    Long queryPic(String id);
+    Long queryPic(@Param("id")String id);
     List<Picgroup> queryPicPage(@Param("start") int start, @Param("end")int end, @Param("id") String id);
 
     int AddPicPhoto(Picphoto po);

@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 @Controller
-@EnableAutoConfiguration
 public class WJapeController {
 
     @Autowired
@@ -75,8 +75,8 @@ public class WJapeController {
     }
     @RequestMapping("/AddJape")
     @ResponseBody
-    public Object AddJape(Jape jape){
-        int i=japeService.AddJape(jape);
+    public Object AddJape(Jape jape,HttpSession session){
+        int i=japeService.AddJape(jape,session);
         return i;
     }
 
@@ -118,9 +118,9 @@ public class WJapeController {
 
     @RequestMapping("/addJapeDiscuss")
     @ResponseBody
-    public Object addJapeDiscuss(Japediscusss dis){
+    public Object addJapeDiscuss(Japediscusss dis,HttpSession session){
 
-        int i=japeService.addJapeDiscuss(dis);
+        int i=japeService.addJapeDiscuss(dis,session);
         return i;
     }
 }

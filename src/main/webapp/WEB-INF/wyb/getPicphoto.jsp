@@ -39,7 +39,7 @@
         //插件自带  不可忽略的参数
         'swf': '${pageContext.request.contextPath}/uploadify/uploadify.swf',
         //前台请求后台上传文件的url  不可忽略的参数
-        'uploader': '/uploadPhotoFile',
+        'uploader': '<%=request.getContextPath()%>/uploadPhotoFile',
         //给div的进度条加背景  参数为<div>id属性值  不可忽略
         'queueID': 'fileQueue',
         //上传文件文件名   和file文件域的name属性一致   和后台接受的属性名对应
