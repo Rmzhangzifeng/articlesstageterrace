@@ -115,7 +115,7 @@
     </aside>
     <aside class="right-side">
 
-        <ul id="myTab" class="nav nav-tabs">
+        <ul id="myTab" class="nav nav-tabs" name="nav">
             <li >
                 <a href="#" data-toggle="tab"> 首页</a>
             </li>

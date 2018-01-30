@@ -30,10 +30,6 @@
             showColumns:true,//是否显示 内容列下拉框
             showPaginationSwitch:true,//是否显示 分页工具栏
             minimumCountColumns:1,//最小留下一个
-            showRefresh:true,//显示刷新按钮
-            showToggle:true,//显示切换视图
-            search:false,//是否显示搜索框
-            searchOnEnterKey:true,//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
             pagination:true,//开启分页
             paginationLoop:true,//开启分页无限循环
             pageNumber:1,//当前页数

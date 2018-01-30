@@ -37,6 +37,8 @@ public class Users {
 
     private String userpass;
 
+    private Integer userroleid;
+
     public Integer getUserid() {
         return userid;
     }
@@ -171,5 +173,13 @@ public class Users {
 
     public void setUserpass(String userpass) {
         this.userpass = userpass == null ? null : userpass.trim();
+    }
+
+    public Integer getUserroleid() {
+        return userroleid;
+    }
+
+    public void setUserroleid(Integer userroleid) {
+        this.userroleid = userroleid;
     }
 }
