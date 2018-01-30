@@ -71,6 +71,7 @@ alert(${roles2.roleid});
     })
 
     function upStafftow(id,status) {
+        alert(1);
         $.ajax({
             url:"<%=request.getContextPath() %>/updatePicthemeYm",
             type:"post",

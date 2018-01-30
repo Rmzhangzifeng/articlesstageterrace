@@ -68,10 +68,10 @@
         </foreach>
     </update>
     <!--updatePicthemeYm-->
-    <update id="updatePicthemeYm">
+    <update id="updatePicthemeYm" parameterType="org.maker.pojo.Picthemes">
         update enj_pictheme
         set picgroupreview = #{picgroupreview}
-        where picgroupid = #{picthemeid}
+        where picthemeid = #{picthemeid}
     </update>
     <!--updateStaffAllPicthemeYM-->
     <update id="updateStaffAllPicthemeYM">
