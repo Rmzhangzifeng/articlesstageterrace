@@ -78,6 +78,7 @@ public class ReviewControllerYM {
         }else if(essaythemes.getThemeendreview() == 2){
             essaythemes.setThemeendreview(3);
         }
+
         int mm = reviewServiceYM.updateEssaytheme(essaythemes);
         return mm;
     }
@@ -118,6 +119,7 @@ public class ReviewControllerYM {
         }else if(picthemes.getPicgroupreview() == 2){
             picthemes.setPicgroupreview(3);
         }
+        System.out.println(picthemes.getPicgroupreview());
         int pp = reviewServiceYM.updatePicthemeYm(picthemes);
         return pp;
     }

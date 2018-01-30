@@ -25,7 +25,7 @@ public class RoleController {
     @RequestMapping("/Role/getRole")
     public String getRole(HttpSession session){
         Users user=(Users) session.getAttribute("loginUserMsg");
-        if(user.getUserroleid()!=3){
+        if(user.getUserroleid()!=2){
             return "wyb/userrole/alerterror";
         }else{
             return "wyb/userrole/rolelist";

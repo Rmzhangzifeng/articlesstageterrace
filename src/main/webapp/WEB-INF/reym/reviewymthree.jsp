@@ -70,6 +70,7 @@
     })
 
     function upStaffthree(id,status) {
+        alert(1);
         $.ajax({
             url:"<%=request.getContextPath() %>/updateFrequencyYm",
             type:"post",
