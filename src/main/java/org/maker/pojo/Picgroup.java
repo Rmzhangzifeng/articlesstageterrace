@@ -24,7 +24,7 @@ public class Picgroup implements Serializable {
 
     private Integer picgroupreview;
 
-
+    private Integer picthemeid;
 
     public Integer getPicorganizeid() {
         return picorganizeid;
@@ -105,5 +105,13 @@ public class Picgroup implements Serializable {
 
     public void setPicgroupreview(Integer picgroupreview) {
         this.picgroupreview = picgroupreview;
+    }
+
+    public Integer getPicthemeid() {
+        return picthemeid;
+    }
+
+    public void setPicthemeid(Integer picthemeid) {
+        this.picthemeid = picthemeid;
     }
 }

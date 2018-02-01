@@ -30,4 +30,8 @@ public interface ReviewServiceYM {
     int updateStaffAllPicthemeYM(Picthemes picthemes);
 
     Roles queryRolesYM(Users user);
+
+    int addMessager(Messagers messagers);
+
+    void updateMessager(Messagers messagers);
 }

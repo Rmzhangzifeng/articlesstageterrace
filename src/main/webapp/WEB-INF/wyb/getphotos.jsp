@@ -81,10 +81,10 @@
                 title: '图片状态',
                 width: 100,
                 formatter:function(value,row,index){
-                    if(value==1){
-                        return "未审核";
-                    }else if(value==2){
+                    if(value==3){
                         return "审核通过";
+                    }else{
+                        return "未审核";
                     }
                 }
             },{
@@ -255,9 +255,11 @@
         });
     }
     function queryByIdPhoto(id){
+        var mark=1;
+
         BootstrapDialog.show({
             title: '查看页面',
-            message: $('<div></div>').load('<%=request.getContextPath()%>/getPhotoQueryById?picid='+id),
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getPhotoQueryById?picid='+id+'&mark='+mark),
             buttons: [{
                 label: '取消',
                 action: function(dialog) {

@@ -10,6 +10,15 @@
         limit #{start},#{end}
     </select>
 
+    <select id="queryMessagerByMy" resultType="long">
+        select count(*) from enj_messager where messagerecipientuser=#{messagerecipientuser}
+    </select>
+
+    <select id="queryMessagerByMyPage" resultType="org.maker.pojo.Messagers">
+        select * from enj_messager where messagerecipientuser=#{messagers.messagerecipientuser}
+        limit #{start},#{end}
+    </select>
+
     <select id="queryRole" resultType="org.maker.pojo.Role">
         select * from enj_role where roleid != 2
     </select>
@@ -20,6 +29,17 @@
     <update id="updateRole" parameterType="org.maker.pojo.Users">
 
         update enj_users set userroleid=#{userroleid} where userid=#{userid}
+
+    </update>
+
+    <select id="queryUsers" resultType="org.maker.pojo.Users">
+        select * from enj_users where userroleid  in(${userids})
+    </select>
+
+
+    <update id="updateUser" parameterType="org.maker.pojo.Users">
+
+        update enj_users set temporaryid=#{temporaryid} where userid=#{userid}
 
     </update>
 </mapper>

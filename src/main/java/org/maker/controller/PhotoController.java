@@ -55,11 +55,14 @@ public class PhotoController {
     }
 
     @RequestMapping("/getPhotoQueryById")
-    public String getPhotoQueryById(Picgroup id,HttpServletRequest req){
+    public String getPhotoQueryById(Picgroup id,HttpServletRequest req,String mark){
+        System.out.print(id.getPicid());
         Picgroup id1=photoService.queryPicGoup(id);
+        System.out.print(id1.getPicid());
         List<Picphoto> list=photoService.queryPicGroupByIds(id1);
-        req.setAttribute("group",id1);
+        req.setAttribute("gr",id1);
         req.setAttribute("photo",list);
+        req.setAttribute("mark",mark);
         return "wyb/getPhotoQueryById";
     }
         @RequestMapping("/queryPic")
@@ -96,7 +99,6 @@ public class PhotoController {
         if(i>0){
             group1=photoService.queryPicGoup(group);
             Picthemes pic=new Picthemes();
-
             pic.setPicgroupid(group1.getPicorganizeid());
             pic.setPictypeid(group.getTypeid());
             pic.setPicgrouptitle(group.getPicgrouptitle());

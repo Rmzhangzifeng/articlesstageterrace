@@ -1,7 +1,6 @@
 package org.maker.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.struts2.ServletActionContext;
 import org.maker.pojo.*;
 import org.maker.service.ReviewServiceYM;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @EnableAutoConfiguration
@@ -36,6 +37,7 @@ public class ReviewControllerYM {
         Users user = (Users) session.getAttribute("loginUserMsg");
         Roles roles1 = reviewServiceYM.queryRolesYM(user);
         request.setAttribute("roles2",roles1);
+        request.setAttribute("u",user);
         return "/reym/reviewymtow";
     }
     @RequestMapping("/reviewymfive")
@@ -173,6 +175,25 @@ public class ReviewControllerYM {
             frequencys.setFrequencyreview(3);
         }
         int dd = reviewServiceYM.updateAllStaffFrequencyYM(frequencys);
+        return dd;
+    }
+    @RequestMapping("getMessager")
+    public String getMessager(Picthemes pic,HttpServletRequest req){
+        req.setAttribute("p",pic);
+        return "wyb/userrole/messagerAdd";
+    }
+
+    @RequestMapping("/addMessager")
+    @ResponseBody
+    public Object addMessager(Messagers messagers,HttpSession session){
+        Users user=(Users) session.getAttribute("loginUserMsg");
+        messagers.setMessageexpeditername(user.getUsername());
+        SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
+        messagers.setMessagerdate(sim.format(new Date()));
+        int dd = reviewServiceYM.addMessager(messagers);
+        if(dd>0){
+            reviewServiceYM.updateMessager(messagers);
+        }
         return dd;
     }
 }

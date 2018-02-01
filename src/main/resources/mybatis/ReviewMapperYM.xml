@@ -24,7 +24,7 @@
     </select>
     <!--  queryPicPage-->
     <select id="queryPicPage" resultType="org.maker.pojo.Picthemes">
-       select pic.picgrouptitle,pic.picgroupreview,pic.picthemeid from enj_pictheme pic  WHERE  pic.picgroupreview =${picthemes.picroles} limit ${start},${end}
+       select pic.picgrouptitle,pic.picgroupreview,pic.picthemeid,g.picname,g.picid from enj_pictheme pic,enj_picgroup g  WHERE pic.picgroupid=g.picorganizeid and pic.picgroupreview =${picthemes.picroles} limit ${start},${end}
     </select>
     <!-- queryPicCountss-->
     <select id="queryPicCountss" resultType="long" >
@@ -102,12 +102,29 @@
 
 
     <select id="queryRolesYM"  resultType="org.maker.pojo.Roles">
-        select * FROM enj_role  rr WHERE rr.roleid = #{userroleid}
+
+        select * FROM enj_role  rr WHERE 1=1
+        <if test="temporaryid == 0">
+            and rr.roleid = #{userroleid}
+        </if>
+        <if test="temporaryid != 0">
+            and rr.roleid = #{temporaryid}
+        </if>
 
     </select>
 
 
 
+    <insert id="addMessager" parameterType="org.maker.pojo.Messagers">
 
+        insert into enj_messager(messageexpeditername,messagerecipientuser,messagecontent,messagertime,messagertitle) values(#{messageexpeditername},#{messagerecipientuser},#{messagecontent},date_format(#{messagerdate},'%Y%m%d'),#{messagertitle})
+
+    </insert>
+
+    <update id="updateMessager" parameterType="org.maker.pojo.Picthemes">
+
+        update enj_pictheme set picgroupreview=4 where picgrouptitle=#{messagertitle}
+
+    </update>
 
 </mapper>

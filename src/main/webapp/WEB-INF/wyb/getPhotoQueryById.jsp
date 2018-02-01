@@ -15,25 +15,34 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 column">
-            话题标题：${group.picgrouptitle}<br>
             <c:forEach items="${photo}" var="e">
                 图片上传人：${e.picuplodperson};<br>
                 图片简介：${e.piccontent};<br>
                 图片上传时间：${e.picuplodtime};<br>
                 <img src='<%=request.getContextPath()%>${e.picphotourl}' style='width:60px;height:60px'><br>
-                <form id="reviem-form${group.picorganizeid}">
-                    <input type="hidden" name="picphotosid" value="${group.picorganizeid}">
+              <div class="div-mark" style="display:none">
+                <form id="reviem-form${gr.picorganizeid}">
+                    <input type="hidden" name="picphotosid" value="${gr.picorganizeid}">
                     <input type="hidden" name="pictopicszid" value="${e.picphotoid}">
                     是否匿名：<input type="checkbox" name="picstatus" value="0"><br>
                     <textarea row="" cols="" name="picreviewcontent"></textarea>
                 </form>
-                <button type="button" class="btn btn-primary btn-default" onclick="pic(${group.picorganizeid})">发表</button><br>
+
+                <button type="button" class="btn btn-primary btn-default" onclick="pic(${gr.picorganizeid})">发表</button><br>
+              </div>
+
             </c:forEach>
+
         </div>
     </div>
 </div>
 <script>
-
+    var a=${mark};
+    $(function (){
+        if(a==1){
+            $(".div-mark").attr("style","")
+        }
+    })
     function pic(id){
         $.ajax({
             url:"<%=request.getContextPath()%>/addPhotoreviem",

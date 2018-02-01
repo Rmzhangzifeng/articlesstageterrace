@@ -8,12 +8,12 @@
   </select>
 
   <select id="queryPic" resultType="long">
-    select count(*) from enj_pictheme e,enj_picgroup p,enj_picphoto h where e.picgroupid=p.picorganizeid and p.piccover=h.picphotoid
+    select count(*) from enj_pictheme e,enj_picgroup p,enj_picphoto h where e.picgroupid=p.picorganizeid and p.piccover=h.picphotoid AND e.picgroupreview=3
     <if test="id !=null and id != ''">and e.pictypeid=#{id}</if>
   </select>
 
   <select id="queryPicPage" resultType="org.maker.pojo.Picgroup">
-    select e.picgroupreview,e.picgrouptitle,p.picorganizeid,p.picid,p.picname,h.piccontent,p.piclike,h.picphotoid,h.picphotourl,h.picuplodperson from enj_pictheme e,enj_picgroup p,enj_picphoto h where e.picgroupid=p.picorganizeid and p.piccover=h.picphotoid
+    select e.picgroupreview,e.picgrouptitle,p.picorganizeid,p.picid,p.picname,h.piccontent,p.piclike,h.picphotoid,h.picphotourl,h.picuplodperson from enj_pictheme e,enj_picgroup p,enj_picphoto h where e.picgroupid=p.picorganizeid and p.piccover=h.picphotoid AND e.picgroupreview=3
     <if test="id !=null and id != ''">and e.pictypeid=#{id}</if>
     limit #{start},#{end}
   </select>
@@ -46,7 +46,7 @@
   </insert>
 
   <select id="queryPicGoup" resultType="org.maker.pojo.Picgroup">
-    select * from enj_picgroup p where  p.picid=#{picid}
+    select * from enj_picgroup p where p.picid=#{picid}
   </select>
   <insert id="addWybPictheme" parameterType="org.maker.pojo.Picthemes">
 

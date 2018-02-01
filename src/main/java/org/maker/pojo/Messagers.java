@@ -5,15 +5,20 @@ import java.util.Date;
 public class Messagers {
     private Integer contactinformationid;
 
-    private Integer messageexpediterid;
+    private String messageexpeditername;
 
-    private Integer messagerecipientid;
+    private String messagerecipientuser;
 
     private String messagecontent;
 
     private Date messagertime;
 
     private Integer messagetype;
+
+    private String messagerdate;
+
+    private String messagertitle;
+
 
     public Integer getContactinformationid() {
         return contactinformationid;
@@ -23,25 +28,7 @@ public class Messagers {
         this.contactinformationid = contactinformationid;
     }
 
-    public Integer getMessageexpediterid() {
-        return messageexpediterid;
-    }
 
-    public void setMessageexpediterid(Integer messageexpediterid) {
-        this.messageexpediterid = messageexpediterid;
-    }
-
-    public Integer getMessagerecipientid() {
-        return messagerecipientid;
-    }
-
-    public void setMessagerecipientid(Integer messagerecipientid) {
-        this.messagerecipientid = messagerecipientid;
-    }
-
-    public String getMessagecontent() {
-        return messagecontent;
-    }
 
     public void setMessagecontent(String messagecontent) {
         this.messagecontent = messagecontent == null ? null : messagecontent.trim();
@@ -61,5 +48,46 @@ public class Messagers {
 
     public void setMessagetype(Integer messagetype) {
         this.messagetype = messagetype;
+    }
+
+
+    public String getMessageexpeditername() {
+        return messageexpeditername;
+    }
+
+    public void setMessageexpeditername(String messageexpeditername) {
+        this.messageexpeditername = messageexpeditername;
+    }
+
+
+
+    public String getMessagecontent() {
+        return messagecontent;
+    }
+
+    public String getMessagerdate() {
+        return messagerdate;
+    }
+
+    public void setMessagerdate(String messagerdate) {
+        this.messagerdate = messagerdate;
+    }
+
+
+
+    public String getMessagertitle() {
+        return messagertitle;
+    }
+
+    public void setMessagertitle(String messagertitle) {
+        this.messagertitle = messagertitle;
+    }
+
+    public String getMessagerecipientuser() {
+        return messagerecipientuser;
+    }
+
+    public void setMessagerecipientuser(String messagerecipientuser) {
+        this.messagerecipientuser = messagerecipientuser;
     }
 }

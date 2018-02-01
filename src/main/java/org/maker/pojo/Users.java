@@ -39,7 +39,9 @@ public class Users {
 
     private Integer userroleid;
 
+    private Integer temporaryid;
 
+    private String userids;
 
     public Integer getUserroleid() {
         return userroleid;
@@ -183,5 +185,23 @@ public class Users {
 
     public void setUserpass(String userpass) {
         this.userpass = userpass == null ? null : userpass.trim();
+    }
+
+    public String getUserids() {
+        return userids;
+    }
+
+    public void setUserids(String userids) {
+        this.userids = userids;
+    }
+
+
+
+    public Integer getTemporaryid() {
+        return temporaryid;
+    }
+
+    public void setTemporaryid(Integer temporaryid) {
+        this.temporaryid = temporaryid;
     }
 }

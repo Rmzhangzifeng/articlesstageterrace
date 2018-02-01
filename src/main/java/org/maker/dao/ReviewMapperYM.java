@@ -46,4 +46,8 @@ public interface ReviewMapperYM {
     Roles queryRolesYM(Users user);
 
     int updateStaffAllPicthemeYM(@Param(value="pss")String[] split,@Param("picgroupreview") Integer picgroupreview);
+
+    int addMessager(Messagers messagers);
+
+    void updateMessager(Messagers messagers);
 }

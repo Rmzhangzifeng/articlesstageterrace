@@ -17,6 +17,10 @@ public class Picthemes implements Serializable {
 
     private  Integer picroles;
 
+    private String picname;
+
+    private String picid;
+
     public String getPicthemeids() {
         return picthemeids;
     }
@@ -71,5 +75,22 @@ public class Picthemes implements Serializable {
 
     public void setPicgrouptitle(String picgrouptitle) {
         this.picgrouptitle = picgrouptitle;
+    }
+
+    public String getPicname() {
+        return picname;
+    }
+
+    public void setPicname(String picname) {
+        this.picname = picname;
+    }
+
+
+    public String getPicid() {
+        return picid;
+    }
+
+    public void setPicid(String picid) {
+        this.picid = picid;
     }
 }

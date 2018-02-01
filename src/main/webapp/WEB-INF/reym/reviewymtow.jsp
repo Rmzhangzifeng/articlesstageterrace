@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>Title</title>
@@ -15,13 +16,17 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <input type="button" class="btn btn-primary btn-sm" value="批量审核信息" onclick="upStaffAllPicthemeYM()">
+            <c:if test="${u.temporaryid == 0}">
+
+                <input type='button' value='临时指派' onclick='upda()'/>
+
+            </c:if>
             <table class="table" id="review-pictheme" border="1"></table>
         </div>
     </div>
 </div>
 
 <script>
-alert(${roles2.roleid});
     $("#review-pictheme").bootstrapTable({
         url:"<%=request.getContextPath()%>/queryPictheme",
         /*  striped: true,//隔行变色
@@ -65,7 +70,7 @@ alert(${roles2.roleid});
             title: '操作',
             width: 50,
             formatter:function(value,row,index){
-                return row.picgroupreview == 4 ? "审核已通过":"<input type='button' value='审核' onclick='upStafftow(\""+row.picthemeid+"\",\""+row.picgroupreview+"\")'/>";
+                return row.picgroupreview == 4 ? "审核已通过":"<input type='button' value='查看' onclick='queryById(\""+row.picid+"\")'/><input type='button' value='审核' onclick='upStafftow(\""+row.picthemeid+"\",\""+row.picgroupreview+"\")'/><input type='button' value='驳回' onclick='addXinXi(\""+row.picgrouptitle+"\",\""+row.picname+"\")'/>";
             }
         } ]
     })
@@ -113,6 +118,98 @@ alert(${roles2.roleid});
                 alert('审核失败，请联系管理员！');
             }
         }, "JSON");
+    }
+    function queryById(id){
+        var mark=2;
+        BootstrapDialog.show({
+            title: '查看页面',
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getPhotoQueryById?picid='+id+'&mark='+mark),
+            buttons: [{
+                label: '取消',
+                action: function(dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
+    function addXinXi(title,name){
+        BootstrapDialog.show({
+            title: '驳回页面',
+            message: $('<div></div>').load('<%=request.getContextPath()%>/getMessager?picgrouptitle='+title+'&picname='+name),
+            buttons: [{
+                label: '驳回',
+                action: function(dialog) {
+
+                    $.ajax({
+                        url:"<%=request.getContextPath()%>/addMessager",
+                        type:"post",
+                        data:$("#messager-form").serialize(),
+                        dataType:"json",
+                        async:false,
+                        success:function(data){
+                            if(data>0){
+                                BootstrapDialog.show({
+                                    title: 'Default Title',
+                                    message: $('<div>驳回成功</div>'),
+                                });
+                                $("#review-pictheme").bootstrapTable("refresh");
+                                dialog.close();
+                            }else{
+                                BootstrapDialog.show({
+                                    title: 'Default Title',
+                                    message: $('<div>驳回失败</div>'),
+                                });
+                            }
+                        },
+                        error:function(){
+                            alert("查询出错");
+                        }
+                    });
+
+                }
+            }]
+        });
+    }
+    function upda(){
+        BootstrapDialog.show({
+            title: '指派页面',
+            message: $('<div></div>').load('<%=request.getContextPath()%>/messager/queryUser'),
+            buttons: [{
+                label: '确定',
+                action: function(dialog) {
+                    if($("#checkuser:checked").val()!=null){
+                        $.ajax({
+                            url:"<%=request.getContextPath()%>/messager/updateUser",
+                            type:"post",
+                            data:{"userid":$("#checkuser:checked").val()},
+                            dataType:"json",
+                            async:false,
+                            success:function(data){
+                                if(data>0){
+                                    BootstrapDialog.show({
+                                        title: 'Default Title',
+                                        message: $('<div>指派成功</div>'),
+                                    });
+                                    dialog.close();
+                                }else{
+                                    BootstrapDialog.show({
+                                        title: 'Default Title',
+                                        message: $('<div>指派失败</div>'),
+                                    });
+                                }
+                            },
+                            error:function(){
+                                alert("查询出错");
+                            }
+                        });
+                    }else{
+                        alert("请选择")
+                    }
+
+
+                }
+            }]
+        });
     }
 </script>
 </body>

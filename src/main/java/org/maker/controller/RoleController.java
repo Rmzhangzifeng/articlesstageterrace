@@ -2,6 +2,7 @@ package org.maker.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import org.maker.pojo.EnjEdit;
+import org.maker.pojo.Messagers;
 import org.maker.pojo.Users;
 import org.maker.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,42 @@ public class RoleController {
     public Object updateRole(Users user){
         System.out.print(user.getUserid());
         int i=roleService.updateRole(user);
+        return i;
+    }
+    @RequestMapping("/messager/getMyMessager")
+    public String getMyMessager(){
+        return "wyb/userrole/MyMessager";
+    }
+
+    @RequestMapping("/messager/queryMessagerByMy")
+    @ResponseBody
+    public JSONObject queryMessagerByMy(@RequestParam(value="page")int page, @RequestParam(value="rows") int rows, Messagers messagers,HttpSession session){
+        Users user=(Users) session.getAttribute("loginUserMsg");
+        messagers.setMessagerecipientuser(user.getUsername());
+        JSONObject  list=roleService.queryMessagerByMy(messagers,page,rows);
+        return list;
+    }
+
+    @RequestMapping("/messager/queryUser")
+    public String queryUsers(HttpSession session,HttpServletRequest request){
+        Users u=new Users();
+        Users user=(Users) session.getAttribute("loginUserMsg");
+        if(user.getUserroleid()==1){
+            u.setUserids("3");
+        }else if(user.getUserroleid()==2){
+            u.setUserids("1,3");
+        }
+        List list=roleService.queryUsers(u);
+        request.setAttribute("list",list);
+        return "wyb/userrole/user";
+    }
+
+    @RequestMapping("/messager/updateUser")
+    @ResponseBody
+    public Object updateUser(Users user,HttpSession session){
+        Users u=(Users) session.getAttribute("loginUserMsg");
+        user.setTemporaryid(u.getUserroleid());
+        int i=roleService.updateUser(user);
         return i;
     }
 }

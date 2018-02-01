@@ -134,4 +134,14 @@ public class ReviewServiceImplYM implements ReviewServiceYM {
     public Roles queryRolesYM(Users user) {
         return reviewMapperYM.queryRolesYM(user);
     }
+
+    @Override
+    public int addMessager(Messagers messagers) {
+        return reviewMapperYM.addMessager(messagers);
+    }
+
+    @Override
+    public void updateMessager(Messagers messagers) {
+        reviewMapperYM.updateMessager(messagers);
+    }
 }
